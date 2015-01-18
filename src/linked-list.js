@@ -1,4 +1,4 @@
-define(function (require, exports) {
+define(function () {
 
 	var LinkedList = function () {
 		this._head = null
@@ -21,6 +21,10 @@ define(function (require, exports) {
 		if (next) {
 			next._prev = insert
 		}
+		if (current == this._tail) {
+			this._tail = insert
+		}
+		return insert
 	}
 
 	LinkedList.prototype.insertBefore = function (current, insert) {
@@ -31,23 +35,47 @@ define(function (require, exports) {
 		if (prev) {
 			prev._next = insert
 		}
+		if (current == this._head) {
+			this._head = insert
+		}
+		return insert
 	}
 
 	LinkedList.prototype.addLast = function (node) {
-		if (this._head) {
-			this.insertAfter(node)
+		if (this.tail()) {
+			this.insertAfter(this.tail(), node)
 		} else {
-			this._head = node
+			this._head = this._tail = node
 		}
+		return node
 	}
 
-
-	if (typeof QUnit != 'undefined') {
-		QUnit.module('linked-list')
-
-		QUnit.test(function () {
-
-		})
+	LinkedList.prototype.addFirst = function (node) {
+		if (this.head()) {
+			this.insertBefore(this.head(), node)
+		} else {
+			this._head = this._tail = node
+		}
+		return node
 	}
+
+	LinkedList.prototype.remove = function (node) {
+		var prev = node.prev()
+		var next = node.next()
+		node._prev = node._next = null
+		if (prev) {
+			prev._next = next
+		} else {
+			this._head = next
+		}
+		if (next) {
+			next._prev = prev
+		} else {
+			this._tail = prev
+		}
+		return node
+	}
+
+	return LinkedList
 
 })
