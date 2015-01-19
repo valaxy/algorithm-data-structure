@@ -52,7 +52,7 @@ define(function (require) {
 	/**
 	 * print a xml tree, a debug method
 	 */
-	OrderedNode.prototype.toStringTree = function () {
+	OrderedNode.prototype.toString = function () {
 		var queue = [{
 			node: this,
 			deep: 0

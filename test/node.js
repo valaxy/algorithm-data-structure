@@ -133,7 +133,7 @@ define(function (require) {
 	})
 
 
-	QUnit.test('toStringTree()', function (assert) {
+	QUnit.test('toString()', function (assert) {
 		for (var i in Nodes) {
 			var Node = Nodes[i]
 			var root = new Node
@@ -148,7 +148,7 @@ define(function (require) {
 				'    node\n' +
 				'    node\n' +
 				'        node\n'
-			assert.equal(root.toStringTree(), str)
+			assert.equal(root.toString(), str)
 		}
 	})
 })

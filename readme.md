@@ -11,7 +11,7 @@
 - lastChild()
 - leftestDescendant()
 - isSameStructure(otherTreeNode)
-- toStringTree()
+- toString()
 
 - child(i)
 
@@ -36,7 +36,7 @@ Use linked-list to save the children of a node
 - lastChild()
 - leftestDescendant()
 - isSameStructure(otherTreeNode)
-- toStringTree()
+- toString()
 
 - leftBrother()
 - rightBrother()
