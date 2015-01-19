@@ -10,16 +10,18 @@
 - firstChild()
 - lastChild()
 - leftestDescendant()
-
-- child(i)
 - isSameStructure(otherTreeNode)
 - toString()
 
+- child(i)
+
+
 **set method**
 
+- addChildFirst(child, ...)
 - addChildLast(child, ...)
+
 - addChildAt(i, child)
-- appendRightBrother(node)
 
 
 # LinkedNode
@@ -33,14 +35,17 @@ Use linked-list to save the children of a node
 - firstChild()
 - lastChild()
 - leftestDescendant()
+- isSameStructure(otherTreeNode)
+- toString()
 
 - leftBrother()
 - rightBrother()
 
 **set method**
 
-- addChildFirst()
-- addChildLast()
+- addChildFirst(child, ...)
+- addChildLast(child, ...)
+
 - appendLeftBrother()
 - appendRightBrother()
 - cut()

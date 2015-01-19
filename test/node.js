@@ -90,6 +90,27 @@ define(function (require) {
 	})
 
 
+	QUnit.test('isSameStructure()', function (assert) {
+		var root = []
+		for (var i in Nodes) {
+			var Node = Nodes[i]
+
+			root[i] = new Node
+			var n0 = new Node
+			var n1 = new Node
+			var n2 = new Node
+			root[i].addChildLast(n0)
+			root[i].addChildLast(n1)
+			n1.addChildLast(n2)
+
+			assert.ok(root[i].isSameStructure(root[i]))
+			assert.ok(!root[i].isSameStructure(n2))
+		}
+
+		root[0].isSameStructure(root[1])
+	})
+
+
 	//
 	//QUnit.test('appendLeftBrother()', function (assert) {
 	//
@@ -112,4 +133,22 @@ define(function (require) {
 	})
 
 
+	QUnit.test('toString()', function (assert) {
+		for (var i in Nodes) {
+			var Node = Nodes[i]
+			var root = new Node
+			var n0 = new Node
+			var n1 = new Node
+			var n2 = new Node
+			root.addChildLast(n0, n1)
+			n1.addChildLast(n2)
+
+			var str =
+				'node\n' +
+				'    node\n' +
+				'    node\n' +
+				'        node\n'
+			assert.equal(root.toString(), str)
+		}
+	})
 })

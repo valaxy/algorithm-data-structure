@@ -1,12 +1,15 @@
 define(function (require) {
 	var LinkedListNode = require('bower_components/linked-list/src/linked-node')
 	var LinkedList = require('bower_components/linked-list/src/linked-list')
+	var OrderedNode = require('./ordered-node')
 
 	var LinkedNode = function () {
 		this._parent = null
 		this._childList = new LinkedList
 		this._linked = null
 	}
+
+	LinkedNode.prototype = new OrderedNode
 
 	LinkedNode.prototype.parent = function () {
 		return this._parent
@@ -33,18 +36,6 @@ define(function (require) {
 	LinkedNode.prototype.lastChild = function () {
 		var tail = this._childList.tail()
 		return tail ? tail._treeNode : null
-	}
-
-	LinkedNode.prototype.leftestDescendant = function () {
-		var current = this
-		while (true) {
-			var child = current.firstChild()
-			if (!child) {
-				return current
-			} else {
-				current = child
-			}
-		}
 	}
 
 	LinkedNode.prototype.leftBrother = function () {
