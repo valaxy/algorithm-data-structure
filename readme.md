@@ -1,4 +1,15 @@
-Linked list
+# LinkedNode
+- LinkedNode = require('src/linked-node')
+- new LinkedNode
+- next()
+- prev()
 
-# Introduction
+# LinkedList
+- LinkedList = require('src/linked-list')
+- new LinkedList
+- insertAfter(current, insert)
+- insertBefore(current, insert)
+- addLast(node)
+- addFirst(node)
+- remove(node)
 

@@ -21,6 +21,7 @@ define(function (require) {
 		}
 	}
 
+
 	QUnit.test('constructor', function (assert) {
 		var list = new LinkedList
 		assert.equal(list.head(), null)
@@ -28,12 +29,25 @@ define(function (require) {
 	})
 
 
-	QUnit.test('insertAfter', function (assert) {
+	QUnit.test('insertAfter()', function (assert) {
 		var list = new LinkedList
 		var n1 = list.addLast(new LinkedNode)
 		var n2 = list.insertAfter(n1, new LinkedNode)
+		checkLinks(assert, list, [n1, n2])
+
 		var n3 = list.insertAfter(n1, new LinkedNode)
 		checkLinks(assert, list, [n1, n3, n2])
+	})
+
+
+	QUnit.test('insertBefore()', function (assert) {
+		var list = new LinkedList
+		var n1 = list.addLast(new LinkedNode)
+		var n2 = list.insertBefore(n1, new LinkedNode)
+		checkLinks(assert, list, [n2, n1])
+
+		var n3 = list.insertBefore(n1, new LinkedNode)
+		checkLinks(assert, list, [n2, n3, n1])
 	})
 
 
@@ -44,6 +58,15 @@ define(function (require) {
 
 		var n2 = list.addLast(new LinkedNode)
 		checkLinks(assert, list, [n1, n2])
+	})
+
+	QUnit.test('addFirst()', function (assert) {
+		var list = new LinkedList
+		var n1 = list.addFirst(new LinkedNode)
+		checkLinks(assert, list, [n1])
+
+		var n2 = list.addFirst(new LinkedNode)
+		checkLinks(assert, list, [n2, n1])
 	})
 
 
