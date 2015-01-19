@@ -21,6 +21,10 @@ define(function (require) {
 		}
 	}
 
+	LinkedNode.prototype.childrenCount = function () {
+		return this._childList.count()
+	}
+
 	LinkedNode.prototype.firstChild = function () {
 		var head = this._childList.head()
 		return head ? head._treeNode : null
@@ -29,6 +33,18 @@ define(function (require) {
 	LinkedNode.prototype.lastChild = function () {
 		var tail = this._childList.tail()
 		return tail ? tail._treeNode : null
+	}
+
+	LinkedNode.prototype.leftestDescendant = function () {
+		var current = this
+		while (true) {
+			var child = current.firstChild()
+			if (!child) {
+				return current
+			} else {
+				current = child
+			}
+		}
 	}
 
 	LinkedNode.prototype.leftBrother = function () {
@@ -62,13 +78,15 @@ define(function (require) {
 	}
 
 	LinkedNode.prototype.appendLeftBrother = function (node) {
-		var listNode = this._childList.insertBefore(this._linked, new LinkedListNode)
+		var list = this.parent()._childList
+		var listNode = list.insertBefore(this._linked, new LinkedListNode)
 		listNode._treeNode = node
 		node._parent = this.parent()
 	}
 
 	LinkedNode.prototype.appendRightBrother = function (node) {
-		var listNode = this._childList.insertAfter(this._linked, new LinkedListNode)
+		var list = this.parent()._childList
+		var listNode = list.insertAfter(this._linked, new LinkedListNode)
 		listNode._treeNode = node
 		node._parent = this.parent()
 	}
@@ -81,6 +99,7 @@ define(function (require) {
 			delete this._linked
 		}
 	}
+
 
 	return LinkedNode
 })

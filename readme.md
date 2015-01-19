@@ -3,15 +3,20 @@
 - Not really finish
 
 **read method**
+
 - parent()
+- eachChild(task)
+- childrenCount()
 - firstChild()
 - lastChild()
-- children([i])
 - leftestDescendant()
+
+- child(i)
 - isSameStructure(otherTreeNode)
 - toString()
 
 **set method**
+
 - addChildLast(child, ...)
 - addChildAt(i, child)
 - appendRightBrother(node)
@@ -21,14 +26,19 @@
 Use linked-list to save the children of a node
 
 **read method**
+
 - parent()
 - eachChild(task)
+- childrenCount()
 - firstChild()
 - lastChild()
+- leftestDescendant()
+
 - leftBrother()
 - rightBrother()
 
-** set method**
+**set method**
+
 - addChildFirst()
 - addChildLast()
 - appendLeftBrother()

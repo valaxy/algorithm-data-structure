@@ -6,17 +6,15 @@ define(function (require) {
 	QUnit.module('Node')
 
 	function checkChildren(assert, node, children) {
-		var count = 0
 		if (children.length > 0) {
 			assert.equal(node.firstChild(), children[0])
 		}
 		var last = null
 		node.eachChild(function (child, index) {
 			assert.equal(child, children[index])
-			count++
 			last = child
 		})
-		assert.equal(count, children.length)
+		assert.equal(node.childrenCount(), children.length)
 		if (children.length > 0) {
 			assert.equal(last, children[children.length - 1])
 		}
@@ -31,7 +29,26 @@ define(function (require) {
 		}
 	})
 
-	QUnit.test('addChildLast()/parent()/eachChild()/firstChild()/lastChild()', function (assert) {
+	QUnit.test('eachChild()', function (assert) {
+		for (var i in Nodes) {
+			var Node = Nodes[i]
+			var root = new Node
+			var n1 = new Node
+			var n2 = new Node
+			var n3 = new Node
+			root.addChildLast(n1, n2, n3)
+
+			var children = [n1, n2, n3]
+			var count = 0
+			root.eachChild(function (child, index) {
+				assert.equal(child, children[index])
+				count++
+			})
+			assert.equal(count, 3)
+		}
+	})
+
+	QUnit.test('addChildLast()/parent()/firstChild()/lastChild()/childrenCount()', function (assert) {
 		for (var i in Nodes) {
 			var Node = Nodes[i]
 
@@ -50,6 +67,33 @@ define(function (require) {
 			checkChildren(assert, root, [n1, n2])
 		}
 	})
+
+	QUnit.test('leftestDescendant', function (assert) {
+		for (var i in Nodes) {
+			var Node = Nodes[i]
+
+			var root = new Node
+			var n1 = new Node
+			var n2 = new Node
+			var n3 = new Node
+			assert.equal(root.leftestDescendant(), root)
+
+			root.addChildLast(n1)
+			assert.equal(root.leftestDescendant(), n1)
+
+			root.addChildLast(n2)
+			assert.equal(root.leftestDescendant(), n1)
+
+			n1.addChildLast(n3)
+			assert.equal(root.leftestDescendant(), n3)
+		}
+	})
+
+
+	//
+	//QUnit.test('appendLeftBrother()', function (assert) {
+	//
+	//})
 
 	QUnit.test('appendRightBrother()', function (assert) {
 		for (var i in Nodes) {

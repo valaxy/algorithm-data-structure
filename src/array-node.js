@@ -1,4 +1,5 @@
-define(function () {
+define(function (require) {
+	var repeat = require('./repeat')
 
 	var ArrayNode = function () {
 		this._parent = null
@@ -7,14 +8,6 @@ define(function () {
 
 	ArrayNode.create = function () {
 		return new ArrayNode()
-	}
-
-	function repeat(times) {
-		var str = ''
-		for (var i = 0; i < times; i++) {
-			str += ' '
-		}
-		return str
 	}
 
 	/**
@@ -36,22 +29,35 @@ define(function () {
 	}
 
 
+	/**
+	 * returns the count of children
+	 */
+	ArrayNode.prototype.childrenCount = function () {
+		return this._children.length
+	}
+
+
+	/**
+	 * returns the first child
+	 */
 	ArrayNode.prototype.firstChild = function () {
 		return this._children[0]
 	}
 
+	/**
+	 * return the last child
+	 */
 	ArrayNode.prototype.lastChild = function () {
 		return this._children[this._children.length - 1]
 	}
 
+
 	/**
-	 * get the children array of this or get the index `i` of children
+	 * return the i-th child
+	 * @param i
 	 */
-	ArrayNode.prototype.children = function (i) {
-		if (typeof i != 'undefined') {
-			return this._children[i]
-		}
-		return this._children
+	ArrayNode.prototype.child = function (i) {
+		return this._children[i]
 	}
 
 
@@ -60,8 +66,8 @@ define(function () {
 	 */
 	ArrayNode.prototype.leftestDescendant = function () {
 		var current = this
-		while (current.children().length != 0) {
-			current = current.children(0)
+		while (current._children.length != 0) {
+			current = current.child(0)
 		}
 		return current
 	}
@@ -73,16 +79,16 @@ define(function () {
 	 * @returns {boolean}
 	 */
 	ArrayNode.prototype.isSameStructure = function (otherTreeRoot) {
-		if (this.children().length != otherTreeRoot.children().length) {
+		if (this.childrenCount() != otherTreeRoot.childrenCount()) {
 			return false
 		}
 
-		for (var i in this.children()) {
-			var compare = this.children()[i].isSameStructure(otherTreeRoot.children()[i])
+		this.eachChild(function (child, i) {
+			var compare = child.isSameStructure(otherTreeRoot._children[i])
 			if (!compare) {
 				return false
 			}
-		}
+		})
 
 		return true
 	}
@@ -93,7 +99,7 @@ define(function () {
 	ArrayNode.prototype.addChildLast = function (child /** ... **/) {
 		for (var i in arguments) {
 			var child = arguments[i]
-			this.children().push(child)
+			this._children.push(child)
 			child._parent = this
 		}
 		return this
@@ -103,7 +109,7 @@ define(function () {
 	 * add child to the index `i`
 	 */
 	ArrayNode.prototype.addChildAt = function (i, child) {
-		this.children().splice(i, 0, child)
+		this._children.splice(i, 0, child)
 		child._parent = this
 	}
 
@@ -112,7 +118,7 @@ define(function () {
 	 * add a child to be the brother of this and after it
 	 */
 	ArrayNode.prototype.appendRightBrother = function (brother) {
-		var brothers = this.parent().children()
+		var brothers = this.parent()._children
 		for (var i in brothers) {
 			if (brothers[i] == this) {
 				this.parent().addChildAt(i + 1, brother)
@@ -125,10 +131,10 @@ define(function () {
 	 * break the relation between parent and this
 	 * if it's root, do nothing
 	 */
-	ArrayNode.prototype.cut = function (child) {
+	ArrayNode.prototype.cut = function () {
 		if (this.parent()) {
-			var index = this.parent().children().indexOf(this)
-			this.parent().children().splice(index, 1)
+			var index = this.parent()._children.indexOf(this)
+			this.parent()._children.splice(index, 1)
 		}
 	}
 
@@ -146,8 +152,8 @@ define(function () {
 		while (queue.length > 0) {
 			var element = queue.shift()
 			str += repeat(element.deep * 4) + 'node' + '\n'
-			for (var i in element.node.children()) {
-				var child = element.node.children()[i]
+			for (var i in element.node._children) {
+				var child = element.node._children[i]
 				queue.push({
 					node: child,
 					deep: element.deep + 1

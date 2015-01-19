@@ -3,20 +3,20 @@ define(function (require) {
 
 	QUnit.module('ArrayNode')
 
-	QUnit.test('children()/addChildAt()', function (assert) {
-		var root = ArrayNode.create()
-		var n0 = ArrayNode.create()
-		var n1 = ArrayNode.create()
-		var n2 = ArrayNode.create()
-		root.addChildLast(n1)
-		root.addChildAt(1, n2)
-		root.addChildAt(0, n0)
-
-		assert.equal(root.children()[0], n0)
-		assert.equal(root.children()[1], n1)
-		assert.equal(root.children()[2], n2)
-		assert.equal(n2.parent(), root)
-	})
+	//QUnit.test('children()/addChildAt()', function (assert) {
+	//	var root = ArrayNode.create()
+	//	var n0 = ArrayNode.create()
+	//	var n1 = ArrayNode.create()
+	//	var n2 = ArrayNode.create()
+	//	root.addChildLast(n1)
+	//	root.addChildAt(1, n2)
+	//	root.addChildAt(0, n0)
+	//
+	//	assert.equal(root.children()[0], n0)
+	//	assert.equal(root.children()[1], n1)
+	//	assert.equal(root.children()[2], n2)
+	//	assert.equal(n2.parent(), root)
+	//})
 
 	QUnit.test('isSameStructure()', function (assert) {
 		var root = ArrayNode.create()
@@ -31,21 +31,5 @@ define(function (require) {
 		assert.ok(!root.isSameStructure(n2))
 	})
 
-	QUnit.test('leftestDescendant', function (assert) {
-		var root = ArrayNode.create()
-		var n1 = ArrayNode.create()
-		var n2 = ArrayNode.create()
-		var n3 = ArrayNode.create()
-		assert.equal(root.leftestDescendant(), root)
-
-		root.addChildLast(n1)
-		assert.equal(root.leftestDescendant(), n1)
-
-		root.addChildLast(n2)
-		assert.equal(root.leftestDescendant(), n1)
-
-		n1.addChildLast(n3)
-		assert.equal(root.leftestDescendant(), n3)
-	})
 
 })
