@@ -22,7 +22,7 @@ define(function (require) {
 		})
 		assert.equal(count, children.length)
 	}
-	
+
 
 	QUnit.test('leftBrother()/rightBrother()', function (assert) {
 		var root = new LinkedNode
@@ -38,6 +38,21 @@ define(function (require) {
 
 		root.addChildLast(n2)
 		checkChildren(assert, root, [n1, n2])
+	})
+
+	QUnit.test('cut()', function (assert) {
+		var root = new LinkedNode
+		var n1 = new LinkedNode
+		var n2 = new LinkedNode
+		var n3 = new LinkedNode
+		var n4 = new LinkedNode
+		root.addChildLast(n1, n2, n3)
+		n3.addChildLast(n4)
+		checkChildren(assert, root, [n1, n2, n3])
+
+		assert.ok(true, 'ss')
+		n2.cut()
+		checkChildren(assert, root, [n1, n3])
 	})
 
 })

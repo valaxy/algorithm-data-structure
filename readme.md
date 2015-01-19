@@ -1,5 +1,6 @@
 # ArrayNode
-Use array to save the children of a node
+- Use array to save the children of a node
+- Not really finish
 
 **read method**
 - parent()
@@ -11,10 +12,10 @@ Use array to save the children of a node
 - toString()
 
 **set method**
-- addChild(child, ...)
+- addChildLast(child, ...)
 - addChildAt(i, child)
-- appendBrother(node)
-- cut()
+- appendRightBrother(node)
+
 
 # LinkedNode
 Use linked-list to save the children of a node
@@ -28,10 +29,12 @@ Use linked-list to save the children of a node
 - rightBrother()
 
 ** set method**
-- addChildLast()
 - addChildFirst()
-- appendRightBrother()
+- addChildLast()
 - appendLeftBrother()
+- appendRightBrother()
+- cut()
+
 
 # StructNode
 - Use a hash-map to save the children of a node, each child has a unique name to represent

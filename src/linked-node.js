@@ -31,24 +31,14 @@ define(function (require) {
 		return tail ? tail._treeNode : null
 	}
 
-	LinkedNode.prototype.rightBrother = function () {
-		var next = this._linked.next()
-		return next ? next._treeNode : null
-	}
-
 	LinkedNode.prototype.leftBrother = function () {
 		var prev = this._linked.prev()
 		return prev ? prev._treeNode : null
 	}
 
-	LinkedNode.prototype.addChildLast = function (node /* ... */) {
-		for (var i in arguments) {
-			var node = arguments[i]
-			var listNode = this._childList.addLast(new LinkedListNode)
-			listNode._treeNode = node
-			node._parent = this
-			node._linked = listNode
-		}
+	LinkedNode.prototype.rightBrother = function () {
+		var next = this._linked.next()
+		return next ? next._treeNode : null
 	}
 
 	LinkedNode.prototype.addChildFirst = function (node /* ... */) {
@@ -61,16 +51,35 @@ define(function (require) {
 		}
 	}
 
-	LinkedNode.prototype.appendRightBrother = function (node) {
-		var listNode = this._childList.insertAfter(this._linked, new LinkedListNode)
-		listNode._treeNode = node
-		node._parent = this.parent()
+	LinkedNode.prototype.addChildLast = function (node /* ... */) {
+		for (var i in arguments) {
+			var node = arguments[i]
+			var listNode = this._childList.addLast(new LinkedListNode)
+			listNode._treeNode = node
+			node._parent = this
+			node._linked = listNode
+		}
 	}
 
 	LinkedNode.prototype.appendLeftBrother = function (node) {
 		var listNode = this._childList.insertBefore(this._linked, new LinkedListNode)
 		listNode._treeNode = node
 		node._parent = this.parent()
+	}
+
+	LinkedNode.prototype.appendRightBrother = function (node) {
+		var listNode = this._childList.insertAfter(this._linked, new LinkedListNode)
+		listNode._treeNode = node
+		node._parent = this.parent()
+	}
+
+
+	LinkedNode.prototype.cut = function () {
+		if (this.parent()) {
+			this.parent()._childList.remove(this._linked)
+			this._parent = null
+			delete this._linked
+		}
 	}
 
 	return LinkedNode
