@@ -13,7 +13,6 @@ lastChild()
 leftestDescendant()
 isSameStructure(otherTreeNode)
 toString()
-
 child(i)
 ```
 
@@ -22,7 +21,6 @@ child(i)
 ```javascript
 addChildFirst(child, ...)
 addChildLast(child, ...)
-
 addChildAt(i, child)
 ```
 
@@ -31,7 +29,7 @@ Use linked-list to save the children of a node
 
 **read method**
 
-``javascript
+```javascript
 parent()
 eachChild(task)
 childrenCount()
@@ -40,7 +38,6 @@ lastChild()
 leftestDescendant()
 isSameStructure(otherTreeNode)
 toString()
-
 leftBrother()
 rightBrother()
 ```
@@ -50,7 +47,6 @@ rightBrother()
 ```javascript
 addChildFirst(child, ...)
 addChildLast(child, ...)
-
 appendLeftBrother()
 appendRightBrother()
 cut()

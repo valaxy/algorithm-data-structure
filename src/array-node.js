@@ -85,19 +85,6 @@ define(function (require) {
 
 
 	/**
-	 * add a child to be the brother of this and after it
-	 */
-	ArrayNode.prototype.appendRightBrother = function (brother) {
-		var brothers = this.parent()._children
-		for (var i in brothers) {
-			if (brothers[i] == this) {
-				this.parent().addChildAt(i + 1, brother)
-			}
-		}
-	}
-
-
-	/**
 	 * break the relation between parent and this
 	 * if it's root, do nothing
 	 */
@@ -108,8 +95,18 @@ define(function (require) {
 		}
 	}
 
-
-
-
 	return ArrayNode
 })
+
+
+///**
+// * add a child to be the brother of this and after it
+// */
+//ArrayNode.prototype.appendRightBrother = function (brother) {
+//	var brothers = this.parent()._children
+//	for (var i in brothers) {
+//		if (brothers[i] == this) {
+//			this.parent().addChildAt(i + 1, brother)
+//		}
+//	}
+//}
