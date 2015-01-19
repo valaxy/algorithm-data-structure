@@ -1,15 +1,18 @@
 # LinkedNode
-- LinkedNode = require('src/linked-node')
-- new LinkedNode
-- next()
-- prev()
+```javascript
+LinkedNode = require('src/linked-node')
+new LinkedNode
+next()
+prev()
+```
 
 # LinkedList
-- LinkedList = require('src/linked-list')
-- new LinkedList
-- insertAfter(current, insert)
-- insertBefore(current, insert)
-- addLast(node)
-- addFirst(node)
-- remove(node)
-
+```javascript
+LinkedList = require('src/linked-list')
+new LinkedList
+insertAfter(current, insert)
+insertBefore(current, insert)
+addLast(node)
+addFirst(node)
+remove(node)
+```
