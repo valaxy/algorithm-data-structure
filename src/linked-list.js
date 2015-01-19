@@ -3,6 +3,7 @@ define(function () {
 	var LinkedList = function () {
 		this._head = null
 		this._tail = null
+		this._count = 0
 	}
 
 	LinkedList.prototype.head = function () {
@@ -11,6 +12,10 @@ define(function () {
 
 	LinkedList.prototype.tail = function () {
 		return this._tail
+	}
+
+	LinkedList.prototype.count = function () {
+		return this._count
 	}
 
 	LinkedList.prototype.insertAfter = function (current, insert) {
@@ -24,6 +29,7 @@ define(function () {
 		if (current == this._tail) {
 			this._tail = insert
 		}
+		this._count++
 		return insert
 	}
 
@@ -38,6 +44,7 @@ define(function () {
 		if (current == this._head) {
 			this._head = insert
 		}
+		this._count++
 		return insert
 	}
 
@@ -46,6 +53,7 @@ define(function () {
 			this.insertAfter(this.tail(), node)
 		} else {
 			this._head = this._tail = node
+			this._count++
 		}
 		return node
 	}
@@ -55,6 +63,7 @@ define(function () {
 			this.insertBefore(this.head(), node)
 		} else {
 			this._head = this._tail = node
+			this._count++
 		}
 		return node
 	}
@@ -73,9 +82,9 @@ define(function () {
 		} else {
 			this._tail = prev
 		}
+		this._count--
 		return node
 	}
 
 	return LinkedList
-
 })

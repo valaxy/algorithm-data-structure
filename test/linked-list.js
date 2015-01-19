@@ -6,6 +6,7 @@ define(function (require) {
 	QUnit.module('linked-list')
 
 	function checkLinks(assert, list, nodes) {
+		assert.equal(list.count(), nodes.length)
 		if (nodes.length == 0) {
 			assert.equal(list.head(), null)
 			assert.equal(list.tail(), null)

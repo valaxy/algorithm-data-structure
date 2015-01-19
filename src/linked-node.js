@@ -13,13 +13,13 @@ define(function () {
 		return this._prev
 	}
 
-	LinkedNode.prototype.value = function () {
-		return this._value
-	}
-
-	LinkedNode.prototype.setValue = function (value) {
-		this._value = value
-	}
+	//LinkedNode.prototype.value = function () {
+	//	return this._value
+	//}
+	//
+	//LinkedNode.prototype.setValue = function (value) {
+	//	this._value = value
+	//}
 
 	return LinkedNode
 })

@@ -15,4 +15,5 @@ insertBefore(current, insert)
 addLast(node)
 addFirst(node)
 remove(node)
+count()
 ```
