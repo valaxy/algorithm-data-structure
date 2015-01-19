@@ -1,27 +1,14 @@
 define(function (require) {
 	var ArrayNode = require('src/array-node')
 
-	QUnit.module('Node')
-
-	QUnit.test('parent()/addChild()', function (assert) {
-		var root = ArrayNode.create()
-		var n1 = ArrayNode.create()
-		var n2 = ArrayNode.create()
-		var n3 = ArrayNode.create()
-		root.addChild(n1, n2)
-		n2.addChild(n3)
-
-		assert.equal(n1.parent(), root)
-		assert.equal(n2.parent(), root)
-		assert.equal(n3.parent(), n2)
-	})
+	QUnit.module('ArrayNode')
 
 	QUnit.test('children()/addChildAt()', function (assert) {
 		var root = ArrayNode.create()
 		var n0 = ArrayNode.create()
 		var n1 = ArrayNode.create()
 		var n2 = ArrayNode.create()
-		root.addChild(n1)
+		root.addChildLast(n1)
 		root.addChildAt(1, n2)
 		root.addChildAt(0, n0)
 
@@ -31,29 +18,14 @@ define(function (require) {
 		assert.equal(n2.parent(), root)
 	})
 
-	QUnit.test('appendBrother()', function (assert) {
-		var root = ArrayNode.create()
-		var n0 = ArrayNode.create()
-		var n1 = ArrayNode.create()
-		var n2 = ArrayNode.create()
-		root.addChild(n0)
-		root.addChild(n2)
-		n0.appendBrother(n1)
-
-		assert.equal(root.children()[0], n0)
-		assert.equal(root.children()[1], n1)
-		assert.equal(root.children()[2], n2)
-		assert.equal(n1.parent(), root)
-	})
-
 	QUnit.test('isSameStructure()', function (assert) {
 		var root = ArrayNode.create()
 		var n0 = ArrayNode.create()
 		var n1 = ArrayNode.create()
 		var n2 = ArrayNode.create()
-		root.addChild(n0)
-		root.addChild(n1)
-		n1.addChild(n2)
+		root.addChildLast(n0)
+		root.addChildLast(n1)
+		n1.addChildLast(n2)
 
 		assert.ok(root.isSameStructure(root))
 		assert.ok(!root.isSameStructure(n2))
@@ -66,13 +38,13 @@ define(function (require) {
 		var n3 = ArrayNode.create()
 		assert.equal(root.leftestDescendant(), root)
 
-		root.addChild(n1)
+		root.addChildLast(n1)
 		assert.equal(root.leftestDescendant(), n1)
 
-		root.addChild(n2)
+		root.addChildLast(n2)
 		assert.equal(root.leftestDescendant(), n1)
 
-		n1.addChild(n3)
+		n1.addChildLast(n3)
 		assert.equal(root.leftestDescendant(), n3)
 	})
 

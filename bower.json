@@ -16,5 +16,8 @@
   "devDependencies": {
     "requirejs": "~2.1.15",
     "qunit": "~1.16.0"
+  },
+  "dependencies": {
+    "linked-list": "https://github.com/valaxy/linked-list.git"
   }
 }

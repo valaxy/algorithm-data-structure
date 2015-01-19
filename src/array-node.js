@@ -26,6 +26,25 @@ define(function () {
 
 
 	/**
+	 * iterate the children
+	 * @param task
+	 */
+	ArrayNode.prototype.eachChild = function (task) {
+		for (var i = 0; i < this._children.length; i++) {
+			task(this._children[i], i)
+		}
+	}
+
+
+	ArrayNode.prototype.firstChild = function () {
+		return this._children[0]
+	}
+
+	ArrayNode.prototype.lastChild = function () {
+		return this._children[this._children.length - 1]
+	}
+
+	/**
 	 * get the children array of this or get the index `i` of children
 	 */
 	ArrayNode.prototype.children = function (i) {
@@ -71,7 +90,7 @@ define(function () {
 	/**
 	 * add child at last
 	 */
-	ArrayNode.prototype.addChild = function (child /** ... **/) {
+	ArrayNode.prototype.addChildLast = function (child /** ... **/) {
 		for (var i in arguments) {
 			var child = arguments[i]
 			this.children().push(child)
@@ -92,7 +111,7 @@ define(function () {
 	/**
 	 * add a child to be the brother of this and after it
 	 */
-	ArrayNode.prototype.appendBrother = function (brother) {
+	ArrayNode.prototype.appendRightBrother = function (brother) {
 		var brothers = this.parent().children()
 		for (var i in brothers) {
 			if (brothers[i] == this) {
