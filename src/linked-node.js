@@ -72,6 +72,7 @@ define(function (require) {
 		var list = this.parent()._childList
 		var listNode = list.insertBefore(this._linked, new LinkedListNode)
 		listNode._treeNode = node
+		node._linked = listNode
 		node._parent = this.parent()
 	}
 
@@ -79,6 +80,7 @@ define(function (require) {
 		var list = this.parent()._childList
 		var listNode = list.insertAfter(this._linked, new LinkedListNode)
 		listNode._treeNode = node
+		node._linked = listNode
 		node._parent = this.parent()
 	}
 

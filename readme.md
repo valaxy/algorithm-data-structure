@@ -4,52 +4,57 @@
 
 **read method**
 
-- parent()
-- eachChild(task)
-- childrenCount()
-- firstChild()
-- lastChild()
-- leftestDescendant()
-- isSameStructure(otherTreeNode)
-- toString()
+```javascript
+parent()
+eachChild(task)
+childrenCount()
+firstChild()
+lastChild()
+leftestDescendant()
+isSameStructure(otherTreeNode)
+toString()
 
-- child(i)
-
+child(i)
+```
 
 **set method**
 
-- addChildFirst(child, ...)
-- addChildLast(child, ...)
+```javascript
+addChildFirst(child, ...)
+addChildLast(child, ...)
 
-- addChildAt(i, child)
-
+addChildAt(i, child)
+```
 
 # LinkedNode
 Use linked-list to save the children of a node
 
 **read method**
 
-- parent()
-- eachChild(task)
-- childrenCount()
-- firstChild()
-- lastChild()
-- leftestDescendant()
-- isSameStructure(otherTreeNode)
-- toString()
+``javascript
+parent()
+eachChild(task)
+childrenCount()
+firstChild()
+lastChild()
+leftestDescendant()
+isSameStructure(otherTreeNode)
+toString()
 
-- leftBrother()
-- rightBrother()
+leftBrother()
+rightBrother()
+```
 
 **set method**
 
-- addChildFirst(child, ...)
-- addChildLast(child, ...)
+```javascript
+addChildFirst(child, ...)
+addChildLast(child, ...)
 
-- appendLeftBrother()
-- appendRightBrother()
-- cut()
-
+appendLeftBrother()
+appendRightBrother()
+cut()
+```
 
 # StructNode
 - Use a hash-map to save the children of a node, each child has a unique name to represent

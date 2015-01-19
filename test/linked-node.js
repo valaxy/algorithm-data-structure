@@ -55,4 +55,30 @@ define(function (require) {
 		checkChildren(assert, root, [n1, n3])
 	})
 
+	QUnit.test('appendLeftBrother()', function (assert) {
+		var root = new LinkedNode
+		var n0 = new LinkedNode
+		var n1 = new LinkedNode
+		var n2 = new LinkedNode
+		root.addChildLast(n0)
+		n0.appendLeftBrother(n1)
+		n1.appendLeftBrother(n2)
+
+		checkChildren(assert, root, [n2, n1, n0])
+		assert.equal(n1.parent(), root)
+	})
+
+	QUnit.test('appendRightBrother()', function (assert) {
+		var root = new LinkedNode
+		var n0 = new LinkedNode
+		var n1 = new LinkedNode
+		var n2 = new LinkedNode
+		root.addChildLast(n0)
+		n0.appendRightBrother(n1)
+		n1.appendRightBrother(n2)
+
+		checkChildren(assert, root, [n0, n1, n2])
+		assert.equal(n1.parent(), root)
+	})
+
 })

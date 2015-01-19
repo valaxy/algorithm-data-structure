@@ -116,21 +116,7 @@ define(function (require) {
 	//
 	//})
 
-	QUnit.test('appendRightBrother()', function (assert) {
-		for (var i in Nodes) {
-			var Node = Nodes[i]
-			var root = new Node
-			var n0 = new Node
-			var n1 = new Node
-			var n2 = new Node
-			root.addChildLast(n0)
-			root.addChildLast(n2)
-			n0.appendRightBrother(n1)
 
-			checkChildren(assert, root, [n0, n1, n2])
-			assert.equal(n1.parent(), root)
-		}
-	})
 
 
 	QUnit.test('toString()', function (assert) {
