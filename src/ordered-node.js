@@ -38,14 +38,14 @@ define(function (require) {
 		})
 
 		// other tree
-		otherTreeRoot.eachChild(function (child, i) {
+		var isBreak = otherTreeRoot.eachChild(function (child, i) {
 			var compare = children[i].isSameStructure(child)
 			if (!compare) {
-				return false
+				return true
 			}
 		})
 
-		return true
+		return !isBreak
 	}
 
 

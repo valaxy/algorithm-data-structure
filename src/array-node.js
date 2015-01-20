@@ -26,8 +26,12 @@ define(function (require) {
 	 */
 	ArrayNode.prototype.eachChild = function (task) {
 		for (var i = 0; i < this._children.length; i++) {
-			task(this._children[i], i)
+			var isBreak = task(this._children[i], i)
+			if (isBreak) {
+				return true
+			}
 		}
+		return false
 	}
 
 

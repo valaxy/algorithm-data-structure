@@ -19,9 +19,13 @@ define(function (require) {
 		var current = this._childList.head()
 		var i = 0
 		while (current) {
-			task(current._treeNode, i++)
+			var isBreak = task(current._treeNode, i++)
+			if (isBreak) {
+				return true
+			}
 			current = current.next()
 		}
+		return false
 	}
 
 	LinkedNode.prototype.childrenCount = function () {

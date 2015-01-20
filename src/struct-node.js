@@ -14,5 +14,4 @@ define(function (require, exports) {
 	StructNode.prototype.addChild = function (name, child) {
 
 	}
-
 })

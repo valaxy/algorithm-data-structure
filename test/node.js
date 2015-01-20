@@ -29,7 +29,7 @@ define(function (require) {
 		}
 	})
 
-	QUnit.test('eachChild()', function (assert) {
+	QUnit.test('eachChild(): no break', function (assert) {
 		for (var i in Nodes) {
 			var Node = Nodes[i]
 			var root = new Node
@@ -40,11 +40,30 @@ define(function (require) {
 
 			var children = [n1, n2, n3]
 			var count = 0
-			root.eachChild(function (child, index) {
+			var isBreak = root.eachChild(function (child, index) {
 				assert.equal(child, children[index])
 				count++
 			})
 			assert.equal(count, 3)
+			assert.ok(!isBreak)
+		}
+	})
+
+	QUnit.test('eachChild(): has break', function (assert) {
+		for (var i in Nodes) {
+			var Node = Nodes[i]
+			var root = new Node
+			root.addChildLast(new Node, new Node, new Node)
+
+			var end = 0
+			var isBreak = root.eachChild(function (child, index) {
+				end = index
+				if (index == 1) {
+					return true
+				}
+			})
+			assert.equal(end, 1)
+			assert.ok(isBreak)
 		}
 	})
 
@@ -90,7 +109,7 @@ define(function (require) {
 	})
 
 
-	QUnit.test('isSameStructure()', function (assert) {
+	QUnit.test('isSameStructure(): right case', function (assert) {
 		var root = []
 		for (var i in Nodes) {
 			var Node = Nodes[i]
@@ -111,12 +130,24 @@ define(function (require) {
 	})
 
 
-	//
-	//QUnit.test('appendLeftBrother()', function (assert) {
-	//
-	//})
+	QUnit.test('isSameStructure(): wrong case', function (assert) {
+		for (var i in Nodes) {
+			var Node = Nodes[i]
 
+			// tree1
+			var root1 = new Node
+			var n1 = new Node
+			root1.addChildLast(new Node, n1)
+			n1.addChildLast(new Node)
 
+			// tree2
+			var root2 = new Node
+			root2.addChildLast(new Node, new Node)
+
+			assert.ok(!root1.isSameStructure(root2))
+			assert.ok(!root2.isSameStructure(root1))
+		}
+	})
 
 
 	QUnit.test('toString()', function (assert) {
