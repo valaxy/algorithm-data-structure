@@ -49,27 +49,22 @@ define(function (require) {
 	}
 
 
+	// dfs to build
+	OrderedNode.prototype._toString = function (deep) {
+		var str = ''
+		str += repeat(deep * 4) + 'node' + '\n'
+
+		this.eachChild(function (child) {
+			str += child._toString(deep + 1)
+		})
+		return str
+	}
+
 	/**
 	 * print a xml tree, a debug method
 	 */
 	OrderedNode.prototype.toString = function () {
-		var queue = [{
-			node: this,
-			deep: 0
-		}]
-		var str = ''
-
-		while (queue.length > 0) {
-			var element = queue.shift()
-			str += repeat(element.deep * 4) + 'node' + '\n'
-			element.node.eachChild(function (child) {
-				queue.push({
-					node: child,
-					deep: element.deep + 1
-				})
-			})
-		}
-		return str
+		return this._toString(0)
 	}
 
 	return OrderedNode

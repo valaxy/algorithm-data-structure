@@ -157,14 +157,16 @@ define(function (require) {
 			var n0 = new Node
 			var n1 = new Node
 			var n2 = new Node
-			root.addChildLast(n0, n1)
+			var n3 = new Node
+			root.addChildLast(n0, n1, n3)
 			n1.addChildLast(n2)
 
 			var str =
 				'node\n' +
 				'    node\n' +
 				'    node\n' +
-				'        node\n'
+				'        node\n' +
+				'    node\n'
 			assert.equal(root.toString(), str)
 		}
 	})
