@@ -23,8 +23,9 @@ define(function () {
 
 	var fullPermutation = function (elements, callback) {
 		if (elements.length > 0) {
-			perm(elements, elements.length, callback)
+			return perm(elements, elements.length, callback)
 		}
+		return false
 	}
 
 	if (typeof QUnit != 'undefined') {
