@@ -1,7 +1,7 @@
 - Use LinkedListNode to build linked list yourself
 - Use LinkedList to build linked list but not use any build function of LinkedNode
 
-# LinkedNode
+# LinkedListNode
 ```javascript
 var LinkedNode = require('src/linked-list-node')
 var node = new LinkedNode
