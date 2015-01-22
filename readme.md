@@ -1,5 +1,5 @@
-- Use LinkedNode to build linked list yourself
-- Use LinkedList to build linked list but no use any build function of LinkedNode
+- Use LinkedListNode to build linked list yourself
+- Use LinkedList to build linked list but not use any build function of LinkedNode
 
 # LinkedNode
 ```javascript
