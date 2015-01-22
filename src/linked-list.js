@@ -18,6 +18,22 @@ define(function () {
 		return this._count
 	}
 
+	LinkedList.prototype.each = function (operation) {
+		if (!this.head()) {
+			return false
+		}
+
+		var current = this.head()
+		while (current) {
+			if (operation(current)) {
+				return true
+			}
+			current = current.next()
+		}
+
+		return false
+	}
+
 	LinkedList.prototype.insertAfter = function (current, insert) {
 		var next = current.next()
 		current._next = insert

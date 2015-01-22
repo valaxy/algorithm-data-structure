@@ -3,23 +3,26 @@
 
 # LinkedNode
 ```javascript
-LinkedNode = require('src/linked-list-node')
-new LinkedNode
-next()
-prev()
-addNext(node)
-addPrev(node)
-remove()
+var LinkedNode = require('src/linked-list-node')
+var node = new LinkedNode
+node.next()
+node.prev()
+node.addNext(node)
+node.addPrev(node)
+node.remove()
 ```
 
 # LinkedList
 ```javascript
-LinkedList = require('src/linked-list')
-new LinkedList
-insertAfter(current, insert)
-insertBefore(current, insert)
-addLast(node)
-addFirst(node)
-remove(node)
-count()
+var LinkedList = require('src/linked-list')
+var list = new LinkedList
+list.head()
+list.tail()
+list.count()
+list.each(function(node) { })
+list.insertAfter(current, insert)
+list.insertBefore(current, insert)
+list.addLast(node)
+list.addFirst(node)
+list.remove(node)
 ```
