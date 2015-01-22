@@ -1,9 +1,15 @@
+- Use LinkedNode to build linked list yourself
+- Use LinkedList to build linked list but no use any build function of LinkedNode
+
 # LinkedNode
 ```javascript
-LinkedNode = require('src/linked-node')
+LinkedNode = require('src/linked-list-node')
 new LinkedNode
 next()
 prev()
+addNext(node)
+addPrev(node)
+remove()
 ```
 
 # LinkedList

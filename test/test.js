@@ -1,7 +1,4 @@
-define(function (require, exports) {
-
-	exports.init = function () {
-		require('test/linked-list')
-	}
-
+define(function (require) {
+	require('test/linked-list-node')
+	require('test/linked-list')
 })
