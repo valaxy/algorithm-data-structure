@@ -3,9 +3,8 @@ define(function (require, exports) {
 
 	QUnit.module('DirectedHashGraph')
 
-	QUnit.test('createFromHash()/nodes()/nodeCount()/edgeCount()/hasEdge()', function (assert) {
+	QUnit.test('createFromHash()/edgeCount()/hasEdge()', function (assert) {
 		var graph = new Graph()
-		assert.deepEqual(graph.nodes(), [])
 		assert.equal(graph.nodeCount(), 0)
 		assert.equal(graph.edgeCount(), 0)
 
@@ -26,18 +25,6 @@ define(function (require, exports) {
 		assert.ok(!graph.hasEdge('x', 'x', 'a'))
 	})
 
-
-	QUnit.test('addNode()', function (assert) {
-		var graph = new Graph
-		graph.addNode('x')
-		graph.addNode('y')
-		assert.deepEqual(graph.nodes(), ['x', 'y'])
-
-		graph.addNode('x')
-		assert.deepEqual(graph.nodes(), ['x', 'y'])
-	})
-
-
 	QUnit.test('addEdge()', function (assert) {
 		var graph = new Graph
 		graph.addEdge('x', 'y', 'a')
@@ -48,7 +35,6 @@ define(function (require, exports) {
 		assert.equal(graph.edgeCount(), 2)
 		assert.equal(graph.nodeCount(), 2)
 	})
-
 
 	QUnit.test('forEachEdge()', function (assert) {
 		var graph = Graph.createFromHash({
@@ -144,8 +130,6 @@ define(function (require, exports) {
 		g1.addEdge('z', 'x', 'a')
 		assert.ok(!g1.isostructural(g2))
 		assert.ok(!g2.isostructural(g1))
-
-
 	})
 
 

@@ -8,7 +8,7 @@
 		define(factory)
 	}
 })(function (require) {
-	var fullPermutation = require('./full-permutation')
+	var BaseGraph = require('./graph')
 
 	/**
 	 * node is identified by a string
@@ -19,6 +19,8 @@
 	var Graph = function () {
 		this._nodes = []
 	}
+
+	Graph.prototype = new BaseGraph
 
 	Graph.createFromHash = function (hash) {
 		var graph = new Graph()
@@ -31,7 +33,6 @@
 		}
 		return graph
 	}
-
 
 	Graph.prototype.nodes = function () {
 		return Object.keys(this._nodes)
@@ -79,12 +80,8 @@
 	}
 
 
-	// same return true
+	// same then return true
 	Graph.prototype._compare = function (graph, stateMap) {
-		if (this.edgeCount() != graph.edgeCount()) {
-			return false
-		}
-
 		return !this.forEachEdge(function (from, to, edge) {
 				var otherFrom = stateMap[from]
 				var otherTo = stateMap[to]
@@ -93,36 +90,6 @@
 				}
 			}
 		)
-	}
-
-	/**
-	 * 判断是否同构
-	 * @param graph 另一个图
-	 */
-	Graph.prototype.isostructural = function (graph) {
-		var me = this
-
-		var change = new Array(this.nodeCount())
-		for (var i = 0; i < change.length; i++) {
-			change[i] = i
-		}
-
-		var same = fullPermutation(change, function (change) {
-			// map state to state
-			var thisNodes = me.nodes()
-			var otherNodes = graph.nodes()
-			var stateMap = {}
-			for (var i in change) {
-				var j = change[i]
-				stateMap[thisNodes[i]] = otherNodes[j]
-			}
-
-			if (me._compare(graph, stateMap)) {
-				return true
-			}
-		})
-
-		return same || false
 	}
 
 	return Graph
