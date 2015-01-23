@@ -113,7 +113,7 @@ define(function (require) {
 		assert.ok(!graph1.isostructural(graph2))
 	})
 
-	QUnit.test('toJSON()', function (assert) {
+	QUnit.test('toJSON()/fromJSON()', function (assert) {
 		var graph = new Graph
 		graph.addEdge('1', '2', 'a')
 		graph.addEdge('2', '3', 'b')
@@ -127,6 +127,10 @@ define(function (require) {
 			'3': ['a', '1'],
 			'4': ['4', '4']
 		})
+
+		var graph2 = Graph.fromJSON(graph.toJSON())
+		console.log(graph2.toJSON())
+		assert.ok(graph.isostructural(graph2))
 	})
 
 })

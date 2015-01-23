@@ -18,6 +18,17 @@
 
 	Graph.prototype = new BaseGraph
 
+	Graph.fromJSON = function (transitions) {
+		var graph = new Graph
+		for (var from in transitions) {
+			var transition = transitions[from]
+			for (var i = 0; i < transition.length; i += 2) {
+				graph.addEdge(from, transition[i + 1], transition[i])
+			}
+		}
+		return graph
+	}
+
 	Graph.prototype.nodes = function () {
 		return Object.keys(this._nodeLists)
 	}
