@@ -133,5 +133,29 @@
 		return transitions
 	}
 
+
+	Graph.prototype.changeNodes = function (nodeMap) {
+		// change `from` nodes
+		var me = this
+		var newNodeLists = {}
+		this.eachNode(function (node) {
+			if (node in nodeMap) {
+				newNodeLists[nodeMap[node]] = me._nodeLists[node]
+			} else {
+				newNodeLists[node] = me._nodeLists[node]
+			}
+		})
+		this._nodeLists = newNodeLists
+
+		// change `to` nodes
+		this.eachNode(function (from) {
+			me._nodeLists[from].each(function (linkedNode) {
+				if (linkedNode.value.to in nodeMap) {
+					linkedNode.value.to = nodeMap[linkedNode.value.to]
+				}
+			})
+		})
+	}
+
 	return Graph
 })

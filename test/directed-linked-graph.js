@@ -133,4 +133,26 @@ define(function (require) {
 		assert.ok(graph.isostructural(graph2))
 	})
 
+	QUnit.test('changeNodes()', function (assert) {
+		var graph1 = Graph.fromJSON({
+			'1': ['a', '2'],
+			'2': ['b', '3'],
+			'3': ['c', '4']
+		})
+		var graph2 = Graph.fromJSON({
+			'1': ['a', '2'],
+			'2': ['b', '3'],
+			'3': ['c', '4']
+		})
+		graph2.changeNodes({
+			'1': '3',
+			'3': '2',
+			'2': '1'
+		})
+
+		assert.ok(graph2.hasEdge('3', '1', 'a'))
+		assert.ok(!graph2.hasEdge('1', '2', 'a'))
+		assert.ok(graph1.isostructural(graph2))
+	})
+
 })
