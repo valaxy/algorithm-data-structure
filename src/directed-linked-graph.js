@@ -56,16 +56,24 @@
 		}
 	}
 
-	Graph.prototype.eachEdge = function (operation) {
+	Graph.prototype.eachEdge = function (operation, from) {
 		var me = this
-		return this.eachNode(function (from) {
-			var nodeList = me._nodeLists[from]
-			return nodeList.each(function (linkedNode) {
+		if (from) { // iterate edges of `from` node
+			return this._nodeLists[from].each(function (linkedNode) {
 				if (operation(from, linkedNode.value.to, linkedNode.value.edge)) {
 					return true
 				}
 			})
-		})
+		} else { // iterate all edges
+			return this.eachNode(function (from) {
+				var nodeList = me._nodeLists[from]
+				return nodeList.each(function (linkedNode) {
+					if (operation(from, linkedNode.value.to, linkedNode.value.edge)) {
+						return true
+					}
+				})
+			})
+		}
 	}
 
 
@@ -101,6 +109,18 @@
 		)
 	}
 
+
+	Graph.prototype.toJSON = function () {
+		var me = this
+		var transitions = {}
+		this.eachNode(function (from) {
+			transitions[from] = []
+			me.eachEdge(function (from, to, edge) {
+				transitions[from].push(edge, to)
+			}, from)
+		})
+		return transitions
+	}
 
 	return Graph
 })

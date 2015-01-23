@@ -70,6 +70,13 @@ define(function (require) {
 			i++
 		}))
 		assert.equal(i, 1)
+
+		// iterate one node
+		i = 0
+		assert.ok(!graph.eachEdge(function (from, to, edge) {
+			assert.deepEqual(edges[i++], [from, to, edge])
+		}, 'x'))
+		assert.equal(i, 2)
 	})
 
 	QUnit.test('_compare()/isostructural()', function (assert) {
@@ -104,6 +111,22 @@ define(function (require) {
 		graph1.addEdge('x', 'z', '1')
 		graph2.addEdge('xx', 'yy', '2')
 		assert.ok(!graph1.isostructural(graph2))
+	})
+
+	QUnit.test('toJSON()', function (assert) {
+		var graph = new Graph
+		graph.addEdge('1', '2', 'a')
+		graph.addEdge('2', '3', 'b')
+		graph.addEdge('2', '4', 'c')
+		graph.addEdge('3', '1', 'a')
+		graph.addEdge('4', '4', '4')
+
+		assert.deepEqual(graph.toJSON(), {
+			'1': ['a', '2'],
+			'2': ['b', '3', 'c', '4'],
+			'3': ['a', '1'],
+			'4': ['4', '4']
+		})
 	})
 
 })
