@@ -36,6 +36,14 @@ define(function (require) {
 		assert.equal(graph.nodeCount(), 3)
 	})
 
+
+	QUnit.test('hasNode()', function (assert) {
+		var graph = new Graph
+		graph.addEdge('x', 'y', 'a')
+		assert.ok(graph.hasNode('x'))
+		assert.ok(!graph.hasNode('a'))
+	})
+
 	QUnit.test('eachEdge()', function (assert) {
 		var graph = new Graph
 

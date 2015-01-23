@@ -29,6 +29,11 @@
 		return graph
 	}
 
+
+	Graph.prototype.hasNode = function (node) {
+		return node in this._nodeLists
+	}
+
 	Graph.prototype.nodes = function () {
 		return Object.keys(this._nodeLists)
 	}
