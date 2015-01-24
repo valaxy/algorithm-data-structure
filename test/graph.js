@@ -1,7 +1,7 @@
 define(function (require) {
 	var LinkedGraph = require('src/directed-linked-graph')
-	var HashGraph = require('src/directed-hash-graph')
-	var Graphs = [LinkedGraph, HashGraph]
+	var TransitionGraph = require('src/directed-transition-graph')
+	var Graphs = [LinkedGraph, TransitionGraph]
 
 	QUnit.module('Graph')
 
@@ -48,7 +48,7 @@ define(function (require) {
 			assert.deepEqual(nodes, ['x', 'y', 'z'])
 
 			// break
-			var theNode
+			var theNode = null
 			assert.ok(graph.eachNode(function (node) {
 				if (node == nodes[1]) {
 					theNode = node

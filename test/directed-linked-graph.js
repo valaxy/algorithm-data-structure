@@ -3,6 +3,26 @@ define(function (require) {
 
 	QUnit.module('DirectedLinkedGraph')
 
+	QUnit.test('fromJSON()/toJSON()', function (assert) {
+		var graph = new Graph
+		graph.addEdge('1', '2', 'a')
+		graph.addEdge('2', '3', 'b')
+		graph.addEdge('2', '4', 'c')
+		graph.addEdge('3', '1', 'a')
+		graph.addEdge('4', '4', '4')
+
+		assert.deepEqual(graph.toJSON(), {
+			'1': ['a', '2'],
+			'2': ['b', '3', 'c', '4'],
+			'3': ['a', '1'],
+			'4': ['4', '4']
+		})
+
+		var graph2 = Graph.fromJSON(graph.toJSON())
+		console.log(graph2.toJSON())
+		assert.ok(graph.isostructural(graph2))
+	})
+
 	QUnit.test('addEdge()/edgeCount()/hasEdge()', function (assert) {
 		var graph = new Graph
 
@@ -121,25 +141,6 @@ define(function (require) {
 		assert.ok(!graph1.isostructural(graph2))
 	})
 
-	QUnit.test('toJSON()/fromJSON()', function (assert) {
-		var graph = new Graph
-		graph.addEdge('1', '2', 'a')
-		graph.addEdge('2', '3', 'b')
-		graph.addEdge('2', '4', 'c')
-		graph.addEdge('3', '1', 'a')
-		graph.addEdge('4', '4', '4')
-
-		assert.deepEqual(graph.toJSON(), {
-			'1': ['a', '2'],
-			'2': ['b', '3', 'c', '4'],
-			'3': ['a', '1'],
-			'4': ['4', '4']
-		})
-
-		var graph2 = Graph.fromJSON(graph.toJSON())
-		console.log(graph2.toJSON())
-		assert.ok(graph.isostructural(graph2))
-	})
 
 	QUnit.test('changeNodes()', function (assert) {
 		var graph1 = Graph.fromJSON({
