@@ -129,6 +129,32 @@
 	}
 
 
+	Graph.prototype.changeNodes = function (nodeMap) {
+		// change `from` nodes
+		var me = this
+		var newTransitions = {}
+		this.eachNode(function (node) {
+			if (node in nodeMap) {
+				newTransitions[nodeMap[node]] = me._transitions[node]
+			} else {
+				newTransitions[node] = me._transitions[node]
+			}
+		})
+		this._transitions = newTransitions
+
+		// change `to` nodes
+		this.eachNode(function (from) {
+			var transition = me._transitions[from]
+			for (var edge in transition) {
+				var to = transition[edge]
+				if (to in nodeMap) {
+					transition[edge] = nodeMap[to]
+				}
+			}
+		})
+	}
+
+
 	// same then return true
 	Graph.prototype._compare = function (graph, stateMap) {
 		return !this.eachEdge(function (from, to, edge) {

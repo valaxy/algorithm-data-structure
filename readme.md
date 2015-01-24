@@ -39,5 +39,6 @@ addEdge()       |O(1)   |O(1)           |
 removeNode()    |O(1)   |O(1)           |
 removeEdge()    |O(1)   |O(1)           |
 isostructural() |O(n!m) |O(n!m)         |
+changeNodes()   |O(n+m) |O(n+m)         |
 ----------------|-------|---------------|-------------
 transfer()      |x      |O(1)           |x
