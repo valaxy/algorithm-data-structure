@@ -18,23 +18,28 @@
 		var me = this
 		var transitions = {}
 		this.eachNode(function (from) {
-			transitions[from] = []
+			var transition = transitions[from] = []
 			me.eachEdge(function (from, to, edge) {
-				transitions[from].push(edge, to)
+				transition.push(edge, to)
 			}, from)
 		})
 		return transitions
 	}
 
+	Graph.prototype.nodes = function () {
+		var nodes = []
+		this.eachNode(function (node) {
+			nodes.push(node)
+		})
+		return nodes
+	}
 
-	Graph.prototype.eachNode = function (operation) {
-		var nodes = this.nodes()
-		for (var i in nodes) {
-			if (operation(nodes[i])) {
-				return true
-			}
-		}
-		return false
+	Graph.prototype.edges = function () {
+		var edges = []
+		this.eachEdge(function (from, to, value) {
+			edges.push([from, to, value])
+		})
+		return edges
 	}
 
 	// if two graphs is isostructural

@@ -5,7 +5,7 @@
 - n is the count of nodes
 - m is the count of edges
 - c is the count of edge types
-- O(1) means a consumer of operation of string-compare 
+- O(1) means a consumer of operation of **finding string in a sorted array**(maybe?)
 
 ```javascript
 var graph = Graph.fromJSON({
@@ -22,17 +22,22 @@ var graph = Graph.fromJSON({
 
 
 ## Time Complexity
-api/Graph    |Graph  |TransitionGraph|AdjacentGaph
--|-
-nodes()      |O(n)
-nodeCount()  |O(1)
-edgeCount()  |O(n)
-hasEdge()    |O(m/n)
-eachNode()   |O(n)
-eachEdge()   |O(m)
-toJSON()     |O(n+m)
-addNode()    |O(1)
-addEdge()    |O(1)
-removeEdge() |
--------------|-------|---------------|-------------
-transfer()   |\      |O(logn)
+api             |Graph  |TransitionGraph|AdjacentGaph
+-|-|-|-
+toJSON()        |x      |O(m)           |
+nodes()         |O(n)   |O(n)           |
+edges()         |O(m)   |O(m)           |
+nodeCount()     |O(1)   |O(1)           |
+edgeCount()     |O(n)   |O(n)           |
+eachNode()      |O(n)   |O(n)           |
+eachEdge()      |O(m)   |O(m)           |
+eachEdge(from)  |x      |O(m/n)         |
+hasNode()       |x      |O(1)           |
+hasEdge()       |O(m/n) |O(1)           |
+addNode()       |O(1)   |O(1)           |
+addEdge()       |O(1)   |O(1)           |
+removeNode()    |x      |O(1)           |
+removeEdge()    |x      |O(1)           |
+isostructural() |x      |complex        |
+----------------|-------|---------------|-------------
+transfer()      |\      |O(1)

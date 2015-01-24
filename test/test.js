@@ -1,5 +1,5 @@
 define(function (require) {
-	require('src/full-permutation')
+	require('./full-permutation')
 
 	//require('./graph')
 	require('./directed-transition-graph')

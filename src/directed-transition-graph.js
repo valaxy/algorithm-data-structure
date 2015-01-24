@@ -27,16 +27,12 @@
 		var graph = new Graph
 		for (var from in transitions) {
 			var transition = transitions[from]
+			graph.addNode(from)
 			for (var i = 0; i < transition.length; i += 2) {
 				graph.addEdge(from, transition[i + 1], transition[i])
 			}
 		}
 		return graph
-	}
-
-
-	Graph.prototype.nodes = function () {
-		return Object.keys(this._transitions)
 	}
 
 
@@ -50,6 +46,15 @@
 			count += Object.keys(this._transitions[node]).length
 		}
 		return count
+	}
+
+	Graph.prototype.eachNode = function (operation) {
+		for (var node in this._transitions) {
+			if (operation(node)) {
+				return true
+			}
+		}
+		return false
 	}
 
 	Graph.prototype.eachEdge = function (operation, from) {
@@ -72,17 +77,14 @@
 		return false
 	}
 
+	Graph.prototype.hasNode = function (node) {
+		return node in this._transitions
+	}
+
 	Graph.prototype.hasEdge = function (from, to, edge) {
 		return from in this._transitions && to == this._transitions[from][edge]
 	}
 
-	Graph.prototype.removeEdge = function (from, to, edge) {
-		if (this.hasEdge(from, to, edge)) {
-			delete this._transitions[from][edge]
-			return true
-		}
-		return false
-	}
 
 	Graph.prototype.addNode = function (node) {
 		if (!(node in this._transitions)) {
@@ -97,10 +99,39 @@
 		this._transitions[from][edge] = to
 	}
 
+	Graph.prototype.removeNode = function (node) {
+		if (!(node in this._transitions)) {
+			return false
+		}
+
+		for (var edge in this._transitions[node]) {
+			return false
+		}
+
+		delete this._transitions[node]
+
+		return true
+	}
+
+	Graph.prototype.removeEdge = function (from, to, edge) {
+		if (this.hasEdge(from, to, edge)) {
+			delete this._transitions[from][edge]
+			return true
+		}
+		return false
+	}
+
+	Graph.prototype.transfer = function (from, edge) {
+		if (from in this._transitions && this._transitions[from][edge]) {
+			return this._transitions[from][edge]
+		}
+		return null
+	}
+
 
 	// same then return true
 	Graph.prototype._compare = function (graph, stateMap) {
-		return !this.forEachEdge(function (from, to, edge) {
+		return !this.eachEdge(function (from, to, edge) {
 				var otherFrom = stateMap[from]
 				var otherTo = stateMap[to]
 				if (!graph.hasEdge(otherFrom, otherTo, edge)) {
@@ -108,14 +139,6 @@
 				}
 			}
 		)
-	}
-
-
-	Graph.prototype.transfer = function (from, edge) {
-		if (from in this._transitions && this._transitions[from][edge]) {
-			return this._transitions[from][edge]
-		}
-		return null
 	}
 
 

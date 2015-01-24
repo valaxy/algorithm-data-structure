@@ -71,6 +71,15 @@
 		}
 	}
 
+	Graph.prototype.eachNode = function (operation) {
+		for (var node in this._nodeLists) {
+			if (operation(node)) {
+				return true
+			}
+		}
+		return false
+	}
+
 	Graph.prototype.eachEdge = function (operation, from) {
 		var me = this
 		if (from) { // iterate edges of `from` node
@@ -123,9 +132,6 @@
 			}
 		)
 	}
-
-
-
 
 
 	Graph.prototype.changeNodes = function (nodeMap) {
