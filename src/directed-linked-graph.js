@@ -29,7 +29,6 @@
 		return graph
 	}
 
-
 	Graph.prototype.hasNode = function (node) {
 		return node in this._nodeLists
 	}
@@ -126,17 +125,7 @@
 	}
 
 
-	Graph.prototype.toJSON = function () {
-		var me = this
-		var transitions = {}
-		this.eachNode(function (from) {
-			transitions[from] = []
-			me.eachEdge(function (from, to, edge) {
-				transitions[from].push(edge, to)
-			}, from)
-		})
-		return transitions
-	}
+
 
 
 	Graph.prototype.changeNodes = function (nodeMap) {
