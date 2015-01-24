@@ -23,7 +23,7 @@ var graph = Graph.fromJSON({
 
 ## Time Complexity
 api             |Graph  |TransitionGraph|AdjacentGaph
--|-|-|-
+----------------|-------|---------------|------------
 toJSON()        |O(m)   |O(m)           |
 nodes()         |O(n)   |O(n)           |
 edges()         |O(m)   |O(m)           |
