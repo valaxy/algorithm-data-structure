@@ -25,13 +25,7 @@
 
 	Graph.fromJSON = function (transitions) {
 		var graph = new Graph
-		for (var from in transitions) {
-			var transition = transitions[from]
-			graph.addNode(from)
-			for (var i = 0; i < transition.length; i += 2) {
-				graph.addEdge(from, transition[i + 1], transition[i])
-			}
-		}
+		BaseGraph.parseTo(transitions, graph)
 		return graph
 	}
 

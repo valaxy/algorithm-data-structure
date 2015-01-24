@@ -14,6 +14,16 @@
 		// nothing
 	}
 
+	Graph.parseTo = function (transitions, graph) {
+		for (var from in transitions) {
+			var transition = transitions[from]
+			graph.addNode(from)
+			for (var i = 0; i < transition.length; i += 2) {
+				graph.addEdge(from, transition[i + 1], transition[i])
+			}
+		}
+	}
+
 	Graph.prototype.toJSON = function () {
 		var me = this
 		var transitions = {}
