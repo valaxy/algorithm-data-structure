@@ -1,0 +1,20 @@
+{
+	"name": "algorithm-data-structure",
+	"version": "0.0.0",
+	"homepage": "https://github.com/valaxy/algorithm-data-structure",
+	"authors": [
+		"valaxy <valaxy.tian@gmail.com>"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"devDependencies": {
+		"requirejs": "~2.1.15",
+		"qunit": "~1.16.0"
+	}
+}
