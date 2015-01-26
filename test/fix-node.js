@@ -24,6 +24,14 @@ define(function (require, exports) {
 		assert.equal(n1.child(1), n2)
 	})
 
+	test('hasChildAt()', function (assert) {
+		var n1 = new FixNode(3)
+		var n2 = new FixNode(3)
+		assert.ok(!n1.hasChildAt(1))
+
+		n1.setChild(1, n2)
+		assert.ok(n1.hasChildAt(1))
+	})
 
 	test('maxChildrenCount()', function (assert) {
 		var root = new FixNode(10)
@@ -77,6 +85,19 @@ define(function (require, exports) {
 			i++
 		}))
 		assert.equal(i, 1)
+	})
+
+
+	test('setChildren()', function (assert) {
+		var root = new FixNode(3)
+		var n1 = new FixNode(3)
+		var n3 = new FixNode(3)
+		root.setChildren(n1, null, n3)
+		assert.equal(root.childrenCount(), 2)
+		assert.equal(root.child(0), n1)
+		assert.equal(root.child(2), n3)
+		assert.equal(n1.parent(), root)
+		assert.equal(n3.parent(), root)
 	})
 
 })

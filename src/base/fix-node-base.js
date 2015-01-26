@@ -15,17 +15,18 @@ define(function () {
 	}
 
 
-	/**
-	 * Returns the count of children which are not null
-	 */
+	/** Whether a child exist in the position i */
+	FixNodeBase.prototype.hasChildAt = function (i) {
+		return this._children[i] ? true : false
+	}
+
+	/** Returns the count of children which are not null */
 	FixNodeBase.prototype.maxChildrenCount = function () {
 		return this._children.length
 	}
 
 
-	/**
-	 * Returns the max count of children
-	 */
+	/** Returns the max count of children */
 	FixNodeBase.prototype.childrenCount = function () {
 		return _.reduce(this._children, function (memo, node) {
 			return memo + (node ? 1 : 0)
@@ -33,9 +34,7 @@ define(function () {
 	}
 
 
-	/**
-	 * Iterate the children, child can be null
-	 */
+	/** Iterate the children, child can be null */
 	FixNodeBase.prototype.eachChild = function (operation) {
 		// because child can be null, so makes a range(0, length) iterate
 		for (var i = 0; i < this._children.length; i++) {
@@ -47,26 +46,29 @@ define(function () {
 	}
 
 
-	/**
-	 * Set the (i+1)-th child
-	 */
+	/** Set the (i+1)-th child */
 	FixNodeBase.prototype.setChild = function (i, child) {
-		if (this._children[i]) {
+		if (this.hasChildAt(i)) {
 			this._children[i]._parent = null
 		}
 		this._children[i] = child
 		child._parent = this
 	}
 
+	/** Set children from 1-th to maxChildrenCount-th */
+	FixNodeBase.prototype.setChildren = function (/* ... */) {
+		for (var i = 0; i < arguments.length; i++) {
+			if (arguments[i]) {
+				this.setChild(i, arguments[i])
+			}
+		}
+	}
+
 
 	return FixNodeBase
 })
 
-//
-///** Whether a child exist in the position i */
-//FixNodeBase.prototype.hasChild = function (i) {
-//	return this._children[i] ? true : false
-//}
+
 //
 ///** Returns the first child which exists from left to right,
 // * if there is no one a child then returns null */
