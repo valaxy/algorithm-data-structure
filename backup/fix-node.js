@@ -1,32 +1,29 @@
 define(function (require) {
-	var OrderedNode = require('./ordered-node')
+	var FixBaseNode = require('./base/fix-node-base')
 
-	var ArrayNode = function () {
+	var FixNode = function () {
 		this._parent = null
 		this._children = []
 	}
 
-	ArrayNode.prototype = new OrderedNode
 
-	ArrayNode.create = function () {
-		return new ArrayNode()
-	}
+	FixNode.prototype = new FixBaseNode
+
 
 	/**
-	 * get the parent node of this
+	 * Get the parent node of this
 	 */
-	ArrayNode.prototype.parent = function () {
+	FixNode.prototype.parent = function () {
 		return this._parent
 	}
 
 
 	/**
-	 * iterate the children
-	 * @param task
+	 * Iterate the children, child can be null
 	 */
-	ArrayNode.prototype.eachChild = function (task) {
+	FixNode.prototype.eachChild = function (operation) {
 		for (var i = 0; i < this._children.length; i++) {
-			var isBreak = task(this._children[i], i)
+			var isBreak = operation(this._children[i], i)
 			if (isBreak) {
 				return true
 			}
@@ -38,7 +35,7 @@ define(function (require) {
 	/**
 	 * returns the count of children
 	 */
-	ArrayNode.prototype.childrenCount = function () {
+	FixNode.prototype.childrenCount = function () {
 		return this._children.length
 	}
 
@@ -46,14 +43,14 @@ define(function (require) {
 	/**
 	 * returns the first child or null
 	 */
-	ArrayNode.prototype.firstChild = function () {
+	FixNode.prototype.firstChild = function () {
 		return this._children[0] || null
 	}
 
 	/**
 	 * return the last child or null
 	 */
-	ArrayNode.prototype.lastChild = function () {
+	FixNode.prototype.lastChild = function () {
 		return this._children[this._children.length - 1] || null
 	}
 
@@ -62,7 +59,7 @@ define(function (require) {
 	 * return the i-th child
 	 * @param i
 	 */
-	ArrayNode.prototype.child = function (i) {
+	FixNode.prototype.child = function (i) {
 		return this._children[i]
 	}
 
@@ -70,7 +67,7 @@ define(function (require) {
 	/**
 	 * add child at last
 	 */
-	ArrayNode.prototype.addChildLast = function (child /** ... **/) {
+	FixNode.prototype.addChildLast = function (child /** ... **/) {
 		for (var i in arguments) {
 			var child = arguments[i]
 			this._children.push(child)
@@ -82,7 +79,7 @@ define(function (require) {
 	/**
 	 * add child to the index `i`
 	 */
-	ArrayNode.prototype.addChildAt = function (i, child) {
+	FixNode.prototype.addChildAt = function (i, child) {
 		this._children.splice(i, 0, child)
 		child._parent = this
 	}
@@ -92,14 +89,14 @@ define(function (require) {
 	 * break the relation between parent and this
 	 * if it's root, do nothing
 	 */
-	ArrayNode.prototype.cut = function () {
+	FixNode.prototype.cut = function () {
 		if (this.parent()) {
 			var index = this.parent()._children.indexOf(this)
 			this.parent()._children.splice(index, 1)
 		}
 	}
 
-	return ArrayNode
+	return FixNode
 })
 
 

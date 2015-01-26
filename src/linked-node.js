@@ -1,7 +1,7 @@
 define(function (require) {
 	var LinkedListNode = require('bower_components/linked-list/src/linked-node')
 	var LinkedList = require('bower_components/linked-list/src/linked-list')
-	var OrderedNode = require('./ordered-node')
+	var OrderedNode = require('./base/ordered-node')
 
 	var LinkedNode = function () {
 		this._parent = null
