@@ -1,5 +1,5 @@
 define(function (require) {
-	var ArrayNode = require('src/array-node')
+	var ArrayNode = require('src/tree/array-node')
 
 	QUnit.module('ArrayNode')
 

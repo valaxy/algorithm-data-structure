@@ -1,5 +1,5 @@
 define(function (require) {
-	var BinaryNode = require('src/binary-node')
+	var BinaryNode = require('src/tree/binary-node')
 
 	module('BinaryNode')
 

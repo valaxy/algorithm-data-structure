@@ -1,5 +1,5 @@
 define(function (require) {
-	var BinaryNode = require('src/binary-node')
+	var BinaryNode = require('src/tree/binary-node')
 
 	var root = new BinaryNode
 	var n1 = new BinaryNode

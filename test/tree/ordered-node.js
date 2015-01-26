@@ -1,6 +1,6 @@
 define(function (require) {
-	var ArrayNode = require('src/array-node')
-	var LinkedNode = require('src/linked-node')
+	var ArrayNode = require('src/tree/array-node')
+	var LinkedNode = require('src/tree/linked-node')
 	var Nodes = [ArrayNode, LinkedNode]
 
 	QUnit.module('Node')

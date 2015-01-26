@@ -1,6 +1,6 @@
 define(function (require) {
-	var LinkedListNode = require('bower_components/linked-list/src/linked-node')
-	var LinkedList = require('bower_components/linked-list/src/linked-list')
+	var LinkedListNode = require('../linked-list/linked-list-node')
+	var LinkedList = require('../linked-list/linked-list')
 	var OrderedNode = require('./base/ordered-node')
 
 	var LinkedNode = function () {

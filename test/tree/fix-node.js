@@ -1,5 +1,5 @@
 define(function (require, exports) {
-	var FixNode = require('src/fix-node')
+	var FixNode = require('src/tree/fix-node')
 
 	module('FixNode')
 
