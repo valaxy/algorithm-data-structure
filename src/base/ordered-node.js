@@ -27,7 +27,7 @@ define(function (require) {
 	 * @returns {boolean} true or false
 	 */
 	OrderedNode.prototype.isSameStructure = function (otherTreeRoot) {
-		if (this.childrenCount() != otherTreeRoot.childrenCount()) {
+		if (this.maxChildrenCount() != otherTreeRoot.maxChildrenCount()) {
 			return false
 		}
 

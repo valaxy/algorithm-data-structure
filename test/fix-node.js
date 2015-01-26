@@ -25,21 +25,39 @@ define(function (require, exports) {
 	})
 
 
-	test('childrenCount()', function (assert) {
+	test('maxChildrenCount()', function (assert) {
 		var root = new FixNode(10)
-		assert.equal(root.childrenCount(), 10)
+		assert.equal(root.maxChildrenCount(), 10)
 
 		root.setChild(3, new FixNode)
-		assert.equal(root.childrenCount(), 10)
+		assert.equal(root.maxChildrenCount(), 10)
+	})
+
+
+	test('childrenCount()', function (assert) {
+		var root = new FixNode(6)
+		assert.equal(root.childrenCount(), 0)
+
+		root.setChild(0, new FixNode(6))
+		assert.equal(root.childrenCount(), 1)
+
+		root.setChild(0, new FixNode(6))
+		assert.equal(root.childrenCount(), 1)
 	})
 
 
 	test('eachChild()/setChild()', function (assert) {
 		var root = new FixNode(3)
-		var n1 = new FixNode(1)
-		var n2 = new FixNode(1)
+		var n1 = new FixNode(3)
+		var n2 = new FixNode(3)
+		var n3 = new FixNode(3)
 		root.setChild(0, n1)
+		root.setChild(2, n3)
+		assert.equal(n3.parent(), root)
+
+		// override
 		root.setChild(2, n2)
+		assert.equal(n3.parent(), null)
 
 		var nodes = [n1, null, n2]
 

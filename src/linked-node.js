@@ -28,7 +28,7 @@ define(function (require) {
 		return false
 	}
 
-	LinkedNode.prototype.childrenCount = function () {
+	LinkedNode.prototype.maxChildrenCount = function () {
 		return this._childList.count()
 	}
 

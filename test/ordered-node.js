@@ -14,7 +14,7 @@ define(function (require) {
 			assert.equal(child, children[index])
 			last = child
 		})
-		assert.equal(node.childrenCount(), children.length)
+		assert.equal(node.maxChildrenCount(), children.length)
 		if (children.length > 0) {
 			assert.equal(last, children[children.length - 1])
 		}

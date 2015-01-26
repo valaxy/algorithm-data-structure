@@ -24,5 +24,15 @@ define(function (require) {
 		node.setRight(right)
 		assert.equal(node.child(0), left)
 		assert.equal(node.child(1), right)
+		assert.equal(left.parent(), node)
+		assert.equal(right.parent(), node)
+
+		// override
+		var newLeft = new BinaryNode
+		var newRight = new BinaryNode
+		node.setLeft(newLeft)
+		node.setRight(newRight)
+		assert.equal(left.parent(), null)
+		assert.equal(right.parent(), null)
 	})
 })
