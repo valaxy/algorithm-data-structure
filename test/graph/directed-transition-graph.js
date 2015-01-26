@@ -1,5 +1,5 @@
 define(function (require) {
-	var Graph = require('src/directed-transition-graph')
+	var Graph = require('src/graph/directed-transition-graph')
 
 	QUnit.module('DirectedTransitionGraph')
 

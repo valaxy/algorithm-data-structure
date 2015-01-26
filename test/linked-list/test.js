@@ -1,4 +1,4 @@
 define(function (require) {
-	require('test/linked-list-node')
-	require('test/linked-list')
+	require('./linked-list-node')
+	require('./linked-list')
 })

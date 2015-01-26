@@ -1,5 +1,5 @@
 define(function (require) {
-	var LinkedListNode = require('src/linked-list-node')
+	var LinkedListNode = require('src/linked-list/linked-list-node')
 
 	QUnit.module('LinkedListNode')
 
