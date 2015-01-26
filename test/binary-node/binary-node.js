@@ -35,4 +35,6 @@ define(function (require) {
 		assert.equal(left.parent(), null)
 		assert.equal(right.parent(), null)
 	})
+
+
 })

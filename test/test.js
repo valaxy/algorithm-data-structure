@@ -6,5 +6,6 @@ define(function (require) {
 
 
 	require('./fix-node')
-	require('./binary-node')
+	require('./binary-node/binary-node')
+	require('./binary-node/walk')
 })
