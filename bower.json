@@ -1,24 +1,24 @@
 {
-  "name": "tree",
-  "version": "0.1.0",
-  "homepage": "https://github.com/valaxy/tree",
-  "authors": [
-    "valaxy <valaxy.tian@gmail.com>"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "devDependencies": {
-    "requirejs": "~2.1.15",
-    "qunit": "~1.16.0"
-  },
-  "dependencies": {
-    "linked-list": "https://github.com/valaxy/linked-list.git",
-    "underscore": "~1.7.0"
-  }
+	"name": "tree",
+	"version": "0.1.0",
+	"homepage": "https://github.com/valaxy/tree",
+	"authors": [
+		"valaxy <valaxy.tian@gmail.com>"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"devDependencies": {
+		"requirejs": "~2.1.15",
+		"qunit": "~1.16.0"
+	},
+	"dependencies": {
+		"underscore": "~1.7.0",
+		"linked-list": "valaxy/linked-list"
+	}
 }
