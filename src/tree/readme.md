@@ -53,9 +53,13 @@ cut()
 ```
 
 
-# FixNode
+# TreeNode - FixNode
+
+FixNode|BinaryNode
 
 
+# Tree
+BinarySearchTree|SizeBalancedTree
 
 
 # StructNode
