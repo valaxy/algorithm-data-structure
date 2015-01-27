@@ -100,4 +100,17 @@ define(function (require, exports) {
 		assert.equal(n3.parent(), root)
 	})
 
+
+	test('isostructural()', function (assert) {
+		var root = new FixNode(3)
+		var n1 = new FixNode(3)
+		var n2 = new FixNode(3)
+		var n3 = new FixNode(3)
+		var n4 = new FixNode(3)
+		root.setChildren(n1, n2, n3)
+		n1.setChildren(null, n4, null)
+		assert.ok(root.isostructural(root))
+		assert.ok(!root.isostructural(n1))
+	})
+
 })

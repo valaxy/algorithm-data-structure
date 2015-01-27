@@ -65,6 +65,28 @@ define(function () {
 	}
 
 
+	/** Check if it is isostructural with other tree */
+	FixNodeBase.prototype.isostructural = function (otherNode) {
+		if (this.maxChildrenCount() != otherNode.maxChildrenCount()) {
+			return false
+		}
+
+		for (var i = 0; i < this.maxChildrenCount(); i++) {
+			if (!this.hasChildAt(i)) {
+				if (otherNode.hasChildAt(i)) {
+					return false
+				}
+			} else if (!otherNode.hasChildAt(i)) {
+				return false
+			} else if (!this.child(i).isostructural(otherNode.child(i))) {
+				return false
+			}
+		}
+
+		return true
+	}
+
+
 	return FixNodeBase
 })
 

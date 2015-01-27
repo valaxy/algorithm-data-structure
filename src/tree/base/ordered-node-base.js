@@ -1,14 +1,14 @@
 define(function (require) {
 	var repeat = require('./repeat')
 
-	var OrderedNode = function () {
+	var OrderedNodeBase = function () {
 		// do nothing
 	}
 
 	/**
 	 * get the deepest and leftest descendant
 	 */
-	OrderedNode.prototype.leftestDescendant = function () {
+	OrderedNodeBase.prototype.leftestDescendant = function () {
 		var current = this
 		while (true) {
 			var child = current.firstChild()
@@ -26,7 +26,7 @@ define(function (require) {
 	 * @param otherTreeRoot root of the tree
 	 * @returns {boolean} true or false
 	 */
-	OrderedNode.prototype.isSameStructure = function (otherTreeRoot) {
+	OrderedNodeBase.prototype.isSameStructure = function (otherTreeRoot) {
 		if (this.maxChildrenCount() != otherTreeRoot.maxChildrenCount()) {
 			return false
 		}
@@ -50,7 +50,7 @@ define(function (require) {
 
 
 	// dfs to build
-	OrderedNode.prototype._toString = function (deep) {
+	OrderedNodeBase.prototype._toString = function (deep) {
 		var str = ''
 		str += repeat(deep * 4) + 'node' + '\n'
 
@@ -63,9 +63,9 @@ define(function (require) {
 	/**
 	 * print a xml tree, a debug method
 	 */
-	OrderedNode.prototype.toString = function () {
+	OrderedNodeBase.prototype.toString = function () {
 		return this._toString(0)
 	}
 
-	return OrderedNode
+	return OrderedNodeBase
 })

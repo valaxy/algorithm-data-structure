@@ -52,6 +52,12 @@ appendRightBrother()
 cut()
 ```
 
+
+# FixNode
+
+
+
+
 # StructNode
 - Use a hash-map to save the children of a node, each child has a unique name to represent
 - not finish
