@@ -1,4 +1,5 @@
-define(function () {
+define(function (require) {
+	var repeat = require('./repeat')
 
 	var FixNodeBase = function () {
 		// nothing
@@ -53,6 +54,7 @@ define(function () {
 		}
 		this._children[i] = child
 		child._parent = this
+		return this
 	}
 
 	/** Set children from 1-th to maxChildrenCount-th */
@@ -62,6 +64,7 @@ define(function () {
 				this.setChild(i, arguments[i])
 			}
 		}
+		return this
 	}
 
 
@@ -84,6 +87,26 @@ define(function () {
 		}
 
 		return true
+	}
+
+
+	// core
+	FixNodeBase.prototype._toString = function (deep) {
+		var s = repeat(deep * 4) + 'node\n'
+		this.eachChild(function (node) {
+			if (node) {
+				s += node._toString(deep + 1)
+			} else {
+				s += repeat(deep * 4 + 4) + 'null\n'
+			}
+		})
+		return s
+	}
+
+
+	/** Return a string represents current tree */
+	FixNodeBase.prototype.toString = function () {
+		return this._toString(0)
 	}
 
 

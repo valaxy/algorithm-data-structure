@@ -113,4 +113,42 @@ define(function (require, exports) {
 		assert.ok(!root.isostructural(n1))
 	})
 
+
+	test('toString()', function (assert) {
+		// empty tree
+		var root = new FixNode(3)
+		assert.equal(root.toString(),
+			'node\n' +
+			'    null\n' +
+			'    null\n' +
+			'    null\n'
+		)
+
+		// no empty tree
+		root.setChildren(
+			null,
+			new FixNode(3).setChildren(
+				new FixNode(3),
+				null,
+				null
+			),
+			new FixNode(3)
+		)
+		assert.equal(root.toString(),
+			'node\n' +
+			'    null\n' +
+			'    node\n' +
+			'        node\n' +
+			'            null\n' +
+			'            null\n' +
+			'            null\n' +
+			'        null\n' +
+			'        null\n' +
+			'    node\n' +
+			'        null\n' +
+			'        null\n' +
+			'        null\n'
+		)
+	})
+
 })
