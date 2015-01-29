@@ -66,10 +66,6 @@ define(function (require) {
 	}
 
 
-	BinarySearchTree.prototype._remove = function (node) {
-
-	}
-
 	/** if multiply values meet, remove one randomly */
 	BinarySearchTree.prototype.removeOne = function (value) {
 		var node = this._root
@@ -92,6 +88,11 @@ define(function (require) {
 
 	/** if multiply values meet, remove all of them */
 	BinarySearchTree.prototype.removeMany = function (value) {
+
+	}
+
+
+	BinarySearchTree.prototype._remove = function (node) {
 
 	}
 

@@ -7,7 +7,8 @@
 	} else {
 		define(factory)
 	}
-})(function () {
+})(function (require) {
+	var SetBase = require('./base/set-base')
 
 	var defaultCompare = function (x, y) {
 		return x === y
@@ -19,6 +20,8 @@
 		this._compare = compare || defaultCompare
 	}
 
+	Set.prototype = new SetBase
+
 	/** Create a set by a array of elements */
 	Set.fromArray = function (elements, compare) {
 		var s = new Set(compare)
@@ -28,21 +31,6 @@
 		return s
 	}
 
-
-	/** Return a array of elements */
-	Set.prototype.toArray = function () {
-		return [].concat(this._elements)
-	}
-
-	/** Return the count of elements of set */
-	Set.prototype.count = function () {
-		return this._elements.length
-	}
-
-	/** Check if the set is empty */
-	Set.prototype.isEmpty = function () {
-		return this.count() === 0
-	}
 
 	/** Check if `element` is exist */
 	Set.prototype.has = function (element) {
