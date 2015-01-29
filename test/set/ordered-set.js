@@ -47,6 +47,15 @@ define(function (require) {
 	})
 
 
+	test('has()', function (assert) {
+		var s = OrderedSet.fromArray([0, 1, 2, 3, 4, 5], function (x, y) {
+			return x - y
+		})
+		assert.ok(s.has(3))
+		assert.ok(!s.has(100))
+	})
+	
+
 	test('add()', function (assert) {
 		var s = new OrderedSet(function (x, y) {
 			return x - y
@@ -62,6 +71,16 @@ define(function (require) {
 		assert.deepEqual(s.toArray(), [1, 10, 15, 20])
 	})
 
+
+	test('remove()', function (assert) {
+		var s = OrderedSet.fromArray([1, 2, 3, 4, 5], function (x, y) {
+			return x - y
+		})
+
+		assert.ok(s.remove(3))
+		assert.ok(!s.remove(6))
+		assert.deepEqual(s.toArray(), [1, 2, 4, 5])
+	})
 
 	test('removeAt()', function (assert) {
 		var s = OrderedSet.fromArray([1, 2, 3, 4, 5], function (x, y) {

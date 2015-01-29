@@ -7,7 +7,7 @@ define(function (require) {
 		this._elements = []
 	}
 
-	/** Create a set by a array of elements */
+
 	OrderedSet.fromArray = function (elements, compare) {
 		var s = new OrderedSet(compare)
 		for (var i in elements) {
@@ -43,6 +43,16 @@ define(function (require) {
 		}
 		this._elements.splice(i, 0, element)
 		return true
+	}
+
+	OrderedSet.prototype.remove = function (element) {
+		for (var i in this._elements) {
+			if (this._compare(element, this._elements[i]) == 0) {
+				this._elements.splice(i, 1)
+				return true
+			}
+		}
+		return false
 	}
 
 	OrderedSet.prototype.removeAt = function (i) {

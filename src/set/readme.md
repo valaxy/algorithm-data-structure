@@ -8,15 +8,15 @@ toArray  |O(n)  |O(n)
 count    |O(1)  |O(1)
 has      |O(n)  |O(n)
 index    |x     |O(n)
-hasOneOf |O(cn) |
-hasAll   |O(cn) |
-each     |O(n)  |
-union    |O(mn) |
-intersect|O(mn) |
+hasOneOf |O(cn) |O(cn)
+hasAll   |O(cn) |O(cn)
+each     |O(n)  |O(n)
+union    |O(mn) |O(mn)
+intersect|O(mn) |O(mn)
 add      |O(n)  |O(n)
-remove   |O(n)  |
+remove   |O(n)  |O(n)
 removeAt |x     |O(n)
-clear    |O(1)  |
+clear    |O(1)  |O(1)
 
 # Helpful
 - https://github.com/component/set

@@ -42,37 +42,6 @@
 		return false
 	}
 
-	/** Check if has one of `elements` */
-	Set.prototype.hasOneOf = function (elements) {
-		for (var i in elements) {
-			if (this.has(elements[i])) {
-				return true
-			}
-		}
-		return false
-	}
-
-	/** Check if has all `elements` */
-	Set.prototype.hasAll = function (elements) {
-		for (var i in elements) {
-			if (!this.has(elements[i])) {
-				return false
-			}
-		}
-		return true
-	}
-
-
-	/** Iterate each element and invoke `operation` */
-	Set.prototype.each = function (operation) {
-		for (var i in this._elements) {
-			if (operation(this._elements[i])) {
-				return true
-			}
-		}
-		return false
-	}
-
 
 	/** Add element */
 	Set.prototype.add = function (element) {
@@ -83,31 +52,6 @@
 		}
 		this._elements.push(element)
 		return true
-	}
-
-	/** Perform a union with `otherSet` and return this */
-	Set.prototype.union = function (otherSet) {
-		var me = this
-		otherSet.each(function (x) {
-			me.add(x)
-		})
-		return this
-	}
-
-
-	/** Perform an intersection with `otherSet` and return this */
-	Set.prototype.intersect = function (otherSet) {
-		var me = this
-		var needRemove = []
-		this.each(function (x) {
-			if (!otherSet.has(x)) {
-				needRemove.push(x)
-			}
-		})
-		_.each(needRemove, function (x) {
-			me.remove(x)
-		})
-		return this
 	}
 
 
@@ -122,12 +66,6 @@
 		return false
 	}
 
-	/** Empty the set and return a array of old elements */
-	Set.prototype.clear = function () {
-		var orignal = this._elements
-		this._elements = []
-		return orignal
-	}
 
 	return Set
 })
