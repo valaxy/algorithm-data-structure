@@ -45,6 +45,10 @@ define(function (require) {
 		return true
 	}
 
+	OrderedSet.prototype.removeAt = function (i) {
+		this._elements.splice(i, 1)
+	}
+
 
 	return OrderedSet
 })

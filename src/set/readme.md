@@ -15,6 +15,7 @@ union    |O(mn) |
 intersect|O(mn) |
 add      |O(n)  |O(n)
 remove   |O(n)  |
+removeAt |x     |O(n)
 clear    |O(1)  |
 
 # Helpful

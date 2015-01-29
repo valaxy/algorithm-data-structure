@@ -63,4 +63,20 @@ define(function (require) {
 	})
 
 
+	test('removeAt()', function (assert) {
+		var s = OrderedSet.fromArray([1, 2, 3, 4, 5], function (x, y) {
+			return x - y
+		})
+
+		s.removeAt(0)
+		assert.deepEqual(s.toArray(), [2, 3, 4, 5])
+
+		s.removeAt(3)
+		assert.deepEqual(s.toArray(), [2, 3, 4,])
+
+		s.removeAt(1)
+		assert.deepEqual(s.toArray(), [2, 4])
+	})
+
+
 })
