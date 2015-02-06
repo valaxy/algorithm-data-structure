@@ -1,6 +1,6 @@
 define(function (require) {
-	var LinkedListNode = require('../linked-list/linked-list-node')
-	var LinkedList = require('../linked-list/linked-list')
+	var LinkedListNode = require('./linked-node')
+	var LinkedList = require('./linked')
 	var OrderedNode = require('./base/ordered-node-base')
 
 	var LinkedNode = function () {

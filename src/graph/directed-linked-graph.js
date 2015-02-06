@@ -8,8 +8,8 @@
 		define(factory)
 	}
 })(function (require) {
-	var LinkedList = require('../linked-list/linked-list')
-	var LinkedListNode = require('../linked-list/linked-list-node')
+	var LinkedList = require('./linked')
+	var LinkedListNode = require('./linked-node')
 	var BaseGraph = require('./graph')
 
 	var Graph = function () {

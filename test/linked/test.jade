@@ -14,8 +14,11 @@ html
         // startup
         script.
             requirejs.config({
-                baseUrl: '../../'
+                baseUrl: '../../',
+                paths: {
+                    underscore: 'bower_components/underscore/underscore-min'
+                }
             })
-            require(['test/linked-list/test'], function () {
+            require(['test/linked/test'], function () {
                 // do nothing
             })
