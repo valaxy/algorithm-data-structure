@@ -164,8 +164,27 @@ define(function (require) {
 		}
 	})
 
+	test('removeFirst()', function (assert) {
+		for (var i in Lists) {
+			var list = new Lists[i]
+			list.addLast(1).addLast(2).addLast(3)
 
-	test('removeAt', function (assert) {
+			assert.equal(list.removeFirst(), list)
+			assert.deepEqual(list.toArray(), [2, 3])
+		}
+	})
+
+	test('removeLast()', function (assert) {
+		for (var i in Lists) {
+			var list = new Lists[i]
+			list.addLast(1).addLast(2).addLast(3)
+
+			assert.equal(list.removeLast(), list)
+			assert.deepEqual(list.toArray(), [1, 2])
+		}
+	})
+
+	test('removeAt()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(100).addLast(200).addLast(300)
