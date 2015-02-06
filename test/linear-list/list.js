@@ -22,14 +22,6 @@ define(function (require) {
 	test('first()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
-			try {
-				list.first()
-				assert.ok(false)
-			} catch (e) {
-				assert.ok(true)
-			}
-
-
 			list.addLast(100).addLast(200).addLast(300)
 			assert.equal(list.first(), 100)
 		}
@@ -38,13 +30,6 @@ define(function (require) {
 	test('last()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
-			try {
-				list.last()
-				assert.ok(false)
-			} catch (e) {
-				assert.ok(true)
-			}
-
 			list.addLast(100).addLast(200).addLast(300)
 			assert.equal(list.last(), 300)
 		}

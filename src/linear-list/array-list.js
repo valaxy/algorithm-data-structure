@@ -29,16 +29,10 @@ define(function (require) {
 	}
 
 	ArrayList.prototype.first = function () {
-		if (this.isEmpty()) {
-			throw "List should not be empty."
-		}
 		return _.first(this._values)
 	}
 
 	ArrayList.prototype.last = function () {
-		if (this.isEmpty()) {
-			throw "List should not be empty."
-		}
 		return _.last(this._values)
 	}
 

@@ -1,1 +1,7 @@
-Data structure, It's under development
+Data structure, This is under development
+
+# Overview
+- Linked
+- Linear List
+- Tree
+- Graph
