@@ -1,6 +1,6 @@
 # OrderedTreeNode
 - ArrayOrderedNode - Use array to save the children of a node
-- LinkeOrdereddNode - Use linked list to save the children of a node
+- LinkeOrderedNode - Use linked list to save the children of a node
 - c is the children count of node
 - h is the height of tree
 - n is the node count of tree
