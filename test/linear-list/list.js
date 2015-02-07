@@ -5,24 +5,29 @@ define(function (require) {
 
 	module('ArrayList/LinkedList')
 
+	test('fromArray()', function (assert) {
+		for (var i in Lists) {
+			var values = [{}, {}, {}]
+			var list = Lists[i].fromArray(values)
+			assert.deepEqual(list.toArray(), values)
+		}
+	})
 
 	test('toArray()', function (assert) {
+		var values = [{}, {}, {}]
+
 		for (var i in Lists) {
 			var list = new Lists[i]
 			assert.deepEqual(list.toArray(), [])
 
-			list.addLast(0)
-			list.addLast(null)
-			list.addLast(false)
-			list.addLast(undefined)
-			assert.deepEqual(list.toArray(), [0, null, false, undefined])
+			list.addLast(values[0]).addLast(values[1]).addLast(values[2])
+			assert.deepEqual(list.toArray(), values)
 		}
 	})
 
 	test('first()', function (assert) {
 		for (var i in Lists) {
-			var list = new Lists[i]
-			list.addLast(100).addLast(200).addLast(300)
+			var list = Lists[i].fromArray([100, 200, 300])
 			assert.equal(list.first(), 100)
 		}
 	})
@@ -62,6 +67,7 @@ define(function (require) {
 
 
 	test('each()', function (assert) {
+		var values = [{}, {}, {}]
 		for (var i in Lists) {
 			// empty list
 			var list = new Lists[i]
@@ -70,14 +76,12 @@ define(function (require) {
 			}))
 
 			// no-break
-			list.addLast(100)
-			list.addLast(200)
-			list.addLast(300)
-			var values = []
-			assert.ok(!list.each(function (value) {
-				values.push(value)
+			list.addLast(values[0]).addLast(values[1]).addLast(values[2])
+			var index = 0
+			assert.ok(!list.each(function (value, i) {
+				assert.equal(index, i)
+				assert.equal(value, values[index++])
 			}))
-			assert.deepEqual(values, [100, 200, 300])
 
 			// break
 			var count = 0
@@ -99,6 +103,18 @@ define(function (require) {
 			assert.equal(list.get(0), 100)
 			assert.equal(list.get(1), 200)
 			assert.equal(list.get(2), 300)
+		}
+	})
+
+
+	test('indexOf()', function (assert) {
+		var values = [{}, {}, {}]
+		for (var i in Lists) {
+			var list = Lists[i].fromArray(values)
+			assert.equal(list.indexOf(values[0]), 0)
+			assert.equal(list.indexOf(values[1]), 1)
+			assert.equal(list.indexOf(values[2]), 2)
+			assert.equal(list.indexOf({}), -1)
 		}
 	})
 

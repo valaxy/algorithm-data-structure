@@ -2,9 +2,16 @@ define(function (require) {
 	var _ = require('underscore')
 	var List = require('./base/list')
 
-	/** Array-like list */
-	var ArrayList = function () {
+
+	var compare = function (x, y) {
+		return x === y
+	}
+
+	/** Array List */
+	var ArrayList = function (options) {
+		options = options || {}
 		this._values = []
+		this._compare = options.compare || compare
 	}
 
 	ArrayList.prototype = new List
@@ -21,7 +28,7 @@ define(function (require) {
 
 	ArrayList.prototype.each = function (operation) {
 		for (var i in this._values) {
-			if (operation(this._values[i])) {
+			if (operation(this._values[i], i)) {
 				return true
 			}
 		}

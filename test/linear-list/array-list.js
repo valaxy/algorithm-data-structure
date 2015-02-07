@@ -3,13 +3,14 @@ define(function (require) {
 
 	module('ArrayList')
 
-
-
-
-
-
-
-	//test('fromArray', function (assert) {
-	//
-	//})
+	test('accept primitive value', function (assert) {
+		var list = new List
+		list.addLast(0)
+			.addLast(null)
+			.addLast(undefined)
+			.addLast(NaN)
+			.addLast(false)
+			.addLast('')
+		assert.deepEqual(list.toArray(), [0, null, undefined, NaN, false, ''])
+	})
 })
