@@ -26,8 +26,9 @@ define(function (require) {
 		}
 
 		var current = this.head()
+		var i = 0
 		while (current) {
-			if (operation(current)) {
+			if (operation(current, i++)) {
 				return true
 			}
 			current = current.next()

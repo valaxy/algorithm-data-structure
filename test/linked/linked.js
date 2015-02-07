@@ -103,14 +103,15 @@ define(function (require) {
 		}))
 
 		// no-break
-		list.addLast(new LinkedNode)
-		list.addLast(new LinkedNode)
-		list.addLast(new LinkedNode)
 		var count = 0
-		assert.ok(!list.each(function () {
-			count++
+		var n1 = list.addLast(1)
+		var n2 = list.addLast(2)
+		var n3 = list.addLast(3)
+		var nodes = [n1, n2, n3]
+		assert.ok(!list.each(function (node, i) {
+			assert.equal(count++, i)
+			assert.equal(node, nodes[i])
 		}))
-		assert.equal(count, 3)
 
 		// break
 		var count = 0
