@@ -20,9 +20,19 @@ define(function (require) {
 
 	test('constructor', function (assert) {
 		for (var i in Nodes) {
-			var node = new Nodes[i]
+			var node = new Nodes[i](1)
 
 			assert.equal(node.parent(), null)
+			assert.equal(node.value(), 1)
+		}
+	})
+
+	test('value()/setValue()', function (assert) {
+		for (var i in Nodes) {
+			var node = new Nodes[i]
+			node.setValue(123)
+
+			assert.equal(node.value(), 123)
 		}
 	})
 

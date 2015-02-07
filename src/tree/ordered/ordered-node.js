@@ -2,7 +2,21 @@ define(function (require) {
 	var repeat = require('./../base/repeat')
 
 	var OrderedNode = function () {
-		// do nothing
+		this._value = null
+	}
+
+	OrderedNode.extend = function (cls) {
+		var n = new OrderedNode
+		delete n._value
+		cls.prototype = n
+	}
+
+	OrderedNode.prototype.value = function () {
+		return this._value
+	}
+
+	OrderedNode.prototype.setValue = function (value) {
+		this._value = value
 	}
 
 	/** Return the deepest and leftmost descendant, including itself */

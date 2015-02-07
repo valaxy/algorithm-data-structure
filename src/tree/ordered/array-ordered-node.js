@@ -2,12 +2,13 @@ define(function (require) {
 	var OrderedNode = require('./ordered-node')
 	var _ = require('underscore')
 
-	var ArrayOrderedNode = function () {
+	var ArrayOrderedNode = function (value) {
 		this._parent = null
 		this._children = []
+		this.setValue(value)
 	}
 
-	ArrayOrderedNode.prototype = new OrderedNode
+	OrderedNode.extend(ArrayOrderedNode)
 
 	ArrayOrderedNode.prototype.parent = function () {
 		return this._parent

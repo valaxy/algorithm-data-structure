@@ -3,13 +3,14 @@ define(function (require) {
 	var OrderedNode = require('./ordered-node')
 
 	/** Ordered Tree Node implemented by Linked */
-	var LinkedOrderedNode = function () {
+	var LinkedOrderedNode = function (value) {
 		this._parent = null            // parent node
 		this._childLinked = new Linked // linked of children node
 		this._linkedNode = null        // linked to sibling node
+		this.setValue(value)
 	}
 
-	LinkedOrderedNode.prototype = new OrderedNode
+	OrderedNode.extend(LinkedOrderedNode)
 
 	/** Return parent node */
 	LinkedOrderedNode.prototype.parent = function () {
