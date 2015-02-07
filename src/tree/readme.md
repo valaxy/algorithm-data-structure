@@ -1,64 +1,36 @@
-# ArrayNode
-- Use array to save the children of a node
-- Not really finish
+# OrderedTreeNode
+- ArrayOrderedNode - Use array to save the children of a node
+- LinkeOrdereddNode - Use linked list to save the children of a node
+- c is the children count of node
+- h is the height of tree
+- n is the node count of tree
 
-**read method**
+api                |LinkedOrderedNode|ArrayOrderedNode
+-------------------|-----------------|----------------
+parent             |O(1)             |O(1)
+childAt            |O(c)             |**O(1)**
+eachChild          |O(c)             |O(c)
+childrenCount      |O(1)             |O(1)
+leftmostChild      |O(1)             |O(1)      
+rightmostChild     |O(1)             |O(1)
+leftSibling        |**O(1)**         |x
+rightSibling       |**O(1)**         |x
+leftmostDescendant |O(h)             |O(h)
+isostructural      |O(n)             |O(n)
+toString()         |O(n)             |O(n)
+addChildFirst      |**O(1)**         |O(c)
+addChildLast       |O(1)             |O(1)
+appendLeftSibling  |**O(1)**         |x
+appendRightSibing  |**O(1)**         |x         
+cut()              |**O(1)**         |x
 
-```javascript
-parent()
-eachChild(task)
-childrenCount()
-firstChild()
-lastChild()
-leftestDescendant()
-isSameStructure(otherTreeNode)
-toString()
-child(i)
-```
-
-**set method**
-
-```javascript
-addChildFirst(child, ...)
-addChildLast(child, ...)
-addChildAt(i, child)
-```
-
-# LinkedNode
-Use linked-list to save the children of a node
-
-**read method**
-
-```javascript
-parent()
-eachChild(task)
-childrenCount()
-firstChild()
-lastChild()
-leftestDescendant()
-isSameStructure(otherTreeNode)
-toString()
-leftBrother()
-rightBrother()
-```
-
-**set method**
-
-```javascript
-addChildFirst(child, ...)
-addChildLast(child, ...)
-appendLeftBrother()
-appendRightBrother()
-cut()
-```
-
-
-# TreeNode - FixNode
-
+# FixNode
+- not finish
 FixNode|BinaryNode
 
 
 # Tree
+- not finish
 BinarySearchTree|SizeBalancedTree
 
 
