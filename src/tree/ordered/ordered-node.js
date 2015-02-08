@@ -88,5 +88,23 @@ define(function (require) {
 		return this._toString(0)
 	}
 
+
+	OrderedNode.prototype.postorderWalk = function (operation) {
+		return this.eachChild(function (child) {
+				if (child.postorderWalk(operation)) {
+					return true
+				}
+			}) || operation(this)
+	}
+
+	OrderedNode.prototype.preorderWalk = function (operation) {
+		return operation(this)
+			|| this.eachChild(function (child) {
+				if (child.preorderWalk(operation)) {
+					return true
+				}
+			})
+	}
+
 	return OrderedNode
 })

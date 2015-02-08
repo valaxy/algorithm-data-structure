@@ -267,4 +267,36 @@ define(function (require) {
 			assert.equal(root.toString(), str)
 		}
 	})
+
+
+	test('postorderWalk()/preorderWalk()', function (assert) {
+		for (var i in Nodes) {
+			var Node = Nodes[i]
+			var root = new Node
+			var n0 = new Node
+			var n1 = new Node
+			var n2 = new Node
+			var n3 = new Node
+			root.addChildLast(n0).addChildLast(n1)
+			n0.addChildLast(n2)
+			n1.addChildLast(n3)
+
+			// post order
+			var nodes = []
+			root.postorderWalk(function (node) {
+				nodes.push(node)
+			})
+			assert.deepEqual(nodes, [n2, n0, n3, n1, root])
+
+			// pre order
+			var nodes = []
+			root.preorderWalk(function (node) {
+				nodes.push(node)
+			})
+			assert.deepEqual(nodes, [root, n0, n2, n1, n3])
+
+
+		}
+	})
+
 })
