@@ -24,6 +24,7 @@ addChildLast       |O(1)             |O(1)
 appendLeftSibling  |**O(1)**         |x
 appendRightSibing  |**O(1)**         |x         
 cut()              |**O(1)**         |x
+delete()           |**O(c)**         |x
 
 # FixNode
 - not finish

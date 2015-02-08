@@ -101,4 +101,38 @@ define(function (require) {
 		n2.cut()
 		checkChildren(assert, root, [n1, n3])
 	})
+
+	test('delete(): single node case', function (assert) {
+		var root = new TreeNode
+		var n1 = new TreeNode
+		var n2 = new TreeNode
+		var n3 = new TreeNode
+		root.addChildLast(n1)
+		n1.addChildLast(n2).addChildLast(n3)
+		n1.delete()
+		assert.equal(root.toString(),
+			'node\n' +
+			'    node\n' +
+			'    node\n')
+	})
+
+
+	test('delete(): not single node case', function (assert) {
+		var root = new TreeNode
+		var n1 = new TreeNode
+		var n2 = new TreeNode
+		var n3 = new TreeNode
+		var n4 = new TreeNode
+		var n5 = new TreeNode
+		root.addChildLast(n1).addChildLast(n2).addChildLast(n3)
+		n2.addChildLast(n4).addChildLast(n5)
+		n2.delete()
+		assert.equal(root.toString(),
+			'node\n' +
+			'    node\n' +
+			'    node\n' +
+			'    node\n' +
+			'    node\n')
+
+	})
 })

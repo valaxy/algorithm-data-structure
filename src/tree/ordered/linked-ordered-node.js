@@ -1,12 +1,13 @@
 define(function (require) {
 	var Linked = require('../../linked/linked')
+	var LinkedNode = require('../../linked/linked-node')
 	var OrderedNode = require('./ordered-node')
 
 	/** Ordered Tree Node implemented by Linked */
 	var LinkedOrderedNode = function (value) {
-		this._parent = null            // parent node
-		this._childLinked = new Linked // linked of children node
-		this._linkedNode = null        // linked to sibling node
+		this._parent = null               // parent node
+		this._childLinked = new Linked    // linked of children node
+		this._linkedNode = new LinkedNode // linked to sibling node
 		this.setValue(value)
 	}
 
@@ -103,6 +104,23 @@ define(function (require) {
 			this._parent = null
 			delete this._linkedNode
 		}
+		return this
+	}
+
+	/** can not delete root node for now */
+	LinkedOrderedNode.prototype.delete = function () {
+		var parent = this.parent()
+		var parentLeft = parent.leftSibling()
+		this.cut()
+		this.eachChild(function (child) {
+			child._parent = parent
+			if (parentLeft) {
+				parentLeft.appendRightSibing(child)
+				parentLeft = parentLeft.rightSibling()
+			} else {
+				parent.addChildFirst(child)
+			}
+		})
 		return this
 	}
 
