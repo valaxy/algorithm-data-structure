@@ -13,6 +13,17 @@ define(function (require) {
 
 	OrderedNode.extend(LinkedOrderedNode)
 
+
+	LinkedOrderedNode.extend = function (cls) {
+		var n = new LinkedOrderedNode
+		delete n._parent
+		delete n._childLinked
+		delete n._linkedNode
+		delete n._value
+		cls.prototype = n
+	}
+
+
 	/** Return parent node */
 	LinkedOrderedNode.prototype.parent = function () {
 		return this._parent

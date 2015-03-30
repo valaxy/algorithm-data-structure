@@ -10,6 +10,14 @@ define(function (require) {
 
 	OrderedNode.extend(ArrayOrderedNode)
 
+	ArrayOrderedNode.extend = function (cls) {
+		var n = new ArrayOrderedNode
+		delete n._parent
+		delete n._children
+		delete n._value
+		cls.prototype = n
+	}
+
 	ArrayOrderedNode.prototype.parent = function () {
 		return this._parent
 	}
