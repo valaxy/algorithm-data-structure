@@ -1,13 +1,13 @@
 define(function (require) {
 	var LinkedNode = require('src/linked/linked-node')
 
-	module('LinkedNode')
+	QUnit.module('LinkedNode')
 
-	test('value()/setValue()', function (assert) {
-		var node = new LinkedNode
-		assert.equal(node.setValue(123), node)
-		assert.equal(node.value(), 123)
-	})
+	//test('value()/setValue()', function (assert) {
+	//	var node = new LinkedNode
+	//	assert.equal(node.setValue(123), node)
+	//	assert.equal(node.value(), 123)
+	//})
 
 	test('addNext()/prev()/next()', function (assert) {
 		var node = new LinkedNode

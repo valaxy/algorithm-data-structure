@@ -10,15 +10,6 @@ html
 
         script(src="../../bower_components/qunit/qunit/qunit.js")
         script(src="../../bower_components/requirejs/require.js")
-
-        // startup
+        script(src="../base/config.js")
         script.
-            requirejs.config({
-                baseUrl: '../../',
-                paths: {
-                    underscore: 'bower_components/underscore/underscore-min'
-                }
-            })
-            require(['test/linked/test'], function () {
-                // do nothing
-            })
+            require(['test/linked/test'])

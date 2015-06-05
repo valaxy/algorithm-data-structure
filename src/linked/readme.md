@@ -1,5 +1,5 @@
-- Use LinkedNode to build linked list yourself
-- Use Linked to build linked list but not use any build function of LinkedNode
+- **LinkedNode** basic component for building a linked list
+- **Linked** basic component for building a linked list, used for processing lots of LinkedNode
 
 # LinkedNode
 ```javascript
@@ -7,8 +7,6 @@ var LinkedNode = require('src/linked/linked-node')
 var node = new LinkedNode
 node.next()
 node.prev()
-node.value()
-node.setValue(value)
 node.addNext(node)
 node.addPrev(node)
 node.remove()
@@ -22,9 +20,9 @@ linked.head()
 linked.tail()
 linked.count()
 linked.each(function(node))
-linked.insertAfter(node, value)
-linked.insertBefore(node, value)
-linked.addLast(value)
-linked.addFirst(value)
+linked.insertAfter(node)
+linked.insertBefore(node)
+linked.addLast()
+linked.addFirst()
 linked.remove(node)
 ```

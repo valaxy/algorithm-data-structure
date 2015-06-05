@@ -2,7 +2,7 @@ define(function (require) {
 	var Linked = require('src/linked/linked')
 	var LinkedNode = require('src/linked/linked-node')
 
-	module('Linked')
+	QUnit.module('Linked')
 
 	function checkLinks(assert, list, nodes) {
 		assert.equal(list.count(), nodes.length)
@@ -31,9 +31,7 @@ define(function (require) {
 
 	test('insertAfter()', function (assert) {
 		var list = new Linked
-		var n1 = list.addLast(123)
-		assert.equal(n1.value(), 123)
-
+		var n1 = list.addLast()
 		var n2 = list.insertAfter(n1)
 		checkLinks(assert, list, [n1, n2])
 
@@ -123,5 +121,4 @@ define(function (require) {
 		}))
 		assert.equal(count, 1)
 	})
-
 })
