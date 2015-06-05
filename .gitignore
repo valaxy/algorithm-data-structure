@@ -1,2 +1,5 @@
 .idea/
 bower_components/
+
+*.html
+*.css
