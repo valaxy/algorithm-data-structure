@@ -7,7 +7,10 @@ define(function (require) {
 		return x === y
 	}
 
-	/** Array List */
+	/** Array List
+	 ** options:
+	 **     compare: a compare function, optional
+	 */
 	var ArrayList = function (options) {
 		options = options || {}
 		this._values = []
@@ -52,11 +55,11 @@ define(function (require) {
 	}
 
 
-	ArrayList.prototype.get = function (index) {
+	ArrayList.prototype.getAt = function (index) {
 		return this._values[index]
 	}
 
-	ArrayList.prototype.set = function (index, value) {
+	ArrayList.prototype.setAt = function (index, value) {
 		this._values[index] = value
 		return this
 	}

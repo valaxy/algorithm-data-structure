@@ -3,9 +3,22 @@ define(function (require) {
 	var LinkedList = require('src/linear-list/linked-list')
 	var Lists = [ArrayList, LinkedList]
 
-	module('ArrayList/LinkedList')
+	QUnit.module('ArrayList/LinkedList')
 
-	test('fromArray()', function (assert) {
+	QUnit.test('accept primitive value', function (assert) {
+		for (var i in Lists) {
+			var list = new Lists[i]
+			list.addLast(0)
+				.addLast(null)
+				.addLast(undefined)
+				.addLast(NaN)
+				.addLast(false)
+				.addLast('')
+			assert.deepEqual(list.toArray(), [0, null, undefined, NaN, false, ''])
+		}
+	})
+
+	QUnit.test('fromArray()', function (assert) {
 		for (var i in Lists) {
 			var values = [{}, {}, {}]
 			var list = Lists[i].fromArray(values)
@@ -13,7 +26,7 @@ define(function (require) {
 		}
 	})
 
-	test('toArray()', function (assert) {
+	QUnit.test('toArray()', function (assert) {
 		var values = [{}, {}, {}]
 
 		for (var i in Lists) {
@@ -25,14 +38,14 @@ define(function (require) {
 		}
 	})
 
-	test('first()', function (assert) {
+	QUnit.test('first()', function (assert) {
 		for (var i in Lists) {
 			var list = Lists[i].fromArray([100, 200, 300])
 			assert.equal(list.first(), 100)
 		}
 	})
 
-	test('last()', function (assert) {
+	QUnit.test('last()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(100).addLast(200).addLast(300)
@@ -41,7 +54,7 @@ define(function (require) {
 	})
 
 
-	test('count()', function (assert) {
+	QUnit.test('count()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			assert.equal(list.count(), 0)
@@ -55,7 +68,7 @@ define(function (require) {
 	})
 
 
-	test('isEmpty()', function (assert) {
+	QUnit.test('isEmpty()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			assert.ok(list.isEmpty())
@@ -66,7 +79,7 @@ define(function (require) {
 	})
 
 
-	test('each()', function (assert) {
+	QUnit.test('each()', function (assert) {
 		var values = [{}, {}, {}]
 		for (var i in Lists) {
 			// empty list
@@ -96,18 +109,18 @@ define(function (require) {
 	})
 
 
-	test('get()', function (assert) {
+	QUnit.test('getAt()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(100).addLast(200).addLast(300)
-			assert.equal(list.get(0), 100)
-			assert.equal(list.get(1), 200)
-			assert.equal(list.get(2), 300)
+			assert.equal(list.getAt(0), 100)
+			assert.equal(list.getAt(1), 200)
+			assert.equal(list.getAt(2), 300)
 		}
 	})
 
 
-	test('indexOf()', function (assert) {
+	QUnit.test('indexOf()', function (assert) {
 		var values = [{}, {}, {}]
 		for (var i in Lists) {
 			var list = Lists[i].fromArray(values)
@@ -119,20 +132,20 @@ define(function (require) {
 	})
 
 
-	test('set()', function (assert) {
+	QUnit.test('setAt()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(100).addLast(200).addLast(300)
-			assert.equal(list.set(0, 1), list)
-			list.set(1, 2)
-			list.set(2, 3)
-			assert.equal(list.get(0), 1)
-			assert.equal(list.get(1), 2)
-			assert.equal(list.get(2), 3)
+			assert.equal(list.setAt(0, 1), list)
+			list.setAt(1, 2)
+			list.setAt(2, 3)
+			assert.equal(list.getAt(0), 1)
+			assert.equal(list.getAt(1), 2)
+			assert.equal(list.getAt(2), 3)
 		}
 	})
 
-	test('addFirst()', function (assert) {
+	QUnit.test('addFirst()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			assert.equal(list.addFirst(1), list)
@@ -145,7 +158,7 @@ define(function (require) {
 	})
 
 
-	test('addLast()', function (assert) {
+	QUnit.test('addLast()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			assert.equal(list.addLast(1), list)
@@ -158,7 +171,7 @@ define(function (require) {
 	})
 
 
-	test('insertAt()', function (assert) {
+	QUnit.test('insertAt()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 
@@ -180,7 +193,7 @@ define(function (require) {
 		}
 	})
 
-	test('removeFirst()', function (assert) {
+	QUnit.test('removeFirst()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(1).addLast(2).addLast(3)
@@ -190,7 +203,7 @@ define(function (require) {
 		}
 	})
 
-	test('removeLast()', function (assert) {
+	QUnit.test('removeLast()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(1).addLast(2).addLast(3)
@@ -200,7 +213,7 @@ define(function (require) {
 		}
 	})
 
-	test('removeAt()', function (assert) {
+	QUnit.test('removeAt()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(100).addLast(200).addLast(300)
@@ -215,7 +228,7 @@ define(function (require) {
 		}
 	})
 
-	test('clear()', function (assert) {
+	QUnit.test('clear()', function (assert) {
 		for (var i in Lists) {
 			var list = new Lists[i]
 			list.addLast(1).addLast(2).addLast(3)
@@ -223,6 +236,4 @@ define(function (require) {
 			assert.deepEqual(list.toArray(), [])
 		}
 	})
-
-
 })

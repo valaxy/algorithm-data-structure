@@ -45,18 +45,10 @@ define(function (require) {
 
 	LinkedList.prototype.each = function (operation) {
 		return this._linked.each(function (node, i) {
-			if (operation(node.value(), i)) {
+			if (operation(node._value, i)) {
 				return true
 			}
 		})
-	}
-
-	LinkedList.prototype.first = function () {
-		return this._linked.head().value()
-	}
-
-	LinkedList.prototype.last = function () {
-		return this._linked.tail().value()
 	}
 
 	LinkedList.prototype.count = function () {
@@ -67,49 +59,48 @@ define(function (require) {
 		return this.count() == 0
 	}
 
-	LinkedList.prototype.get = function (index) {
-		return this._findAt(index).value()
+
+	LinkedList.prototype.first = function () {
+		var head = this._linked.head()
+		return head ? head._value : null
 	}
 
-	/** If it is not the last value, return next value, or return null */
-	LinkedList.prototype.next = function (value) {
-		var node = this._getLinkedNode(value)
-		return node.next() ? node.next().value() : null
+	LinkedList.prototype.last = function () {
+		var tail = this._linked.tail()
+		return tail ? tail._value : null
 	}
 
-
-	/** If it is not the first value, return prev value, or return null */
-	LinkedList.prototype.prev = function (value) {
-		var node = this._getLinkedNode(value)
-		return node.prev() ? node.prev().value() : null
+	LinkedList.prototype.getAt = function (index) {
+		return this._findAt(index)._value
 	}
 
-
-	LinkedList.prototype.set = function (index, value) {
-		this._findAt(index).setValue(value)
+	LinkedList.prototype.setAt = function (index, value) {
+		this._findAt(index)._value = value
 		return this
 	}
 
 	LinkedList.prototype.addFirst = function (value) {
-		var node = this._linked.addFirst(value)
-		this._setLinkedNode(value, node)
+		var node = this._linked.addFirst()
+		node._value = value
 		return this
 	}
 
 	LinkedList.prototype.addLast = function (value) {
-		var node = this._linked.addLast(value)
-		this._setLinkedNode(value, node)
+		var node = this._linked.addLast()
+		node._value = value
 		return this
 	}
 
 	LinkedList.prototype.insertAt = function (index, value) {
+		var node
 		if (this.count() == 0) {
-			this._linked.addLast(value)
+			node = this._linked.addLast()
 		} else if (index > 0) {
-			this._linked.insertAfter(this._findAt(index - 1), value)
+			node = this._linked.insertAfter(this._findAt(index - 1))
 		} else {
-			this._linked.addFirst(value)
+			node = this._linked.addFirst()
 		}
+		node._value = value
 	}
 
 	LinkedList.prototype.removeAt = function (index) {
@@ -125,7 +116,48 @@ define(function (require) {
 	}
 
 
-	/**  */
+	LinkedList.prototype.firstNode = function () {
+		return this._linked.head()
+	}
+
+	LinkedList.prototype.lastNode = function () {
+		return this._linked.tail()
+	}
+
+	/** If it is not the last value, return next value, or return null */
+	LinkedList.prototype.nextNode = function (node) {
+		return node.next()
+	}
+
+
+	/** If it is not the first value, return prev value, or return null */
+	LinkedList.prototype.prevNode = function (node) {
+		return node.prev()
+	}
+
+
+	LinkedList.prototype.setValue = function (node, value) {
+		node._value = value
+		return this
+	}
+
+	LinkedList.prototype.getValue = function (node) {
+		return node ? node._value : null
+	}
+
+	LinkedList.prototype.insertAfter = function (node, value) {
+		var insert = this._linked.insertAfter(node)
+		insert._value = value
+		return this
+	}
+
+	LinkedList.prototype.insertBefore = function (node, value) {
+		var insert = this._linked.insertBefore(node)
+		insert._value = value
+		return this
+	}
+
+
 	LinkedList.prototype._findAt = function (index) {
 		var current = this._linked.head()
 		for (var i = 0; i < index; i++) {

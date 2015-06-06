@@ -1,6 +1,5 @@
 define(function (require) {
 	var Linked = require('src/linked/linked')
-	var LinkedNode = require('src/linked/linked-node')
 
 	QUnit.module('Linked')
 
@@ -22,14 +21,14 @@ define(function (require) {
 	}
 
 
-	test('constructor', function (assert) {
+	QUnit.test('constructor', function (assert) {
 		var list = new Linked
 		assert.equal(list.head(), null)
 		assert.equal(list.head(), list.tail())
 	})
 
 
-	test('insertAfter()', function (assert) {
+	QUnit.test('insertAfter()', function (assert) {
 		var list = new Linked
 		var n1 = list.addLast()
 		var n2 = list.insertAfter(n1)
@@ -40,7 +39,7 @@ define(function (require) {
 	})
 
 
-	test('insertBefore()', function (assert) {
+	QUnit.test('insertBefore()', function (assert) {
 		var list = new Linked
 		var n1 = list.addLast()
 		var n2 = list.insertBefore(n1)
@@ -51,7 +50,7 @@ define(function (require) {
 	})
 
 
-	test('addLast()', function (assert) {
+	QUnit.test('addLast()', function (assert) {
 		var list = new Linked
 		var n1 = list.addLast()
 		checkLinks(assert, list, [n1])
@@ -60,7 +59,7 @@ define(function (require) {
 		checkLinks(assert, list, [n1, n2])
 	})
 
-	test('addFirst()', function (assert) {
+	QUnit.test('addFirst()', function (assert) {
 		var list = new Linked
 		var n1 = list.addFirst()
 		checkLinks(assert, list, [n1])
@@ -70,7 +69,7 @@ define(function (require) {
 	})
 
 
-	test('remove()', function (assert) {
+	QUnit.test('remove()', function (assert) {
 		var list = new Linked
 		var n1 = list.addLast(1)
 		var n2 = list.addLast(2)
@@ -93,7 +92,7 @@ define(function (require) {
 		checkLinks(assert, list, [])
 	})
 
-	test('each()', function (assert) {
+	QUnit.test('each()', function (assert) {
 		// empty list
 		var list = new Linked
 		assert.ok(!list.each(function () {

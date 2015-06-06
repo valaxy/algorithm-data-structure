@@ -4,7 +4,7 @@ Data structure
 
 # Overview
 - [Linked](src/linked)
-- Linear List
+- [Linear List](src/linear-list)
 - Tree
 - Graph
 

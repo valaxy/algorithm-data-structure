@@ -14,7 +14,7 @@ node.remove()
 
 # Linked
 ```javascript
-var LinkedList = require('src/linked/linked')
+var Linked = require('src/linked/linked')
 var linked = new Linked
 linked.head()
 linked.tail()
