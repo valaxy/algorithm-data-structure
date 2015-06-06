@@ -2,10 +2,9 @@ define(function (require) {
 	var OrderedNode = require('./ordered-node')
 	var _ = require('underscore')
 
-	var ArrayOrderedNode = function (value) {
+	var ArrayOrderedNode = function () {
 		this._parent = null
 		this._children = []
-		this.setValue(value)
 	}
 
 	OrderedNode.extend(ArrayOrderedNode)
@@ -14,7 +13,6 @@ define(function (require) {
 		var n = new ArrayOrderedNode
 		delete n._parent
 		delete n._children
-		delete n._value
 		cls.prototype = n
 	}
 

@@ -5,7 +5,5 @@ Data structure
 # Overview
 - [Linked](src/linked)
 - [Linear List](src/linear-list)
-- Tree
-- Graph
-
-# Table
+- [Tree](src/tree)
+- [Graph](src/graph)

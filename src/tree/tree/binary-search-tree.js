@@ -1,5 +1,5 @@
 define(function (require) {
-	var BinaryTreeNode = require('./binary-node')
+	var BinaryTreeNode = require('./../fix/binary-node')
 
 	var BinarySearchTree = function (compare) {
 		this._compare = compare

@@ -4,11 +4,10 @@ define(function (require) {
 	var OrderedNode = require('./ordered-node')
 
 	/** Ordered Tree Node implemented by Linked */
-	var LinkedOrderedNode = function (value) {
+	var LinkedOrderedNode = function () {
 		this._parent = null               // parent node
 		this._childLinked = new Linked    // linked of children node
 		this._linkedNode = new LinkedNode // linked to sibling node
-		this.setValue(value)
 	}
 
 	OrderedNode.extend(LinkedOrderedNode)
@@ -19,7 +18,6 @@ define(function (require) {
 		delete n._parent
 		delete n._childLinked
 		delete n._linkedNode
-		delete n._value
 		cls.prototype = n
 	}
 
@@ -43,7 +41,7 @@ define(function (require) {
 	/** Iterate each child */
 	LinkedOrderedNode.prototype.eachChild = function (operation) {
 		return this._childLinked.each(function (linkedNode, i) {
-			if (operation(linkedNode.value(), i)) {
+			if (operation(linkedNode._treeNode, i)) {
 				return true
 			}
 		})
@@ -57,31 +55,32 @@ define(function (require) {
 	/** If it exists, return leftmost child node, otherwise return null */
 	LinkedOrderedNode.prototype.leftmostChild = function () {
 		var head = this._childLinked.head()
-		return head ? head.value() : null
+		return head ? head._treeNode : null
 	}
 
 	/** If it exists, return rightmost child node, otherwise return null */
 	LinkedOrderedNode.prototype.rightmostChild = function () {
 		var tail = this._childLinked.tail()
-		return tail ? tail.value() : null
+		return tail ? tail._treeNode : null
 	}
 
 	/** Return left sibling node or null */
 	LinkedOrderedNode.prototype.leftSibling = function () {
 		var prev = this._linkedNode.prev()
-		return prev ? prev.value() : null
+		return prev ? prev._treeNode : null
 	}
 
 	/** Return right sibling node or null */
 	LinkedOrderedNode.prototype.rightSibling = function () {
 		var next = this._linkedNode.next()
-		return next ? next.value() : null
+		return next ? next._treeNode : null
 	}
 
 	/** Add child node of first */
 	LinkedOrderedNode.prototype.addChildFirst = function (node) {
 		node._parent = this
 		node._linkedNode = this._childLinked.addFirst(node)
+		node._linkedNode._treeNode = node
 		return this
 	}
 
@@ -89,6 +88,7 @@ define(function (require) {
 	LinkedOrderedNode.prototype.addChildLast = function (node) {
 		node._parent = this
 		node._linkedNode = this._childLinked.addLast(node)
+		node._linkedNode._treeNode = node
 		return this
 	}
 
@@ -97,6 +97,7 @@ define(function (require) {
 		var linked = this.parent()._childLinked
 		node._linkedNode = linked.insertBefore(this._linkedNode, node)
 		node._parent = this.parent()
+		node._linkedNode._treeNode = node
 		return this
 	}
 
@@ -105,6 +106,7 @@ define(function (require) {
 		var linked = this.parent()._childLinked
 		node._linkedNode = linked.insertAfter(this._linkedNode, node)
 		node._parent = this.parent()
+		node._linkedNode._treeNode = node
 		return this
 	}
 

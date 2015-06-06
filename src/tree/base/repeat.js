@@ -5,6 +5,8 @@ define(function () {
 			str += ' '
 		}
 		return str
+		//console.log(times)
+		//return new String(times).join(' ')
 	}
 	return repeat
 })

@@ -1,5 +1,5 @@
 define(function (require) {
-	var FixBaseNode = require('./base/fix-node-base')
+	var FixBaseNode = require('./fix-node-base')
 
 	var FixNode = function (n) {
 		this._parent = null

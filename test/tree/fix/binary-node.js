@@ -1,9 +1,9 @@
 define(function (require) {
-	var BinaryNode = require('src/tree/binary-node')
+	var BinaryNode = require('src/tree/fix/binary-node')
 
-	module('BinaryNode')
+	QUnit.module('BinaryNode')
 
-	test('left()/right()', function (assert) {
+	QUnit.test('left()/right()', function (assert) {
 		var node = new BinaryNode
 		var left = new BinaryNode
 		var right = new BinaryNode
@@ -16,7 +16,7 @@ define(function (require) {
 		assert.equal(node.right(), right)
 	})
 
-	test('setLeft()/setRight()', function (assert) {
+	QUnit.test('setLeft()/setRight()', function (assert) {
 		var node = new BinaryNode
 		var left = new BinaryNode
 		var right = new BinaryNode

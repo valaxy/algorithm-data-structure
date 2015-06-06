@@ -3,7 +3,7 @@ define(function (require) {
 	var LinkedNode = require('src/tree/ordered/linked-ordered-node')
 	var Nodes = [ArrayNode, LinkedNode]
 
-	module('ArrayOrderedNode/LinkedOrderedNode')
+	QUnit.module('ArrayOrderedNode/LinkedOrderedNode')
 
 	function checkChildren(assert, node, children) {
 		var last = null
@@ -18,25 +18,24 @@ define(function (require) {
 		}
 	}
 
-	test('constructor', function (assert) {
+	QUnit.test('constructor', function (assert) {
 		for (var i in Nodes) {
 			var node = new Nodes[i](1)
 
 			assert.equal(node.parent(), null)
-			assert.equal(node.value(), 1)
 		}
 	})
 
-	test('value()/setValue()', function (assert) {
-		for (var i in Nodes) {
-			var node = new Nodes[i]
-			node.setValue(123)
+	//QUnit.test('value()/setValue()', function (assert) {
+	//	for (var i in Nodes) {
+	//		var node = new Nodes[i]
+	//		node.setValue(123)
+	//
+	//		assert.equal(node.value(), 123)
+	//	}
+	//})
 
-			assert.equal(node.value(), 123)
-		}
-	})
-
-	test('parent()', function (assert) {
+	QUnit.test('parent()', function (assert) {
 		for (var i in Nodes) {
 			var Node = Nodes[i]
 			var root = new Node
@@ -53,7 +52,7 @@ define(function (require) {
 		}
 	})
 
-	test('eachChild(): no break', function (assert) {
+	QUnit.test('eachChild(): no break', function (assert) {
 		for (var i in Nodes) {
 			var Node = Nodes[i]
 			var root = new Node
@@ -259,11 +258,11 @@ define(function (require) {
 			n1.addChildLast(n2)
 
 			var str =
-				'node\n' +
-				'    node\n' +
-				'    node\n' +
-				'        node\n' +
-				'    node\n'
+				    'node\n' +
+				    '    node\n' +
+				    '    node\n' +
+				    '        node\n' +
+				    '    node\n'
 			assert.equal(root.toString(), str)
 		}
 	})

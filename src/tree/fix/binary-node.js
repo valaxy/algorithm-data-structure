@@ -1,5 +1,5 @@
 define(function (require) {
-	var FixBaseNode = require('./base/fix-node-base')
+	var FixBaseNode = require('./fix-node-base')
 
 	var BinaryNode = function () {
 		this._children = [null, null]
@@ -34,29 +34,18 @@ define(function (require) {
 	}
 
 
-	/**
-	 * 前序遍历
-	 */
 	BinaryNode.prototype.preorderWalk = function (operation) {
 		return operation(this)
 			|| (this.hasLeft() ? this.left().preorderWalk(operation) : false)
 			|| (this.hasRight() ? this.right().preorderWalk(operation) : false)
 	}
 
-
-	/**
-	 * 中序遍历
-	 */
 	BinaryNode.prototype.inorderWalk = function (operation) {
 		return (this.hasLeft() ? this.left().inorderWalk(operation) : false)
 			|| operation(this)
 			|| (this.hasRight() ? this.right().inorderWalk(operation) : false)
 	}
 
-
-	/**
-	 * 后序遍历
-	 */
 	BinaryNode.prototype.postorderWalk = function (operation) {
 		return (this.hasLeft() ? this.left().postorderWalk(operation) : false)
 			|| (this.hasRight() ? this.right().postorderWalk(operation) : false)

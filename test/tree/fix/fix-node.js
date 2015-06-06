@@ -1,9 +1,9 @@
-define(function (require, exports) {
-	var FixNode = require('src/tree/fix-node')
+define(function (require) {
+	var FixNode = require('src/tree/fix/fix-node')
 
-	module('FixNode')
+	QUnit.module('FixNode')
 
-	test('parent()', function (assert) {
+	QUnit.test('parent()', function (assert) {
 		var node = new FixNode(2)
 		var node1 = new FixNode(2)
 		assert.equal(node.parent(), null)
@@ -13,7 +13,7 @@ define(function (require, exports) {
 	})
 
 
-	test('child()', function (assert) {
+	QUnit.test('child()', function (assert) {
 		var n1 = new FixNode(2)
 		var n2 = new FixNode(2)
 		assert.equal(n1.child(0), null)
@@ -24,7 +24,7 @@ define(function (require, exports) {
 		assert.equal(n1.child(1), n2)
 	})
 
-	test('hasChildAt()', function (assert) {
+	QUnit.test('hasChildAt()', function (assert) {
 		var n1 = new FixNode(3)
 		var n2 = new FixNode(3)
 		assert.ok(!n1.hasChildAt(1))
@@ -33,7 +33,7 @@ define(function (require, exports) {
 		assert.ok(n1.hasChildAt(1))
 	})
 
-	test('maxChildrenCount()', function (assert) {
+	QUnit.test('maxChildrenCount()', function (assert) {
 		var root = new FixNode(10)
 		assert.equal(root.maxChildrenCount(), 10)
 
@@ -42,7 +42,7 @@ define(function (require, exports) {
 	})
 
 
-	test('childrenCount()', function (assert) {
+	QUnit.test('childrenCount()', function (assert) {
 		var root = new FixNode(6)
 		assert.equal(root.childrenCount(), 0)
 
@@ -54,7 +54,7 @@ define(function (require, exports) {
 	})
 
 
-	test('eachChild()/setChild()', function (assert) {
+	QUnit.test('eachChild()/setChild()', function (assert) {
 		var root = new FixNode(3)
 		var n1 = new FixNode(3)
 		var n2 = new FixNode(3)
@@ -88,7 +88,7 @@ define(function (require, exports) {
 	})
 
 
-	test('setChildren()', function (assert) {
+	QUnit.test('setChildren()', function (assert) {
 		var root = new FixNode(3)
 		var n1 = new FixNode(3)
 		var n3 = new FixNode(3)
@@ -101,7 +101,7 @@ define(function (require, exports) {
 	})
 
 
-	test('isostructural()', function (assert) {
+	QUnit.test('isostructural()', function (assert) {
 		var root = new FixNode(3)
 		var n1 = new FixNode(3)
 		var n2 = new FixNode(3)
@@ -114,7 +114,7 @@ define(function (require, exports) {
 	})
 
 
-	test('toString()', function (assert) {
+	QUnit.test('toString()', function (assert) {
 		// empty tree
 		var root = new FixNode(3)
 		assert.equal(root.toString(),

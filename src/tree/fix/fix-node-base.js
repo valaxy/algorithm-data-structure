@@ -1,5 +1,5 @@
 define(function (require) {
-	var repeat = require('./repeat')
+	var repeat = require('../base/repeat')
 
 	var FixNodeBase = function () {
 		// nothing
