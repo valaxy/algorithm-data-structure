@@ -37,9 +37,9 @@ define(function (require) {
 		return false
 	}
 
-	Linked.prototype.insertAfter = function (node, value) {
+	Linked.prototype.insertAfter = function (node) {
 		var next = node.next()
-		var insertNode = new LinkedNode().setValue(value)
+		var insertNode = new LinkedNode()
 		node._next = insertNode
 		insertNode._prev = node
 		insertNode._next = next
@@ -53,9 +53,9 @@ define(function (require) {
 		return insertNode
 	}
 
-	Linked.prototype.insertBefore = function (node, value) {
+	Linked.prototype.insertBefore = function (node) {
 		var prev = node.prev()
-		var insertNode = new LinkedNode().setValue(value)
+		var insertNode = new LinkedNode()
 		insertNode._prev = prev
 		insertNode._next = node
 		node._prev = insertNode
@@ -69,11 +69,11 @@ define(function (require) {
 		return insertNode
 	}
 
-	Linked.prototype.addLast = function (value) {
+	Linked.prototype.addLast = function () {
 		if (this.tail()) {
-			return this.insertAfter(this.tail(), value)
+			return this.insertAfter(this.tail())
 		} else {
-			var node = new LinkedNode().setValue(value)
+			var node = new LinkedNode()
 			this._head = this._tail = node
 			this._count++
 			return node
@@ -81,11 +81,11 @@ define(function (require) {
 	}
 
 
-	Linked.prototype.addFirst = function (value) {
+	Linked.prototype.addFirst = function () {
 		if (this.head()) {
-			return this.insertBefore(this.head(), value)
+			return this.insertBefore(this.head())
 		} else {
-			var node = new LinkedNode().setValue(value)
+			var node = new LinkedNode()
 			this._head = this._tail = node
 			this._count++
 			return node

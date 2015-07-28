@@ -1,7 +1,7 @@
 define(function (require) {
 	var TreeNode = require('src/tree/ordered/linked-ordered-node')
 
-	module('LinkedOrderedNode')
+	QUnit.module('LinkedOrderedNode')
 
 	function checkChildren(assert, node, children) {
 		if (children.length == 0) {
@@ -24,7 +24,7 @@ define(function (require) {
 	}
 
 
-	test('leftSibling()', function (assert) {
+	QUnit.test('leftSibling()', function (assert) {
 		var root = new TreeNode
 		var n1 = new TreeNode
 		var n2 = new TreeNode
@@ -43,7 +43,7 @@ define(function (require) {
 	})
 
 
-	test('rightSibling()', function (assert) {
+	QUnit.test('rightSibling()', function (assert) {
 		var root = new TreeNode
 		var n1 = new TreeNode
 		var n2 = new TreeNode
@@ -61,7 +61,7 @@ define(function (require) {
 		assert.equal(n3.rightSibling(), n2)
 	})
 
-	test('appendLeftSibling()', function (assert) {
+	QUnit.test('appendLeftSibling()', function (assert) {
 		var root = new TreeNode
 		var n0 = new TreeNode
 		var n1 = new TreeNode
@@ -74,7 +74,7 @@ define(function (require) {
 		assert.equal(n1.parent(), root)
 	})
 
-	test('appendRightSibing()', function (assert) {
+	QUnit.test('appendRightSibing()', function (assert) {
 		var root = new TreeNode
 		var n0 = new TreeNode
 		var n1 = new TreeNode
@@ -87,7 +87,7 @@ define(function (require) {
 		assert.equal(n1.parent(), root)
 	})
 
-	test('cut()', function (assert) {
+	QUnit.test('cut()', function (assert) {
 		var root = new TreeNode
 		var n1 = new TreeNode
 		var n2 = new TreeNode
@@ -102,7 +102,7 @@ define(function (require) {
 		checkChildren(assert, root, [n1, n3])
 	})
 
-	test('delete(): single node case', function (assert) {
+	QUnit.test('delete(): single node case', function (assert) {
 		var root = new TreeNode
 		var n1 = new TreeNode
 		var n2 = new TreeNode
@@ -117,7 +117,7 @@ define(function (require) {
 	})
 
 
-	test('delete(): not single node case', function (assert) {
+	QUnit.test('delete(): not single node case', function (assert) {
 		var root = new TreeNode
 		var n1 = new TreeNode
 		var n2 = new TreeNode

@@ -3,26 +3,19 @@ define(function () {
 	var LinkedNode = function () {
 		this._prev = null
 		this._next = null
-		this._value = null
 	}
 
+	/** Get next node or null */
 	LinkedNode.prototype.next = function () {
 		return this._next
 	}
 
+	/** Get prev node or null */
 	LinkedNode.prototype.prev = function () {
 		return this._prev
 	}
 
-	LinkedNode.prototype.value = function () {
-		return this._value
-	}
-
-	LinkedNode.prototype.setValue = function (value) {
-		this._value = value
-		return this
-	}
-
+	/** Make `node` to be the next node */
 	LinkedNode.prototype.addNext = function (node) {
 		var next = this.next()
 		this._next = node
@@ -33,6 +26,7 @@ define(function () {
 		}
 	}
 
+	/** Make `node` to be the prev node */
 	LinkedNode.prototype.addPrev = function (node) {
 		var prev = this.prev()
 		node._next = this
@@ -43,6 +37,7 @@ define(function () {
 		}
 	}
 
+	/** Cut the relation with prev and next if relations exist */
 	LinkedNode.prototype.remove = function () {
 		var prev = this.prev()
 		var next = this.next()

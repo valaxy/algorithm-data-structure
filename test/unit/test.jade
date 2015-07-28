@@ -10,15 +10,9 @@ html
 
         script(src="../../bower_components/qunit/qunit/qunit.js")
         script(src="../../bower_components/requirejs/require.js")
-
-        // startup
+        script(src="../base/config.js")
         script.
-            require.config({
-                baseUrl: '../../',
-                paths: {
-                    underscore: 'bower_components/underscore/underscore-min'
-                }
-            })
-            require(['test/tree/test'], function () {
-                // do nothing
+            QUnit.config.autostart = false
+            require(['test/unit/test'], function () {
+                QUnit.start()
             })
