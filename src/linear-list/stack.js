@@ -22,5 +22,9 @@ define(function () {
 
 	}
 
+	Stack.prototype.count = function () {
+
+	}
+
 	return Stack
 })

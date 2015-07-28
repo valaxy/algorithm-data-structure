@@ -24,5 +24,9 @@ define(function (require) {
 		return this
 	}
 
+	Queue.prototype.count = function () {
+		return this._list.count()
+	}
+
 	return Queue
 })

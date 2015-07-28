@@ -1,9 +1,9 @@
 define(function (require) {
 	var Queue = require('src/linear-list/queue')
 
-	module('Queue')
+	QUnit.module('Queue')
 
-	test('isEmpty()', function (assert) {
+	QUnit.test('isEmpty()', function (assert) {
 		var q = new Queue
 		assert.ok(q.isEmpty())
 
@@ -11,19 +11,31 @@ define(function (require) {
 		assert.ok(!q.isEmpty())
 	})
 
-	test('peek()', function (assert) {
+	QUnit.test('peek()', function (assert) {
 		var q = new Queue
 		q.inqueue(10).inqueue(20)
 		assert.equal(q.peek(), 10)
 		assert.equal(q.peek(), 10)
 	})
 
-	test('inqueue()/dequeue()', function (assert) {
+	QUnit.test('inqueue()/dequeue()', function (assert) {
 		var q = new Queue
 		q.inqueue(10).inqueue(20).inqueue(30)
 		assert.equal(q.dequeue(), 10)
 		assert.equal(q.dequeue(), 20)
 		assert.equal(q.dequeue(), 30)
+	})
+
+	QUnit.test('count()', function (assert) {
+		var q = new Queue
+		assert.equal(q.count(), 0)
+
+		q.inqueue(1)
+		assert.equal(q.count(), 1)
+
+		q.inqueue(2)
+		q.inqueue(1)
+		assert.equal(q.count(), 3)
 	})
 
 })
