@@ -1,5 +1,4 @@
 var LinkedList = require('../linked/linked')
-var LinkedListNode = require('../linked/linked-node')
 var BaseGraph = require('./graph')
 
 var Graph = function () {
@@ -100,6 +99,61 @@ Graph.prototype.addEdge = function (from, to, edge) {
 		to  : to,
 		edge: edge
 	}
+}
+
+
+Graph.prototype.removeNode = function (node) {
+	if (!(node in this._nodeLists)) {
+		return false
+	}
+
+	this._nodeLists[node].each(function (linkedNode) {
+		if (linkedNode.value.to != node) { // loop relation will delete by next sentence
+			this.removeEdges(linkedNode.value.to, node)
+		}
+	}.bind(this))
+
+	delete this._nodeLists[node]
+
+	return true
+}
+
+
+Graph.prototype.removeEdges = function (from, to) {
+	var linkedList = this._nodeLists[from]
+	var result = false
+	if (linkedList) {
+		var needDeletes = []
+		linkedList.each(function (linkedNode) {
+			if (linkedNode.value.to == to) { // todo, 遍历过程中不能删除元素
+				needDeletes.push(linkedNode)
+				result = true
+			}
+		})
+		needDeletes.forEach(function (need) {
+			linkedList.remove(need)
+		})
+	}
+	return result
+}
+
+
+Graph.prototype.removeEdge = function (from, to, edge) {
+	var linkedList = this._nodeLists[from]
+	var result = false
+	if (linkedList) {
+		var needDeletes = []
+		linkedList.each(function (linkedNode) {
+			if (linkedNode.value.to == to && linkedNode.value.edge == edge) { // todo, 遍历过程中不能删除元素
+				needDeletes.push(linkedNode)
+				result = true
+			}
+		})
+		needDeletes.forEach(function (need) {
+			linkedList.remove(need)
+		})
+	}
+	return result
 }
 
 

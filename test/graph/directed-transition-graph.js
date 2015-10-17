@@ -195,28 +195,6 @@ define(function (require) {
 		assert.ok(!graph.removeNode('z'), 'not a exist node')
 	})
 
-	QUnit.test('removeEdge()', function (assert) {
-		var graph = Graph.fromJSON({
-			x: ['a', 'y', 'b', 'z']
-		})
-
-		// common
-		assert.ok(graph.removeEdge('x', 'y', 'a'))
-		assert.ok(!graph.hasEdge('x', 'y', 'a'))
-		assert.equal(graph.edgeCount(), 1)
-
-		// no exist `value`
-		assert.ok(!graph.removeEdge('x', 'z', 'a'))
-		assert.equal(graph.edgeCount(), 1)
-
-		// no exist `to`
-		assert.ok(!graph.removeEdge('x', 'y', 'b'))
-		assert.equal(graph.edgeCount(), 1)
-
-		// no exist `from`
-		assert.ok(!graph.removeEdge('xx', 'z', 'b'))
-		assert.equal(graph.edgeCount(), 1)
-	})
 
 	QUnit.test('transfer()', function (assert) {
 		var graph = Graph.fromJSON({

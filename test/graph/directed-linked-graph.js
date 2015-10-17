@@ -133,5 +133,23 @@ define(function (require) {
 		assert.ok(!graph1.isostructural(graph2))
 	})
 
+	QUnit.test('removeEdges()', function (assert) {
+		var graph = Graph.fromJSON({
+			x: ['a', 'y', 'b', 'y', 'b', 'z']
+		})
+
+		assert.equal(graph.removeEdges('x', 'y'), true)
+		assert.equal(graph.edgeCount(), 1)
+	})
+
+	QUnit.test('removeNode()', function (assert) {
+		var graph = Graph.fromJSON({
+			x: ['a', 'y', 'b', 'z'],
+			z: ['a', 'x']
+		})
+
+		assert.ok(graph.removeNode('x'))
+		assert.equal(graph.edgeCount(), 0)
+	})
 
 })
