@@ -24,4 +24,8 @@ define(function (require) {
 	//require('./binary-node-walk')
 	//
 	//require('./binary-search-tree')
+
+	// set
+	require('../set/ordered-set')
+	require('../set/set')
 })

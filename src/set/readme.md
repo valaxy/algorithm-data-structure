@@ -1,6 +1,8 @@
+> ATTENTION: Developing Set/OrderedSet is only for practicing, instead use ES6 native Set in your production
+
 # Time complexity
-- **Set** Set is the basic math concept, store with no ordered
-- **OrderedSet** OrderedSet can store element from small to big, use a compare function
+- **Set** Basic math concept, store with no ordered
+- **OrderedSet**  Store elements from small to big
 
 api      |Set   |OrdredSet
 ---------|------|---------

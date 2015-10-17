@@ -1,24 +1,25 @@
 {
-    "name":            "algorithm-data-structure",
-    "version":         "0.0.2",
-    "homepage":        "https://github.com/valaxy/algorithm-data-structure",
-    "authors":         [
-        "valaxy <valaxy.tian@gmail.com>"
-    ],
-    "license":         "MIT",
-    "ignore":          [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies":    {
-        "underscore": "~1.8.3",
-        "requirejs":  "~2.1.20"
-    },
-    "devDependencies": {
-        "requirejs": "~2.1.15",
-        "qunit":     "~1.18.0"
-    }
+  "name": "algorithm-data-structure",
+  "version": "0.0.2",
+  "homepage": "https://github.com/valaxy/algorithm-data-structure",
+  "authors": [
+    "valaxy <valaxy.tian@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.8.3",
+    "requirejs": "~2.1.20",
+    "cjs": "*"
+  },
+  "devDependencies": {
+    "qunit": "~1.19.0",
+    "requirejs": "~2.1.20"
+  }
 }

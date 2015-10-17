@@ -1,9 +1,9 @@
 define(function (require) {
-	var Set = require('src/set/set')
+	var Set = require('cjs!src/set/set')
 
-	module('Set')
+	QUnit.module('Set')
 
-	test('constructor', function (assert) {
+	QUnit.test('constructor', function (assert) {
 		var s = new Set // use default compare
 		assert.deepEqual(s.toArray(), [])
 
@@ -22,7 +22,7 @@ define(function (require) {
 	})
 
 
-	test('fromArray()/toArray()', function (assert) {
+	QUnit.test('fromArray()/toArray()', function (assert) {
 		// default
 		var s = Set.fromArray([1, 2, 2, true])
 		assert.deepEqual(s.toArray(), [1, 2, true])
@@ -35,7 +35,7 @@ define(function (require) {
 
 	})
 
-	test('count()/isEmpty()', function (assert) {
+	QUnit.test('count()/isEmpty()', function (assert) {
 		var s = new Set
 		assert.equal(s.count(), 0)
 		assert.ok(s.isEmpty())
@@ -46,10 +46,10 @@ define(function (require) {
 
 		s.add(2)
 		assert.equal(s.count(), 2)
-		assert.ok(!s.isEmpty()  )
+		assert.ok(!s.isEmpty())
 	})
 
-	test('has()', function (assert) {
+	QUnit.test('has()', function (assert) {
 		var s = new Set
 		s.add(1)
 		assert.ok(s.has(1))
@@ -63,7 +63,7 @@ define(function (require) {
 		assert.ok(s.has(true))
 	})
 
-	test('hasOneOf()', function (assert) {
+	QUnit.test('hasOneOf()', function (assert) {
 		var s = Set.fromArray([1, 2, 3])
 		assert.ok(s.hasOneOf([3]))
 		assert.ok(s.hasOneOf([1, 2]))
@@ -73,7 +73,7 @@ define(function (require) {
 		assert.ok(!s.hasOneOf([10, 20]))
 	})
 
-	test('hasAll()', function (assert) {
+	QUnit.test('hasAll()', function (assert) {
 		var s = Set.fromArray([1, 2, 3])
 		assert.ok(s.hasAll([1]))
 		assert.ok(s.hasAll([1, 2]))
@@ -83,7 +83,7 @@ define(function (require) {
 	})
 
 
-	test('each()', function (assert) {
+	QUnit.test('each()', function (assert) {
 		var s = Set.fromArray([1, 2, 3])
 		var i = 1
 		assert.ok(!s.each(function (x) {
@@ -92,7 +92,7 @@ define(function (require) {
 		assert.equal(i, 4)
 	})
 
-	test('add()', function (assert) {
+	QUnit.test('add()', function (assert) {
 		var s = new Set
 		assert.ok(s.add(1))
 		assert.ok(!s.add(1))
@@ -103,13 +103,13 @@ define(function (require) {
 		assert.ok(!s.has(null))
 	})
 
-	test('union()', function (assert) {
+	QUnit.test('union()', function (assert) {
 		var s = Set.fromArray([1, 2, 3])
 		assert.deepEqual(s.union(Set.fromArray([])).toArray(), [1, 2, 3])
 		assert.deepEqual(s.union(Set.fromArray([1, 4, 5])).toArray(), [1, 2, 3, 4, 5])
 	})
 
-	test('intersect()', function (assert) {
+	QUnit.test('intersect()', function (assert) {
 		// empty set
 		var s = Set.fromArray([1, 2, 3])
 		assert.deepEqual(s.intersect(Set.fromArray([])).toArray(), [])
@@ -119,14 +119,14 @@ define(function (require) {
 		assert.deepEqual(s.intersect(Set.fromArray([2, 3, 4, 5, 6])).toArray(), [2, 3])
 	})
 
-	test('remove()', function (assert) {
+	QUnit.test('remove()', function (assert) {
 		var s = Set.fromArray([1, 2, 3])
 		assert.ok(s.remove(2))
 		assert.ok(!s.remove(true))
 		assert.deepEqual(s.toArray(), [1, 3])
 	})
 
-	test('clear()', function (assert) {
+	QUnit.test('clear()', function (assert) {
 		var s = Set.fromArray([1, 2, 3])
 		assert.deepEqual(s.clear(), [1, 2, 3])
 		assert.deepEqual(s.toArray(), [])

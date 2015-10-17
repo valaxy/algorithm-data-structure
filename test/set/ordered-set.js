@@ -1,10 +1,9 @@
 define(function (require) {
-	var OrderedSet = require('src/set/ordered-set')
+	var OrderedSet = require('cjs!src/set/ordered-set')
 
-	module('OrderedSet')
+	QUnit.module('OrderedSet')
 
-
-	test('fromArray()', function (assert) {
+	QUnit.test('fromArray()', function (assert) {
 		var s = OrderedSet.fromArray([], function (x, y) {
 			return x - y
 		})
@@ -16,7 +15,7 @@ define(function (require) {
 		assert.deepEqual(s.toArray(), [1, 2, 3])
 	})
 
-	test('index()', function (assert) {
+	QUnit.test('index()', function (assert) {
 		var s = OrderedSet.fromArray([0, 1, 2, 3, 4, 5], function (x, y) {
 			return x - y
 		})
@@ -47,16 +46,16 @@ define(function (require) {
 	})
 
 
-	test('has()', function (assert) {
+	QUnit.test('has()', function (assert) {
 		var s = OrderedSet.fromArray([0, 1, 2, 3, 4, 5], function (x, y) {
 			return x - y
 		})
 		assert.ok(s.has(3))
 		assert.ok(!s.has(100))
 	})
-	
 
-	test('add()', function (assert) {
+
+	QUnit.test('add()', function (assert) {
 		var s = new OrderedSet(function (x, y) {
 			return x - y
 		})
@@ -72,7 +71,7 @@ define(function (require) {
 	})
 
 
-	test('remove()', function (assert) {
+	QUnit.test('remove()', function (assert) {
 		var s = OrderedSet.fromArray([1, 2, 3, 4, 5], function (x, y) {
 			return x - y
 		})
@@ -82,7 +81,7 @@ define(function (require) {
 		assert.deepEqual(s.toArray(), [1, 2, 4, 5])
 	})
 
-	test('removeAt()', function (assert) {
+	QUnit.test('removeAt()', function (assert) {
 		var s = OrderedSet.fromArray([1, 2, 3, 4, 5], function (x, y) {
 			return x - y
 		})
@@ -96,6 +95,5 @@ define(function (require) {
 		s.removeAt(1)
 		assert.deepEqual(s.toArray(), [2, 4])
 	})
-
 
 })
