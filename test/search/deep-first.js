@@ -1,22 +1,22 @@
 define(function (require) {
-	var dfs = require('src/search/deep-first')
+	var dfs = require('cjs!src/search/deep-first')
 
-	module('deep-first-search')
+	QUnit.module('deep-first-search')
 
-	test('linear search one by one', function (assert) {
+	QUnit.test('linear search one by one', function (assert) {
 		var enterResult = []
 		var findResult = []
 		dfs({
 			initial: 0,
-			next: function (x, push) {
+			next   : function (x, push) {
 				if (x <= 3) {
 					push(x + 1)
 				}
 			},
-			enter: function (x) {
+			enter  : function (x) {
 				enterResult.push(x)
 			},
-			find: function (x) {
+			find   : function (x) {
 				findResult.push(x)
 			}
 		})
@@ -25,12 +25,12 @@ define(function (require) {
 		assert.ok(enterResult, [0, 1, 2, 3, 4])
 	})
 
-	test('two way search', function (assert) {
+	QUnit.test('two way search', function (assert) {
 		var enterResult = []
 		var findResult = []
 		dfs({
 			initial: 1,
-			next: function (x, push) {
+			next   : function (x, push) {
 				if (x * 2 < 10) {
 					push(x * 2)
 				}
@@ -38,10 +38,10 @@ define(function (require) {
 					push(x * 3)
 				}
 			},
-			enter: function (x) {
+			enter  : function (x) {
 				enterResult.push(x)
 			},
-			find: function (x) {
+			find   : function (x) {
 				findResult.push(x)
 			}
 		})

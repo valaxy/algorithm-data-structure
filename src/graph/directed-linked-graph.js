@@ -1,5 +1,5 @@
-var LinkedList = require('./linked')
-var LinkedListNode = require('./linked-node')
+var LinkedList = require('../linked/linked')
+var LinkedListNode = require('../linked/linked-node')
 var BaseGraph = require('./graph')
 
 var Graph = function () {

@@ -1,9 +1,9 @@
 define(function (require) {
 	var fullPermutation = require('cjs!src/graph/full-permutation')
 
-	module('full-permutation')
+	QUnit.module('full-permutation')
 
-	test('fullPermutation()', function (assert) {
+	QUnit.test('fullPermutation()', function (assert) {
 		fullPermutation([], function () {
 			assert.ok(false)
 		})

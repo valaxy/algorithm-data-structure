@@ -1,5 +1,5 @@
 define(function (require) {
-	var BinaryNode = require('src/tree/fix/binary-node')
+	var BinaryNode = require('cjs!src/tree/fix/binary-node')
 
 	QUnit.module('BinaryNode')
 

@@ -27,4 +27,4 @@ var fullPermutation = function (elements, callback) {
 	return false
 }
 
-module.expots = fullPermutation
+module.exports = fullPermutation

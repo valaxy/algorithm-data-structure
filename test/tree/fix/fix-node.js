@@ -1,5 +1,5 @@
 define(function (require) {
-	var FixNode = require('src/tree/fix/fix-node')
+	var FixNode = require('cjs!src/tree/fix/fix-node')
 
 	QUnit.module('FixNode')
 

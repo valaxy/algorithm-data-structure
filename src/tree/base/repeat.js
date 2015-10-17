@@ -1,12 +1,10 @@
-define(function () {
-	var repeat = function (times) {
-		var str = ''
-		for (var i = 0; i < times; i++) {
-			str += ' '
-		}
-		return str
-		//console.log(times)
-		//return new String(times).join(' ')
+var repeat = function (times) {
+	var str = ''
+	for (var i = 0; i < times; i++) {
+		str += ' '
 	}
-	return repeat
-})
+	return str
+	//console.log(times)
+	//return new String(times).join(' ')
+}
+module.exports = repeat

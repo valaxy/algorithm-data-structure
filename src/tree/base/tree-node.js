@@ -1,10 +1,5 @@
-define(function () {
+var TreeNode = function () {
+	// nothing
+}
 
-	var TreeNode = function () {
-		// nothing
-	}
-
-
-
-	return TreeNode
-})
+module.exports = TreeNode

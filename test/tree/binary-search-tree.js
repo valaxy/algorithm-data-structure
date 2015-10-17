@@ -1,6 +1,6 @@
 define(function (require) {
-	var BinarySearchTree = require('src/tree/binary-search-tree')
-	var Node = require('src/tree/binary-node')
+	var BinarySearchTree = require('cjs!src/tree/binary-search-tree')
+	var Node = require('cjs!src/tree/binary-node')
 
 	var case0
 	var root

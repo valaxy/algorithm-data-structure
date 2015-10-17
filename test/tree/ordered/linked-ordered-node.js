@@ -1,5 +1,5 @@
 define(function (require) {
-	var TreeNode = require('src/tree/ordered/linked-ordered-node')
+	var TreeNode = require('cjs!src/tree/ordered/linked-ordered-node')
 
 	QUnit.module('LinkedOrderedNode')
 
