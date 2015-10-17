@@ -1,5 +1,5 @@
 define(function (require) {
-	var Queue = require('src/linear-list/queue')
+	var Queue = require('cjs!src/linear-list/queue')
 
 	QUnit.module('Queue')
 

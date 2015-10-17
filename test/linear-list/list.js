@@ -1,6 +1,6 @@
 define(function (require) {
-	var ArrayList = require('src/linear-list/array-list')
-	var LinkedList = require('src/linear-list/linked-list')
+	var ArrayList = require('cjs!src/linear-list/array-list')
+	var LinkedList = require('cjs!src/linear-list/linked-list')
 	var Lists = [ArrayList, LinkedList]
 
 	QUnit.module('ArrayList/LinkedList')

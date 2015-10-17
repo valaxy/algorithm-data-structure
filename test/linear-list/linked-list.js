@@ -1,5 +1,5 @@
 define(function (require) {
-	var LinkedList = require('src/linear-list/linked-list')
+	var LinkedList = require('cjs!src/linear-list/linked-list')
 
 	QUnit.module('LinkedList')
 

@@ -1,3 +1,5 @@
+var _ = require('underscore')
+
 var SetBase = function () {
 	// this._elements = []
 }

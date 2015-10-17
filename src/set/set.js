@@ -1,4 +1,4 @@
-var SetBase = require('./base/set-base')
+var SetBase = require('./set-base')
 
 var defaultCompare = function (x, y) {
 	return x === y

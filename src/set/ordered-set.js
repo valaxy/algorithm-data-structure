@@ -1,4 +1,4 @@
-var SetBase = require('./base/set-base')
+var SetBase = require('./set-base')
 
 
 var OrderedSet = function (compare) {

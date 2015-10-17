@@ -1,6 +1,6 @@
 define(function (require) {
-	var LinkedGraph = require('src/graph/directed-linked-graph')
-	var TransitionGraph = require('src/graph/directed-transition-graph')
+	var LinkedGraph = require('cjs!src/graph/directed-linked-graph')
+	var TransitionGraph = require('cjs!src/graph/directed-transition-graph')
 	var Graphs = [LinkedGraph, TransitionGraph]
 
 	QUnit.module('Graph')

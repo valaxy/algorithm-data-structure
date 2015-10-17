@@ -1,5 +1,5 @@
 define(function (require) {
-	var fullPermutation = require('src/graph/full-permutation')
+	var fullPermutation = require('cjs!src/graph/full-permutation')
 
 	module('full-permutation')
 

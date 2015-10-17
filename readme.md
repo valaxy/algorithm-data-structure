@@ -1,4 +1,4 @@
-> Data structure, This is under development
+> Common Algorithm and Data structure component, This is under development
 
 # Overview
 - Linked
@@ -6,4 +6,6 @@
 - Tree
 - Graph
 
-# Table
+# Set
+- set/ordered-set
+- set/set
