@@ -159,7 +159,7 @@ define(function (require) {
 			z: ['a', 'y']
 		})
 
-		assert.ok(graph.removeEdge(null, 'y'))
+		assert.ok(graph.removeEdge(undefined, 'y'))
 		assert.equal(graph.edgeCount(), 1)
 	})
 

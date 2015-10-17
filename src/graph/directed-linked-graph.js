@@ -140,7 +140,7 @@ Graph.prototype.removeEdges = function (from, to) {
 
 Graph.prototype.removeEdge = function (from, to, edge) {
 	var nodes = []
-	if (!from) {
+	if (from === undefined) {
 		this.eachNode(function (node) {
 			nodes.push(node)
 		})
@@ -154,7 +154,7 @@ Graph.prototype.removeEdge = function (from, to, edge) {
 		if (linkedList) {
 			var needDeletes = []
 			linkedList.each(function (linkedNode) {
-				if (linkedNode.value.to == to && (edge === undefined || linkedNode.value.edge == edge)) { // todo, 遍历过程中不能删除元素
+				if ((to === undefined || linkedNode.value.to == to) && (edge === undefined || linkedNode.value.edge == edge)) { // todo, 遍历过程中不能删除元素
 					needDeletes.push(linkedNode)
 					result = true
 				}
