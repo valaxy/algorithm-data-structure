@@ -4,17 +4,17 @@ define(function (require) {
 	QUnit.module('DirectedTransitionGraph')
 
 
-	test('fromJSON()/toJSON()', function (assert) {
+	QUnit.test('fromJSON()/toJSON()', function (assert) {
 		// common graph
 		var graph = Graph.fromJSON({
-			x: ['a', 'y', 'b', 'z'],
-			y: ['c', 'z'],
+			x : ['a', 'y', 'b', 'z'],
+			y : ['c', 'z'],
 			xx: []
 		})
 		assert.deepEqual(graph.toJSON(), {
-			x: ['a', 'y', 'b', 'z'],
-			y: ['c', 'z'],
-			z: [],
+			x : ['a', 'y', 'b', 'z'],
+			y : ['c', 'z'],
+			z : [],
 			xx: []
 		})
 
@@ -32,7 +32,7 @@ define(function (require) {
 		})
 	})
 
-	test('nodeCount()', function (assert) {
+	QUnit.test('nodeCount()', function (assert) {
 		var graph = new Graph
 		assert.equal(graph.nodeCount(), 0)
 
@@ -42,7 +42,7 @@ define(function (require) {
 		assert.equal(graph.nodeCount(), 2)
 	})
 
-	test('edgeCount()', function (assert) {
+	QUnit.test('edgeCount()', function (assert) {
 		var graph = new Graph
 		assert.equal(graph.edgeCount(), 0)
 
@@ -53,7 +53,7 @@ define(function (require) {
 		assert.equal(graph.edgeCount(), 3)
 	})
 
-	test('eachNode()', function (assert) {
+	QUnit.test('eachNode()', function (assert) {
 		var graph = Graph.fromJSON({
 			'0': ['a', '1'],
 			'1': ['b', '0']
@@ -79,7 +79,7 @@ define(function (require) {
 		assert.equal(i, 1)
 	})
 
-	test('eachEdge(): each all', function (assert) {
+	QUnit.test('eachEdge(): each all', function (assert) {
 		var graph = Graph.fromJSON({
 			x: ['a', 'y', 'b', 'z'],
 			y: ['c', 'z'],
@@ -111,7 +111,7 @@ define(function (require) {
 		assert.equal(i, 2)
 	})
 
-	test('eachEdge(): each a node', function (assert) {
+	QUnit.test('eachEdge(): each a node', function (assert) {
 		var graph = Graph.fromJSON({
 			x: ['a', 'y', 'b', 'z', 'c', 'xx'],
 			y: ['a', 'x', 'b', 'x']
@@ -141,7 +141,7 @@ define(function (require) {
 		assert.equal(i, 1)
 	})
 
-	test('hasNode()', function (assert) {
+	QUnit.test('hasNode()', function (assert) {
 		var graph = Graph.fromJSON({
 			x: ['a', 'y']
 		})
@@ -150,7 +150,7 @@ define(function (require) {
 		assert.ok(!graph.hasNode('z'))
 	})
 
-	test('hasEdge()', function (assert) {
+	QUnit.test('hasEdge()', function (assert) {
 		var graph = Graph.fromJSON({
 			x: ['a', 'y']
 		})
@@ -158,7 +158,7 @@ define(function (require) {
 		assert.ok(!graph.hasEdge('y', 'x', 'a'))
 	})
 
-	test('addNode()', function (assert) {
+	QUnit.test('addNode()', function (assert) {
 		var graph = new Graph
 		graph.addNode('x')
 		assert.ok(graph.hasNode('x'))
@@ -168,7 +168,7 @@ define(function (require) {
 		assert.equal(graph.nodeCount(), 1)
 	})
 
-	test('addEdge()', function (assert) {
+	QUnit.test('addEdge()', function (assert) {
 		var graph = new Graph
 		graph.addEdge('x', 'y', 'a')
 		assert.equal(graph.edgeCount(), 1)
@@ -181,7 +181,7 @@ define(function (require) {
 		assert.ok(graph.hasEdge('y', 'x', 'b'))
 	})
 
-	test('removeNode()', function (assert) {
+	QUnit.test('removeNode()', function (assert) {
 		var graph = Graph.fromJSON({
 			x: [],
 			y: ['a', 'y']
@@ -195,7 +195,7 @@ define(function (require) {
 		assert.ok(!graph.removeNode('z'), 'not a exist node')
 	})
 
-	test('removeEdge()', function (assert) {
+	QUnit.test('removeEdge()', function (assert) {
 		var graph = Graph.fromJSON({
 			x: ['a', 'y', 'b', 'z']
 		})
@@ -218,7 +218,7 @@ define(function (require) {
 		assert.equal(graph.edgeCount(), 1)
 	})
 
-	test('transfer()', function (assert) {
+	QUnit.test('transfer()', function (assert) {
 		var graph = Graph.fromJSON({
 			'0': ['a', '1']
 		})
@@ -228,7 +228,7 @@ define(function (require) {
 		assert.equal(graph.transfer('1', 'a'), null, 'no exist `from` node')
 	})
 
-	test('_compare()/isostructural()', function (assert) {
+	QUnit.test('_compare()/isostructural()', function (assert) {
 		var g1 = Graph.fromJSON({
 			x: ['a', 'y', 'b', 'x'],
 			y: ['c', 'z'],

@@ -1,0 +1,22 @@
+{
+  "name": "algorithm-data-structure",
+  "version": "0.1.0-dev",
+  "description": "This is under development, API includes Class is not stable",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valaxy/algorithm-data-structure.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valaxy/algorithm-data-structure/issues"
+  },
+  "homepage": "https://github.com/valaxy/algorithm-data-structure#readme"
+}
