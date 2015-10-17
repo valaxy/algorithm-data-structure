@@ -21,9 +21,9 @@ define(function (require) {
 
 	// graph
 	require('../graph/full-permutation')
-	//require('../graph/graph')
-	//require('../graph/directed-linked-graph')
-	//require('../graph/directed-transition-graph')
+	require('../graph/graph')
+	require('../graph/directed-linked-graph')
+	require('../graph/directed-transition-graph')
 
 
 	// search

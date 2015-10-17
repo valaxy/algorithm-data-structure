@@ -95,12 +95,11 @@ Graph.prototype.addNode = function (node) {
 Graph.prototype.addEdge = function (from, to, edge) {
 	this.addNode(from)
 	this.addNode(to)
-	var node = new LinkedListNode
+	var node = this._nodeLists[from].addLast()
 	node.value = {
 		to  : to,
 		edge: edge
 	}
-	this._nodeLists[from].addLast(node)
 }
 
 
@@ -117,7 +116,6 @@ Graph.prototype._compare = function (graph, stateMap) {
 		}
 	)
 }
-
 
 Graph.prototype.changeNodes = function (nodeMap) {
 	// change `from` nodes

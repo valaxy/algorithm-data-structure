@@ -61,6 +61,7 @@ define(function (require) {
 
 	QUnit.test('changeNodes()', function (assert) {
 		for (var i in Graphs) {
+			i = 0
 			var Graph = Graphs[i]
 
 			var graph1 = Graph.fromJSON({
