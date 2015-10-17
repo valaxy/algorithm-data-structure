@@ -139,20 +139,30 @@ Graph.prototype.removeEdges = function (from, to) {
 
 
 Graph.prototype.removeEdge = function (from, to, edge) {
-	var linkedList = this._nodeLists[from]
-	var result = false
-	if (linkedList) {
-		var needDeletes = []
-		linkedList.each(function (linkedNode) {
-			if (linkedNode.value.to == to && linkedNode.value.edge == edge) { // todo, 遍历过程中不能删除元素
-				needDeletes.push(linkedNode)
-				result = true
-			}
+	var nodes = []
+	if (!from) {
+		this.eachNode(function (node) {
+			nodes.push(node)
 		})
-		needDeletes.forEach(function (need) {
-			linkedList.remove(need)
-		})
+	} else {
+		nodes.push(from)
 	}
+
+	var result = false
+	nodes.forEach(function (from2) {
+		var linkedList = this._nodeLists[from2]
+		if (linkedList) {
+			var needDeletes = []
+			linkedList.each(function (linkedNode) {
+				if (linkedNode.value.to == to && (edge === undefined || linkedNode.value.edge == edge)) { // todo, 遍历过程中不能删除元素
+					needDeletes.push(linkedNode)
+					result = true
+				}
+			})
+			linkedList.removeMany(needDeletes)
+		}
+	}.bind(this))
+
 	return result
 }
 

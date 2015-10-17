@@ -152,4 +152,15 @@ define(function (require) {
 		assert.equal(graph.edgeCount(), 0)
 	})
 
+	QUnit.test('removeEdge()', function (assert) {
+		// remove edges of to
+		var graph = Graph.fromJSON({
+			x: ['a', 'y', 'b', 'z'],
+			z: ['a', 'y']
+		})
+
+		assert.ok(graph.removeEdge(null, 'y'))
+		assert.equal(graph.edgeCount(), 1)
+	})
+
 })

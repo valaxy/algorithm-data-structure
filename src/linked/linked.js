@@ -110,4 +110,10 @@ Linked.prototype.remove = function (node) {
 	return node
 }
 
+Linked.prototype.removeMany = function (nodes) {
+	nodes.forEach(function (node) {
+		this.remove(node)
+	}.bind(this))
+}
+
 module.exports = Linked

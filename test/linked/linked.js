@@ -92,6 +92,10 @@ define(function (require) {
 		checkLinks(assert, list, [])
 	})
 
+	QUnit.test('removeMany()', function (assert) {
+		assert.ok(true)
+	})
+
 	QUnit.test('each()', function (assert) {
 		// empty list
 		var list = new Linked
