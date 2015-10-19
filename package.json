@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/valaxy/algorithm-data-structure/issues"
   },
-  "homepage": "https://github.com/valaxy/algorithm-data-structure#readme"
+  "homepage": "https://github.com/valaxy/algorithm-data-structure#readme",
+  "devDependencies": {
+    "fs-extra": "^0.24.0"
+  }
 }

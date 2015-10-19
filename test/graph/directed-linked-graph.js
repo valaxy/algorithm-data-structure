@@ -1,5 +1,5 @@
 define(function (require) {
-	var Graph = require('cjs!src/graph/directed-linked-graph')
+	var Graph = require('cjs!dest/graph/directed-linked-graph')
 
 	QUnit.module('DirectedLinkedGraph')
 

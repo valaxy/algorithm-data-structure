@@ -1,5 +1,5 @@
 define(function (require) {
-	var fullPermutation = require('cjs!src/graph/full-permutation')
+	var fullPermutation = require('cjs!dest/graph/full-permutation')
 
 	QUnit.module('full-permutation')
 
