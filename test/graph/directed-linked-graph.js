@@ -15,7 +15,34 @@ define(function (require) {
 		assert.deepEqual(graph.toJSON(), def)
 	})
 
-	QUnit.test('addEdge()/edgeCount()/hasEdge()', function (assert) {
+	QUnit.test('edgeCount()/hasEdge(): complex case', function (assert) {
+		var graph = Graph.fromJSON({
+			'a': ['1', 'b', '2', 'b', '1', 'c', '3', 'c'],
+			'b': ['1', 'c', '2', 'b'] // a loop
+		})
+
+		assert.equal(graph.edgeCount(undefined, undefined, undefined), 6)
+		assert.equal(graph.edgeCount(undefined, undefined, '1'), 3)
+		assert.equal(graph.edgeCount(undefined, 'b', undefined), 3)
+		assert.equal(graph.edgeCount(undefined, 'b', '1'), 1)
+		assert.equal(graph.edgeCount('a', undefined, undefined), 4)
+		assert.equal(graph.edgeCount('a', undefined, '1'), 2)
+		assert.equal(graph.edgeCount('a', 'b', undefined), 2)
+		assert.equal(graph.edgeCount('a', 'b', '1'), 1)
+
+		assert.ok(graph.hasEdge(undefined, undefined, undefined))
+		assert.ok(graph.hasEdge(undefined, undefined, '1'))
+		assert.ok(graph.hasEdge(undefined, 'b', undefined))
+		assert.ok(graph.hasEdge(undefined, 'b', '1'))
+		assert.ok(graph.hasEdge('a', undefined, undefined))
+		assert.ok(graph.hasEdge('a', undefined, '1'))
+		assert.ok(graph.hasEdge('a', 'b', undefined))
+		assert.ok(graph.hasEdge('a', 'b', '1'))
+		assert.ok(!graph.hasEdge('a', 'b', '3'))
+	})
+
+
+	QUnit.test('addEdge()/edgeCount()/hasEdge(): simple case', function (assert) {
 		var graph = new Graph
 
 		// empty
@@ -133,15 +160,6 @@ define(function (require) {
 		assert.ok(!graph1.isostructural(graph2))
 	})
 
-	QUnit.test('removeEdges()', function (assert) {
-		var graph = Graph.fromJSON({
-			x: ['a', 'y', 'b', 'y', 'b', 'z']
-		})
-
-		assert.equal(graph.removeEdges('x', 'y'), true)
-		assert.equal(graph.edgeCount(), 1)
-	})
-
 	QUnit.test('removeNode()', function (assert) {
 		var graph = Graph.fromJSON({
 			x: ['a', 'y', 'b', 'z'],
@@ -153,14 +171,45 @@ define(function (require) {
 	})
 
 	QUnit.test('removeEdge()', function (assert) {
-		// remove edges of to
-		var graph = Graph.fromJSON({
-			x: ['a', 'y', 'b', 'z'],
-			z: ['a', 'y']
-		})
+		var createGraph = function () {
+			return Graph.fromJSON({
+				'a': ['1', 'b', '2', 'b', '1', 'c', '3', 'c'],
+				'b': ['1', 'c', '2', 'b'], // a loop
+				'c': ['2', 'b']
+			})
+		}
 
-		assert.ok(graph.removeEdge(undefined, 'y'))
-		assert.equal(graph.edgeCount(), 1)
+		var graph = createGraph()
+		assert.ok(graph.removeEdge(undefined, undefined, undefined))
+		assert.equal(graph.edgeCount(), 0)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge(undefined, undefined, '1'))
+		assert.equal(graph.edgeCount(), 4)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge(undefined, 'b', undefined))
+		assert.equal(graph.edgeCount(), 3)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge(undefined, 'b', '2'))
+		assert.equal(graph.edgeCount(), 4)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge('a', undefined, undefined))
+		assert.equal(graph.edgeCount(), 3)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge('a', undefined, '1'))
+		assert.equal(graph.edgeCount(), 5)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge('a', 'b', undefined))
+		assert.equal(graph.edgeCount(), 5)
+
+		var graph = createGraph()
+		assert.ok(graph.removeEdge('a', 'b', '1'))
+		assert.equal(graph.edgeCount(), 6)
 	})
 
 })
