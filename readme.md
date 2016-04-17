@@ -1,5 +1,5 @@
 > Under development, API includes Class is not stable
-> Rewrite in ECMAScript 6 is work in progress
+> Rewrite in Typescript is work in progress
 
 Algorithm and Data structure component of CommonJS package
  

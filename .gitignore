@@ -1,6 +1,3 @@
 .idea/
-bower_components/
+dest/
 node_modules/
-
-*.html
-*.css

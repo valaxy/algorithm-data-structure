@@ -20,6 +20,12 @@
   },
   "homepage": "https://github.com/valaxy/algorithm-data-structure#readme",
   "devDependencies": {
-    "fs-extra": "^0.24.0"
+    "cjs": "github:valaxy/cjs#56d3496c933731ff3ba37578ace17d23bdf7fb8d",
+    "fs-extra": "^0.24.0",
+    "qunitjs": "^1.23.1",
+    "requirejs": "^2.2.0"
+  },
+  "dependencies": {
+    "underscore": "^1.8.3"
   }
 }
