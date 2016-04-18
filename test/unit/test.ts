@@ -33,6 +33,9 @@ define(function (require) {
     // set
     require('../set/ordered-set')
     require('../set/set')
+
+    // alg
+    require('cjs!../alg/lcs')
 })
 
 
