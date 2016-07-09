@@ -1,4 +1,4 @@
-> Under development, API includes Class is not stable
+> Under development, API includes Class is not stable     
 > Rewrite in Typescript is work in progress
 
 Algorithm and Data structure component of CommonJS package

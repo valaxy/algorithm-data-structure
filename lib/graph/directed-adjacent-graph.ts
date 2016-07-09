@@ -1,9 +1,9 @@
-var Graph = function () {
-	this._nodes = {}
+class Graph {
+    private _nodes = {}
+
+    createFromMatrix(matrix) {
+
+    }
 }
 
-Graph.createFromMatrix = function (matrix) {
-
-}
-
-module.exports = Graph
+export = Graph

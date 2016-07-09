@@ -1,3 +1,4 @@
 .idea/
 dest/
 node_modules/
+build/typings/
