@@ -1,3 +1,7 @@
+[![dependencies Status](https://david-dm.org/valaxy/algorithm-data-structure/status.svg?style=flat-square)](https://david-dm.org/valaxy/algorithm-data-structure)
+[![devDependencies Status](https://david-dm.org/valaxy/algorithm-data-structure/dev-status.svg?style=flat-square)](https://david-dm.org/valaxy/algorithm-data-structure?type=dev)
+
+
 > Under development, API includes Class is not stable     
 > Rewrite in Typescript is work in progress
 

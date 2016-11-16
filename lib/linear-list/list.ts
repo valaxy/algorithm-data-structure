@@ -1,26 +1,31 @@
-var List = function () {
-    // nothing
-}
+abstract class List {
+    protected _compare
 
-List.prototype.removeFirst = function () {
-    return this.removeAt(0)
-}
+    abstract removeAt(index:number)
 
-List.prototype.removeLast = function () {
-    return this.removeAt(this.count() - 1)
-}
+    abstract each(fn:(value, index)=>boolean)
 
-/** If it is exists, return the index, or return -1 */
-List.prototype.indexOf = function (value) {
-    var index = -1
-    var me    = this
-    this.each(function (v, i) {
-        if (me._compare(value, v)) {
-            index = i
-            return true
-        }
-    })
-    return index
+    abstract count():number
+
+    removeFirst() {
+        return this.removeAt(0)
+    }
+
+    removeLast() {
+        return this.removeAt(this.count() - 1)
+    }
+
+    /** If it is exists, return the index, or return -1 */
+    indexOf(value) {
+        let index = -1
+        this.each((v, i) => {
+            if (this._compare(value, v)) {
+                index = i
+                return true
+            }
+        })
+        return index
+    }
 }
 
 export = List

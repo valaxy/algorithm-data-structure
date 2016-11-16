@@ -1,107 +1,112 @@
-var repeat = require('../base/repeat')
+import repeat = require('../base/repeat')
 
-var OrderedNode = function () {
-	// nothing
-}
 
-OrderedNode.extend = function (cls) {
-	var n = new OrderedNode
-	cls.prototype = n
-}
 
-//OrderedNode.prototype.value = function () {
+//value() {
 //	return this._value
 //}
 //
-//OrderedNode.prototype.setValue = function (value) {
+//setValue(value) {
 //	this._value = value
 //}
 
-/** Return the deepest and leftmost descendant, including itself */
-OrderedNode.prototype.leftmostDescendant = function () {
-	var current = this
-	while (true) {
-		var child = current.leftmostChild()
-		if (!child) {
-			return current
-		} else {
-			current = child
-		}
-	}
-}
 
-/** Return the deepest and rightmost descendant, including itself */
-OrderedNode.prototype.rightmostDescendant = function () {
-	var current = this
-	while (true) {
-		var child = current.rightmostChild()
-		if (!child) {
-			return current
-		} else {
-			current = child
-		}
-	}
-}
+abstract class OrderedNode {
+    abstract leftmostChild()
 
+    abstract rightmostChild()
 
-/** Check if it is same structure with other tree
- * @param otherTreeRoot root of the tree
- * @returns {boolean} true or false */
-OrderedNode.prototype.isostructural = function (otherTreeRoot) {
-	if (this.childrenCount() != otherTreeRoot.childrenCount()) {
-		return false
-	}
+    abstract childrenCount():number
 
-	// this tree
-	var children = []
-	this.eachChild(function (child) {
-		children.push(child)
-	})
+    abstract eachChild(fn)
 
-	// other tree
-	var isBreak = otherTreeRoot.eachChild(function (child, i) {
-		var compare = children[i].isostructural(child)
-		if (!compare) {
-			return true
-		}
-	})
+    /** Return the deepest and leftmost descendant, including itself */
+    leftmostDescendant() {
+        var current = this
+        while (true) {
+            var child = current.leftmostChild()
+            if (!child) {
+                return current
+            } else {
+                current = child
+            }
+        }
+    }
 
-	return !isBreak
-}
+    /** Return the deepest and rightmost descendant, including itself */
+    rightmostDescendant() {
+        var current = this
+        while (true) {
+            var child = current.rightmostChild()
+            if (!child) {
+                return current
+            } else {
+                current = child
+            }
+        }
+    }
 
 
-// dfs to build
-OrderedNode.prototype._toString = function (deep) {
-	var str = ''
-	str += repeat(deep * 4) + 'node' + '\n'
+    /** Check if it is same structure with other tree
+     * @param otherTreeRoot root of the tree
+     * @returns {boolean} true or false */
+    isostructural(otherTreeRoot) {
+        if (this.childrenCount() != otherTreeRoot.childrenCount()) {
+            return false
+        }
 
-	this.eachChild(function (child) {
-		str += child._toString(deep + 1)
-	})
-	return str
-}
+        // this tree
+        var children = []
+        this.eachChild((child) => {
+            children.push(child)
+        })
 
-/** Print a xml tree, a debug method */
-OrderedNode.prototype.toString = function () {
-	return this._toString(0)
-}
+        // other tree
+        var isBreak = otherTreeRoot.eachChild((child, i) => {
+            var compare = children[i].isostructural(child)
+            if (!compare) {
+                return true
+            }
+        })
+
+        return !isBreak
+    }
 
 
-OrderedNode.prototype.postorderWalk = function (operation) {
-	return this.eachChild(function (child) {
-			if (child.postorderWalk(operation)) {
-				return true
-			}
-		}) || operation(this)
-}
+    // dfs to build
+    _toString(deep) {
+        var str = ''
+        str += repeat(deep * 4) + 'node' + '\n'
 
-OrderedNode.prototype.preorderWalk = function (operation) {
-	return operation(this)
-		|| this.eachChild(function (child) {
-			if (child.preorderWalk(operation)) {
-				return true
-			}
-		})
+        this.eachChild(function (child) {
+            str += child._toString(deep + 1)
+        })
+        return str
+    }
+
+    /** Print a xml tree, a debug method */
+    toString() {
+        return this._toString(0)
+    }
+
+
+    postorderWalk(operation) {
+        return this.eachChild(function (child) {
+                if (child.postorderWalk(operation)) {
+                    return true
+                }
+            }) || operation(this)
+    }
+
+    preorderWalk(operation) {
+        return operation(this)
+            || this.eachChild(function (child) {
+                if (child.preorderWalk(operation)) {
+                    return true
+                }
+            })
+    }
+
 }
 
 export = OrderedNode

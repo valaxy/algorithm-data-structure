@@ -6,7 +6,7 @@ const defaultCompare = function (x, y) {
 
 
 class Set extends SetBase {
-    private _compare
+    protected _compare
 
     /** Create a set by a array of elements */
     static fromArray(elements, compare?) {

@@ -2,12 +2,14 @@
   "name": "algorithm-data-structure",
   "version": "0.1.0-dev",
   "license": "MIT",
+  "scripts": {
+    "preinstall": "cd build && typings install && tsc"
+  },
   "dependencies": {
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "cjs": "github:valaxy/cjs#56d3496c933731ff3ba37578ace17d23bdf7fb8d",
-    "fs-extra": "^0.24.0",
     "qunitjs": "^1.23.1",
     "requirejs": "^2.2.0",
     "typescript": "^2.0.10"
