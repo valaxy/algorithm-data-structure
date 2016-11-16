@@ -3,7 +3,7 @@
   "version": "0.1.0-dev",
   "license": "MIT",
   "scripts": {
-    "preinstall": "cd build && typings install && tsc"
+    "postinstall": "cd build && typings install && tsc"
   },
   "dependencies": {
     "underscore": "^1.8.3"
