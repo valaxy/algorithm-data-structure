@@ -2,4 +2,4 @@ var TreeNode = function () {
 	// nothing
 }
 
-module.exports = TreeNode
+export = TreeNode

@@ -35,4 +35,4 @@ var deepFirst = function (options) {
 
 }
 
-module.exports = deepFirst
+export = deepFirst

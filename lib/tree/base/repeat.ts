@@ -7,4 +7,4 @@ var repeat = function (times) {
 	//console.log(times)
 	//return new String(times).join(' ')
 }
-module.exports = repeat
+export = repeat

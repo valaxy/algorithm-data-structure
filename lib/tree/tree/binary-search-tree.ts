@@ -188,4 +188,4 @@ BinarySearchTree.prototype.has = function (value) {
 	}
 }
 
-module.exports = BinarySearchTree
+export = BinarySearchTree

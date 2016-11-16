@@ -12,4 +12,4 @@ var FixNode = function (n) {
 FixNode.prototype = new FixBaseNode
 
 
-module.exports = FixNode
+export = FixNode

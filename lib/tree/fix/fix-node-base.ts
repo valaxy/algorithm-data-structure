@@ -109,7 +109,7 @@ FixNodeBase.prototype.toString = function () {
 }
 
 
-module.exports = FixNodeBase
+export = FixNodeBase
 
 //
 ///** Returns the first child which exists from left to right,

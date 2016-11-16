@@ -136,4 +136,4 @@ LinkedOrderedNode.prototype.delete = function () {
 	return this
 }
 
-module.exports = LinkedOrderedNode
+export = LinkedOrderedNode

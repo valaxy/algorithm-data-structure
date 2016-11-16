@@ -1,6 +1,3 @@
-define(function (require) {
-	var List = require('cjs!lib/linear-list/array-list')
+import List = require('../../lib/linear-list/array-list')
 
-	QUnit.module('ArrayList')
-
-})
+QUnit.module('ArrayList')

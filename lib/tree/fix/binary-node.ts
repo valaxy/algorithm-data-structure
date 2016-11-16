@@ -51,4 +51,4 @@ BinaryNode.prototype.postorderWalk = function (operation) {
 		|| operation(this)
 }
 
-module.exports = BinaryNode
+export = BinaryNode

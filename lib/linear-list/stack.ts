@@ -24,4 +24,4 @@ Stack.prototype.count = function () {
 
 }
 
-module.exports = Stack
+export = Stack

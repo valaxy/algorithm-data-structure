@@ -1,6 +1,3 @@
-define(function (require, exports) {
-	var TreeNode = require('cjs!lib/tree/ordered/array-ordered-node')
+const TreeNode = require('lib/tree/ordered/array-ordered-node')
 
-	module('ArrayOrderedNode')
-
-})
+QUnit.module('ArrayOrderedNode')

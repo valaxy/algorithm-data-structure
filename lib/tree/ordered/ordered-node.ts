@@ -104,4 +104,4 @@ OrderedNode.prototype.preorderWalk = function (operation) {
 		})
 }
 
-module.exports = OrderedNode
+export = OrderedNode

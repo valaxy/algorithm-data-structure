@@ -27,4 +27,4 @@ Queue.prototype.count = function () {
 	return this._list.count()
 }
 
-module.exports = Queue
+export = Queue
