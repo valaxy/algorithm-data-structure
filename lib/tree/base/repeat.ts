@@ -1,4 +1,4 @@
-var repeat = function (times) {
+const repeat = function (times) {
 	var str = ''
 	for (var i = 0; i < times; i++) {
 		str += ' '
@@ -7,4 +7,5 @@ var repeat = function (times) {
 	//console.log(times)
 	//return new String(times).join(' ')
 }
-export = repeat
+
+export default repeat

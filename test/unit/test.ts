@@ -9,11 +9,11 @@ import '../linked/linked'
 // import '../linear-list/list'
 // import '../linear-list/queue'
 
-//
-// // tree
-// import '../tree/ordered/ordered-node'
-// import '../tree/ordered/linked-ordered-node'
-// import '../tree/ordered/array-ordered-node'
+
+// tree
+import '../tree/ordered/orderedNode'
+import '../tree/ordered/linkedOrderedNode'
+import '../tree/ordered/arrayOrderedNode'
 // import '../tree/fix/fix-node'
 // import '../tree/fix/binary-node'
 

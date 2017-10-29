@@ -3,7 +3,7 @@ import Linked from '../linked/linked'
 import LinkedNode from '../linked/linkedNode'
 import _ = require('underscore')
 
-interface GraphNode extends LinkedNode {
+interface GraphNode extends LinkedNode<GraphNode> {
     value: {
         to: any
         edge: any

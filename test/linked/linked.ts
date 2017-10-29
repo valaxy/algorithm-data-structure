@@ -4,7 +4,8 @@ import QUnit = require('qunitjs')
 
 QUnit.module('Linked')
 
-function checkLinks(assert, list, nodes: LinkedNode[]) {
+
+function checkLinks(assert, list, nodes) {
     assert.equal(list.count, nodes.length)
     if (nodes.length == 0) {
         assert.equal(list.head, null)

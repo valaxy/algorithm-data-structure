@@ -1,22 +1,17 @@
-export default class LinkedNode {
-    private _prev: LinkedNode
-    private _next: LinkedNode
-
-    constructor() {
-        this._prev = null
-        this._next = null
-    }
+export default class LinkedNode<T extends LinkedNode<T>> {
+    private _prev = null
+    private _next = null
 
     /** Get next node or null */
-    get next() { return this._next }
+    get next(): T { return this._next }
 
 
     /** Get prev node or null */
-    get prev() { return this._prev }
+    get prev(): T { return this._prev }
 
 
     /** Make `node` to be the next node */
-    addNext(node: LinkedNode) {
+    addNext(node: T): void {
         let next   = this.next
         this._next = node
         node._prev = this
@@ -27,7 +22,7 @@ export default class LinkedNode {
     }
 
     /** Make `node` to be the prev node */
-    addPrev(node: LinkedNode) {
+    addPrev(node: T): void {
         let prev   = this.prev
         node._next = this
         this._prev = node
@@ -38,7 +33,7 @@ export default class LinkedNode {
     }
 
     /** Cut the relation with prev and next if relations exist */
-    remove() {
+    remove(): void {
         let prev   = this.prev
         let next   = this.next
         this._prev = this._next = null
@@ -48,5 +43,9 @@ export default class LinkedNode {
         if (next) {
             next._prev = prev
         }
+    }
+
+    construct() {
+        return new LinkedNode() as T
     }
 }
