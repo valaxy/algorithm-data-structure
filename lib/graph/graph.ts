@@ -1,7 +1,7 @@
-var fullPermutation = require('./full-permutation')
+import fullPermutation from './fullPermutation'
 
 /** Base class of Graph */
-abstract class Graph {
+export default abstract class Graph {
     toJSON() {
         var me          = this
         var transitions = {}
@@ -81,7 +81,3 @@ abstract class Graph {
         }
     }
 }
-
-
-
-export = Graph

@@ -1,9 +1,9 @@
 import LinkedNode from './linkedNode'
 
 /** Linked structure aiming at process linked node */
-export default class Linked {
-    private _head: LinkedNode
-    private _tail: LinkedNode
+export default class Linked<T extends LinkedNode> {
+    private _head: T
+    private _tail: T
     private _count: number
 
     constructor() {
@@ -18,7 +18,7 @@ export default class Linked {
 
     get count() { return this._count }
 
-    each(operation: (n: LinkedNode, i: number) => any) {
+    each(operation: (n: T, i: number) => any) {
         if (!this.head) {
             return false
         }
@@ -29,61 +29,61 @@ export default class Linked {
             if (operation(current, i++)) {
                 return true
             }
-            current = current.next
+            current = current.next as T
         }
 
         return false
     }
 
-    insertAfter(node: LinkedNode) {
+    insertAfter(node: T): T {
         let next = node.next
         let insertNode = new LinkedNode()
         node.addNext(insertNode)
         if (node == this._tail) {
-            this._tail = insertNode
+            this._tail = insertNode as T
         }
         this._count++
-        return insertNode
+        return insertNode as T
     }
 
-    insertBefore(node: LinkedNode) {
+    insertBefore(node: T): T {
         let prev = node.prev
         let insertNode = new LinkedNode()
         node.addPrev(insertNode)
         if (node == this._head) {
-            this._head = insertNode
+            this._head = insertNode as T
         }
         this._count++
-        return insertNode
+        return insertNode as T
     }
 
-    addLast() {
+    addLast(): T {
         if (this.tail) {
             return this.insertAfter(this.tail)
         } else {
             let node = new LinkedNode()
-            this._head = this._tail = node
+            this._head = this._tail = node as T
             this._count++
-            return node
+            return node as T
         }
     }
 
 
-    addFirst() {
+    addFirst(): T {
         if (this.head) {
             return this.insertBefore(this.head)
         } else {
             let node = new LinkedNode()
-            this._head = this._tail = node
+            this._head = this._tail = node as T
             this._count++
-            return node
+            return node as T
         }
     }
 
 
-    remove(node: LinkedNode) {
-        let prev = node.prev
-        let next = node.next
+    remove(node: T) {
+        let prev = node.prev as T
+        let next = node.next as T
         node.remove()
         if (!prev) {
             this._head = next
@@ -95,9 +95,9 @@ export default class Linked {
         return node
     }
 
-    removeMany(nodes: LinkedNode[]) {
-        nodes.forEach(function(node) {
+    removeMany(nodes: T[]) {
+        nodes.forEach(node => {
             this.remove(node)
-        }.bind(this))
+        })
     }
 }

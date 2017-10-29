@@ -1,13 +1,15 @@
-var LinkedGraph     = require('cjs!lib/graph/directed-linked-graph')
-var TransitionGraph = require('cjs!lib/graph/directed-transition-graph')
-var Graphs          = [LinkedGraph, TransitionGraph]
+import LinkedGraph     from '../../lib/graph/directedLinkedGraph'
+import TransitionGraph from '../../lib/graph/directedTransitionGraph'
+import QUnit = require('qunitjs')
+
+const Graphs = [LinkedGraph, TransitionGraph]
 
 QUnit.module('Graph')
 
 QUnit.test('addNode()/nodes()/nodeCount()', function (assert) {
-    for (var i in Graphs) {
-        var Graph = Graphs[i]
-        var graph = new Graph
+    for (let i in Graphs) {
+        let Graph = Graphs[i]
+        let graph = new Graph
 
         // empty nodes
         assert.deepEqual(graph.nodes(), [])
@@ -27,9 +29,9 @@ QUnit.test('addNode()/nodes()/nodeCount()', function (assert) {
 })
 
 QUnit.test('eachNode()', function (assert) {
-    for (var i in Graphs) {
-        var Graph = Graphs[i]
-        var graph = new Graph
+    for (let i in Graphs) {
+        let Graph = Graphs[i]
+        let graph = new Graph
 
         // empty nodes
         assert.ok(!graph.eachNode(function () {
@@ -40,14 +42,14 @@ QUnit.test('eachNode()', function (assert) {
         graph.addNode('x')
         graph.addNode('y')
         graph.addNode('z')
-        var nodes = []
+        let nodes = []
         assert.ok(!graph.eachNode(function (node) {
             nodes.push(node)
         }))
         assert.deepEqual(nodes, ['x', 'y', 'z'])
 
         // break
-        var theNode = null
+        let theNode = null
         assert.ok(graph.eachNode(function (node) {
             if (node == nodes[1]) {
                 theNode = node
@@ -59,15 +61,15 @@ QUnit.test('eachNode()', function (assert) {
 })
 
 QUnit.test('changeNodes()', function (assert) {
-    for (var i in Graphs) {
-        var Graph = Graphs[i]
+    for (let i in Graphs) {
+        let Graph = Graphs[i]
 
-        var graph1 = Graph.fromJSON({
+        let graph1 = Graph.fromJSON({
             '1': ['a', '2'],
             '2': ['b', '3'],
             '3': ['c', '4']
         })
-        var graph2 = Graph.fromJSON({
+        let graph2 = Graph.fromJSON({
             '1': ['a', '2'],
             '2': ['b', '3'],
             '3': ['c', '4']
@@ -86,10 +88,10 @@ QUnit.test('changeNodes()', function (assert) {
 
 
 QUnit.test('removeEdge()', function (assert) {
-    for (var i in Graphs) {
-        var Graph = Graphs[i]
+    for (let i in Graphs) {
+        let Graph = Graphs[i]
 
-        var graph = Graph.fromJSON({
+        let graph = Graph.fromJSON({
             x: ['a', 'y', 'b', 'z']
         })
 

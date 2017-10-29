@@ -11,33 +11,33 @@ import '../linked/linked'
 
 //
 // // tree
-// require('../tree/ordered/ordered-node')
-// require('../tree/ordered/linked-ordered-node')
-// require('../tree/ordered/array-ordered-node')
-// require('../tree/fix/fix-node')
-// require('../tree/fix/binary-node')
-//
-//
-// // graph
-// require('../graph/full-permutation')
-// require('../graph/graph')
-// require('../graph/directed-linked-graph')
-// require('../graph/directed-transition-graph')
-//
-//
+// import '../tree/ordered/ordered-node'
+// import '../tree/ordered/linked-ordered-node'
+// import '../tree/ordered/array-ordered-node'
+// import '../tree/fix/fix-node'
+// import '../tree/fix/binary-node'
+
+
+// graph
+import '../graph/fullPermutation'
+import '../graph/graph'
+import '../graph/directedLinkedGraph'
+import '../graph/directedTransitionGraph'
+
+
 // // search
-// require('../search/deep-first')
+// import '../search/deep-first'
 //
 //
 // // set
-// require('../set/ordered-set')
-// require('../set/set')
+// import '../set/ordered-set'
+// import '../set/set'
 //
 // // alg
-// require('../alg/lcs')
+// import '../alg/lcs'
 
 
-//require('./tree/array-node')
-//require('src/struct-node')
-//require('./binary-node-walk')
-//require('./binary-search-tree')
+//import './tree/array-node'
+//import 'src/struct-node'
+//import './binary-node-walk'
+//import './binary-search-tree'
