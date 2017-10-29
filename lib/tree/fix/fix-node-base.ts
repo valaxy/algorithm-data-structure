@@ -1,4 +1,5 @@
 var repeat = require('../base/repeat')
+import _ = require('underscore')
 
 var FixNodeBase = function () {
 	// nothing

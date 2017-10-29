@@ -1,4 +1,5 @@
 var BinaryTreeNode = require('../fix/binary-node')
+import _ = require('underscore')
 
 var BinarySearchTree = function (compare) {
 	this._compare = compare

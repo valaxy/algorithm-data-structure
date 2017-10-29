@@ -3,15 +3,19 @@
   "version": "0.1.0-dev",
   "license": "MIT",
   "scripts": {
-    "postinstall": "cd build && typings install && tsc"
+      "build": "webpack --config test/unit/webpack.config.js",
+      "watch": "webpack --config test/unit/webpack.config.js --watch"
   },
   "dependencies": {
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "cjs": "github:valaxy/cjs#56d3496c933731ff3ba37578ace17d23bdf7fb8d",
-    "qunitjs": "^1.23.1",
-    "requirejs": "^2.2.0",
-    "typescript": "^2.0.10"
+    "@types/node": "^8.0.47",
+    "@types/qunit": "^2.0.31",
+    "@types/underscore": "^1.8.4",
+    "qunitjs": "^2.4.1",
+    "ts-loader": "^3.1.0",
+    "typescript": "^2.5.3",
+    "webpack": "^3.8.1"
   }
 }

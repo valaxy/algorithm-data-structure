@@ -9,13 +9,10 @@
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
     <script src="../../node_modules/qunitjs/qunit/qunit.js"></script>
-    <script src="../../node_modules/requirejs/require.js"></script>
-    <script src="../base/config.js"></script>
+    <script src="../../dest/test.js"></script>
     <script>
         QUnit.config.autostart = false
-        require(['test/unit/test'], function () {
-            QUnit.start()
-        })
+        QUnit.start()
     </script>
 </body>
 </html>
