@@ -1,5 +1,5 @@
 import Linked      = require('../../linked/linked')
-import LinkedNode  = require('../../linked/linked-node')
+import LinkedNode  = require('../../linked/linkedNode')
 import OrderedNode = require('./ordered-node')
 
 
@@ -55,13 +55,13 @@ class LinkedOrderedNode extends OrderedNode {
 
     /** Return left sibling node or null */
     leftSibling() {
-        var prev = this._linkedNode.prev()
+        var prev = this._linkedNode.prev
         return prev ? prev._treeNode : null
     }
 
     /** Return right sibling node or null */
     rightSibling() {
-        var next = this._linkedNode.next()
+        var next = this._linkedNode.next
         return next ? next._treeNode : null
     }
 

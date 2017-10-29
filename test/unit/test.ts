@@ -1,5 +1,5 @@
 // linked
-import '../linked/linked-node'
+import '../linked/linkedNode'
 import '../linked/linked'
 
 
