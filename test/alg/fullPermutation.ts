@@ -1,7 +1,7 @@
-import fullPermutation from '../../lib/graph/fullPermutation'
+import fullPermutation from '../../lib/alg/fullPermutation'
 import QUnit = require('qunitjs')
 
-QUnit.module('full-permutation')
+QUnit.module('fullPermutation')
 
 QUnit.test('fullPermutation()', function (assert) {
     fullPermutation([], function () {
@@ -13,7 +13,7 @@ QUnit.test('fullPermutation()', function (assert) {
     })
 
 
-    var perms = [
+    let perms = [
         [1, 2, 3, 4],
         [1, 2, 4, 3],
         [1, 3, 2, 4],
@@ -43,7 +43,7 @@ QUnit.test('fullPermutation()', function (assert) {
         [4, 1, 2, 3]
     ]
 
-    var i = 0
+    let i = 0
     fullPermutation([1, 2, 3, 4], function (elements) {
         assert.deepEqual(elements, perms[i++])
     })

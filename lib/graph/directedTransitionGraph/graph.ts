@@ -1,4 +1,4 @@
-import BaseGraph from './graph'
+import Graph from '../graph'
 
 /**
  * node is identified by a string
@@ -6,13 +6,13 @@ import BaseGraph from './graph'
  * any two nodes can only has one same value edge
  * directed graph
  */
-export default class DirectedTransitionGraph extends BaseGraph {
+export default class DirectedTransitionGraph extends Graph {
     private _transitions = {}
 
 
     static fromJSON(transitions) {
-        var graph = new DirectedTransitionGraph
-        BaseGraph.parseTo(transitions, graph)
+        let graph = new DirectedTransitionGraph
+        Graph.parseTo(transitions, graph)
         return graph
     }
 
@@ -22,15 +22,15 @@ export default class DirectedTransitionGraph extends BaseGraph {
     }
 
     edgeCount() {
-        var count = 0
-        for (var node in this._transitions) {
+        let count = 0
+        for (let node in this._transitions) {
             count += Object.keys(this._transitions[node]).length
         }
         return count
     }
 
     eachNode(operation) {
-        for (var node in this._transitions) {
+        for (let node in this._transitions) {
             if (operation(node)) {
                 return true
             }
@@ -40,16 +40,16 @@ export default class DirectedTransitionGraph extends BaseGraph {
 
     eachEdge(operation, from?) {
         if (from == undefined) {
-            for (var node in this._transitions) {
-                for (var edge in this._transitions[node]) {
+            for (let node in this._transitions) {
+                for (let edge in this._transitions[node]) {
                     if (operation(node, this._transitions[node][edge], edge)) {
                         return true
                     }
                 }
             }
         } else {
-            var transition = this._transitions[from]
-            for (var edge in transition) {
+            let transition = this._transitions[from]
+            for (let edge in transition) {
                 if (operation(from, transition[edge], edge)) {
                     return true
                 }
@@ -85,7 +85,7 @@ export default class DirectedTransitionGraph extends BaseGraph {
             return false
         }
 
-        for (var edge in this._transitions[node]) {
+        for (let edge in this._transitions[node]) {
             return false
         }
 
@@ -112,22 +112,21 @@ export default class DirectedTransitionGraph extends BaseGraph {
 
     changeNodes(nodeMap) {
         // change `from` nodes
-        var me             = this
-        var newTransitions = {}
-        this.eachNode(function (node) {
+        let newTransitions = {}
+        this.eachNode((node) => {
             if (node in nodeMap) {
-                newTransitions[nodeMap[node]] = me._transitions[node]
+                newTransitions[nodeMap[node]] = this._transitions[node]
             } else {
-                newTransitions[node] = me._transitions[node]
+                newTransitions[node] = this._transitions[node]
             }
         })
         this._transitions = newTransitions
 
         // change `to` nodes
-        this.eachNode(function (from) {
-            var transition = me._transitions[from]
-            for (var edge in transition) {
-                var to = transition[edge]
+        this.eachNode((from) => {
+            let transition = this._transitions[from]
+            for (let edge in transition) {
+                let to = transition[edge]
                 if (to in nodeMap) {
                     transition[edge] = nodeMap[to]
                 }
@@ -139,8 +138,8 @@ export default class DirectedTransitionGraph extends BaseGraph {
     // same then return true
     _compare(graph, stateMap) {
         return !this.eachEdge(function (from, to, edge) {
-                var otherFrom = stateMap[from]
-                var otherTo   = stateMap[to]
+                let otherFrom = stateMap[from]
+                let otherTo   = stateMap[to]
                 if (!graph.hasEdge(otherFrom, otherTo, edge)) {
                     return true // break
                 }

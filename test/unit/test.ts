@@ -19,7 +19,6 @@ import '../tree/ordered/arrayOrderedNode'
 
 
 // graph
-import '../graph/fullPermutation'
 import '../graph/graph'
 import '../graph/directedLinkedGraph'
 import '../graph/directedTransitionGraph'
@@ -32,9 +31,10 @@ import '../graph/directedTransitionGraph'
 // // set
 // import '../set/ordered-set'
 // import '../set/set'
-//
-// // alg
+
+// alg
 // import '../alg/lcs'
+import '../alg/fullPermutation'
 
 
 //import './tree/array-node'
