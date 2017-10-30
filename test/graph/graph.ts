@@ -74,7 +74,7 @@ for (let i=0; i<Graphs.length; i++) {
 
 
     QUnit.test('removeNode()', function (assert) {
-        let graph = serializer.buildByObject({
+        let [graph] = serializer.buildByObject({
             x: [['a', 'y'], ['b', 'z']],
             z: [['a', 'x']]
         }, Graph, GraphNode)
@@ -89,15 +89,11 @@ for (let i=0; i<Graphs.length; i++) {
     })
 
     QUnit.test('removeEdges()', function (assert) {
-        let createGraph = function () {
-            return serializer.buildByObject({
-                'a': [[1, 'b'], [2, 'b'], [1, 'c'], [3, 'c']],
-                'b': [[2, 'c'], [1, 'b']], // a loop
-                'c': [[2, 'b'], [3, 'a']]
-            }, Graph, GraphNode)
-        }
-
-        let graph = createGraph()
+        let [graph] = serializer.buildByObject({
+            'a': [[1, 'b'], [2, 'b'], [1, 'c'], [3, 'c']],
+            'b': [[2, 'c'], [1, 'b']], // a loop
+            'c': [[2, 'b'], [3, 'a']]
+        }, Graph, GraphNode)
         let [a, b, c] = graph.nodes()
         assert.equal(graph.edgeCount(), 8)
         graph.removeEdges((from, to, edge) => from === a || to === b || edge == 2)
@@ -107,7 +103,7 @@ for (let i=0; i<Graphs.length; i++) {
 
 
     QUnit.test('hasNode()', function(assert) {
-        let graph = serializer.buildByObject({
+        let [graph] = serializer.buildByObject({
             x: [[0, 'y']],
             y: [[0, 'x']]
         }, Graph, GraphNode)
@@ -124,7 +120,7 @@ for (let i=0; i<Graphs.length; i++) {
 
 
     QUnit.test('findEdges()/findEdge()', function(assert) {
-        let graph = serializer.buildByObject({
+        let [graph] = serializer.buildByObject({
             a: [[0, 'b'], [1, 'c']],
             b: [[0, 'c']]
         }, Graph, GraphNode)

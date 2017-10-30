@@ -43,7 +43,8 @@ export default class GraphSerializer<N extends GraphNode<E>, E> {
 		}
 	}
 
-	buildByObject(map: { [key: string]: Array<[E, string]>}, Graph: { new(): Graph<N, E> }, GraphNode: { new(): N }) {
+	buildByObject(map: { [key: string]: Array<[E, string]>}, Graph: { new(): Graph<N, E> }, GraphNode: { new(): N })
+	: [Graph<N, E>, { [key: string]: GraphNode<E> }] {
 		let graph = new Graph
 		let nameToNode = { }
 		for (let fromName in map) {
@@ -53,6 +54,6 @@ export default class GraphSerializer<N extends GraphNode<E>, E> {
 				graph.addEdge(fromNode, toNode, edge)
 			}
 		}
-		return graph
+		return [graph, nameToNode]
 	}
 }

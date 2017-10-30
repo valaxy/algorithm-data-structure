@@ -33,10 +33,13 @@ export default function topologicalSort<N extends GraphNode<E>, E>(graph: Graph<
     })
 
     let orders = []
-    for (let i=0; i<g.nodeCount(); i++) {
+
+    // must cache `g.nodeCount()` first
+    for (let i=0, len=g.nodeCount(); i<len; i++) {
         let node = findMinimumInDegree(g)
         if (!node) { throw new Error('graph is not a topological grpah') }
         node.removeOutEdges((to, _) => (to.inDegree--, true))
+        g.removeNode(node)
         orders.push(node)
     }
 
