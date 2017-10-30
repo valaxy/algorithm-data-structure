@@ -20,8 +20,8 @@ import '../tree/ordered/arrayOrderedNode'
 
 // graph
 import '../graph/graph'
-import '../graph/directedLinkedGraph'
-import '../graph/directedTransitionGraph'
+// import '../graph/directedLinkedGraph'
+// import '../graph/directedTransitionGraph'
 
 
 // // search

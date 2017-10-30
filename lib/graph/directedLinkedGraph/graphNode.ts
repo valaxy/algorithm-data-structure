@@ -11,31 +11,27 @@ interface EdgeInfo<N, E> extends LinkedNode<EdgeInfo<N, E>> {
 export default class DirectedLinkedGraphNode<N extends DirectedLinkedGraphNode<N, E>, E> extends GraphNode<N, E> {
     private _linkedList: Linked<EdgeInfo<N, E>> = new Linked
 
-    private _edgeMatch(toExpected: N, actualEdgeInfo: EdgeInfo<N, E>) {
-        return toExpected === undefined || actualEdgeInfo.to === toExpected
+    addOutEdge(to: N, edge: E): void {
+        let node = this._linkedList.addLast()
+        node.to = to
+        node.edge = edge
     }
 
-    outEdgeCount(to?: N) {
-        let count = 0
+    removeOutEdges(test: (to: N, edge: E) => boolean): void {
+        let removed = []
         this._linkedList.each(edgeInfo => {
-            if (this._edgeMatch(to, edgeInfo)) {
-                count++
+            if (test(edgeInfo.to, edgeInfo.edge)) {
+                removed.push(edgeInfo)
             }
         })
-        return count
+        this._linkedList.removeMany(removed)
     }
 
-    eachOutEdge(iterate) {
+    eachOutEdge(iterate: (to: N, edge: E) => void | boolean): boolean {
         return this._linkedList.each(edgeInfo => {
             if (iterate(edgeInfo.to, edgeInfo.edge)) {
                 return true
             }
         })
-    }
-
-    addOutEdge(to: N, edge: E): void {
-        let node = this._linkedList.addLast()
-        node.to = to
-        node.edge = edge
     }
 }

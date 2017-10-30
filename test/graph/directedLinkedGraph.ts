@@ -42,38 +42,7 @@ QUnit.test('edgeCount()/hasEdge(): complex case', function (assert) {
 })
 
 
-QUnit.test('addEdge()/edgeCount()/hasEdge(): simple case', function (assert) {
-    let graph = new Graph
 
-    // empty
-    assert.equal(graph.edgeCount(), 0)
-
-    // no empty
-    graph.addEdge('x', 'y', 'a')
-    graph.addEdge('y', 'x', 'a')
-    assert.equal(graph.edgeCount(), 2)
-    assert.equal(graph.edgeCount('x', 'y', 'a'), 1)
-    assert.equal(graph.edgeCount('x', 'z', 'c'), 0)
-    assert.equal(graph.nodeCount(), 2)
-    assert.ok(graph.hasEdge('x', 'y', 'a'))
-    assert.ok(!graph.hasEdge('x', 'y', 'd'))
-
-    // repeat value edge
-    graph.addEdge('x', 'z', 'a')
-    assert.equal(graph.edgeCount(), 3)
-    assert.equal(graph.nodeCount(), 3)
-
-    // repeat to-node
-    graph.addEdge('x', 'z', 'b')
-    assert.equal(graph.edgeCount(), 4)
-    assert.equal(graph.nodeCount(), 3)
-
-    // same edge
-    graph.addEdge('x', 'z', 'b')
-    assert.equal(graph.edgeCount(), 5)
-    assert.equal(graph.edgeCount('x', 'z', 'b'), 2)
-    assert.equal(graph.nodeCount(), 3)
-})
 
 
 QUnit.test('hasNode()', function (assert) {
@@ -158,56 +127,4 @@ QUnit.test('_compare()/isostructural()', function (assert) {
     graph1.addEdge('x', 'z', '1')
     graph2.addEdge('xx', 'yy', '2')
     assert.ok(!graph1.isostructural(graph2))
-})
-
-QUnit.test('removeNode()', function (assert) {
-    let graph = Graph.fromJSON({
-        x: ['a', 'y', 'b', 'z'],
-        z: ['a', 'x']
-    })
-
-    assert.ok(graph.removeNode('x'))
-    assert.equal(graph.edgeCount(), 0)
-})
-
-QUnit.test('removeEdge()', function (assert) {
-    let createGraph = function () {
-        return Graph.fromJSON({
-            'a': ['1', 'b', '2', 'b', '1', 'c', '3', 'c'],
-            'b': ['1', 'c', '2', 'b'], // a loop
-            'c': ['2', 'b']
-        })
-    }
-
-    let graph = createGraph()
-    assert.ok(graph.removeEdge(undefined, undefined, undefined))
-    assert.equal(graph.edgeCount(), 0)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge(undefined, undefined, '1'))
-    assert.equal(graph.edgeCount(), 4)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge(undefined, 'b', undefined))
-    assert.equal(graph.edgeCount(), 3)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge(undefined, 'b', '2'))
-    assert.equal(graph.edgeCount(), 4)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge('a', undefined, undefined))
-    assert.equal(graph.edgeCount(), 3)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge('a', undefined, '1'))
-    assert.equal(graph.edgeCount(), 5)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge('a', 'b', undefined))
-    assert.equal(graph.edgeCount(), 5)
-
-    graph = createGraph()
-    assert.ok(graph.removeEdge('a', 'b', '1'))
-    assert.equal(graph.edgeCount(), 6)
 })

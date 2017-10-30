@@ -1,5 +1,5 @@
 import Graph from '../graph'
-import GraphNode from './node'
+import DirectedLinkedGraphNode from './graphNode'
 import Linked from '../../linked/linked'
 import LinkedNode from '../../linked/linkedNode'
 import _ = require('underscore')
@@ -11,118 +11,40 @@ interface EdgeInfo<N, E> extends LinkedNode<EdgeInfo<N, E>> {
 }
 
 
-export default class DirectedLinkedGraph<N extends GraphNode<N, E>, E> extends Graph<N, E> {
-    private _nodeLinkedList: Set<N> = new Set
-
-    get nodeCount(): number {
-        return this._nodeLinkedList.size
-    }
+export default class DirectedLinkedGraph<N extends DirectedLinkedGraphNode<N, E>, E> extends Graph<N, E> {
+    private _nodes: Set<N> = new Set
 
     addNode(): N {
-        let n = new GraphNode as N
-        this._nodeLinkedList.add(n)
+        let n = new DirectedLinkedGraphNode as N
+        this._nodes.add(n)
         return n
     }
 
+    removeNode(node: N) {
+        node.removeOutEdges(() => true)
+        this.eachNode(from => {
+            from.removeOutEdges(to => to === node)
+        })
+        return this._nodes.delete(node)
+    }
 
-    eachNode(iterate): boolean {
-        let i = 0
-        for (let node of this._nodeLinkedList) {
-            if (iterate(node, i++)) {
+    nodeCount() {
+        return this._nodes.size
+    }
+
+    hasNode(node: N) {
+        return this._nodes.has(node)
+    }
+
+    eachNode(iterate: (n: N) => void | boolean): boolean {
+        for (let node of this._nodes) {
+            if (iterate(node)) {
                 return true
             }
         }
         return false
     }
 
-    hasNode(node) {
-        return this._nodeLinkedList.has(node)
-    }
-
-
-    // static fromJSON(transitions) {
-    //     let graph = new DirectedLinkedGraph
-    //     Graph.parseTo(transitions, graph)
-    //     return graph
-    // }
-
-
-
-
-
-
-    // /** from: undefined means any
-    //  ** to:   undefined means any
-    //  ** edge: undefined means any
-    //  ** return: the edge or null
-    //  */
-    // hasEdge(from, to, edge) {
-    //     let result = null
-    //     if (from == undefined) {
-    //         _.each(this._nodeLinkedList, (nodeLink)=> {
-    //             return nodeLink.each((linkedNode)=> {
-    //                 if (this._edgeMatch(to, edge, linkedNode)) {
-    //                     result = linkedNode
-    //                     return true
-    //                 }
-    //             })
-    //         })
-    //     } else { // from != undefined
-    //         let fromLink = this._nodeLinkedList[from]
-    //         fromLink.each((linkedNode) => {
-    //             if (this._edgeMatch(to, edge, linkedNode)) {
-    //                 result = linkedNode
-    //                 return true
-    //             }
-    //         })
-    //     }
-    //     return result
-    // }
-    //
-    //
-    //
-    // eachEdge(operation, from?) {
-    //     if (from != undefined) { // iterate edges of `from` node
-    //         return this._nodeLinkedList[from].each((linkedNode) => {
-    //             if (operation(from, linkedNode.value.to, linkedNode.value.edge)) {
-    //                 return true
-    //             }
-    //         })
-    //     } else { // iterate all edges
-    //         return this.eachNode((from) => {
-    //             let nodeList = this._nodeLinkedList[from]
-    //             return nodeList.each(function (linkedNode) {
-    //                 if (operation(from, linkedNode.value.to, linkedNode.value.edge)) {
-    //                     return true
-    //                 }
-    //             })
-    //         })
-    //     }
-    // }
-    //
-    //
-    //
-    //
-    //
-    //
-    // removeNode(nodeId) {
-    //     if (!(nodeId in this._nodeLinkedList)) {
-    //         return false
-    //     }
-    //
-    //     // remove edge whose to is nodeId
-    //     this._nodeLinkedList[nodeId].each((linkedNode) => {
-    //         if (linkedNode.value.to != nodeId) { // loop relation will delete by next sentence
-    //             this.removeEdge(linkedNode.value.to, nodeId)
-    //         }
-    //     })
-    //
-    //     delete this._nodeLinkedList[nodeId]
-    //
-    //     return true
-    // }
-    //
-    //
     // /**
     //  ** return: true if at least one edge be removed
     //  */
@@ -191,8 +113,3 @@ export default class DirectedLinkedGraph<N extends GraphNode<N, E>, E> extends G
     //     })
     // }
 }
-
-
-// nodes() {
-//     return Object.keys(this._nodeLinkedList)
-// }
