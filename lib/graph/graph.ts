@@ -1,11 +1,14 @@
 import fullPermutation from '../alg/fullPermutation'
 import GraphNode from './graphNode'
+import assert from '../util/assert'
 
 /** Base class of Graph */
 export default abstract class Graph<N extends GraphNode<E>, E> {
-    // 不允许传入node的封闭原则很重要, 因为在内部总是使用GraphNode类实例化节点, 导致有可能没法跟外部传入的节点类型一致
+    protected _GraphNode
+
+
     /** Add a node and return it, create a node if not provided */
-    abstract addNode(): N
+    abstract addNode(node: N): N
 
 
     /** Add edge */

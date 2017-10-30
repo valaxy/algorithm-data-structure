@@ -16,10 +16,12 @@ import assert from '../util/assert'
 
 export default class GraphSerializer<N extends GraphNode<E>, E> {
 	// TODO matrix如果没有完整的行怎么办?
-	buildByMatrix<N extends GraphNode<E>, E>(matrix: Array<Array<[number, E]>>, graph: Graph<N, E>) {
+	buildByMatrix<N extends GraphNode<E>, E>(matrix: Array<Array<[number, E]>>, Graph: { new(): Graph<N, E> }, GraphNode: { new(): N }) {
+		let graph = new Graph
+
 		let nodes = []
 		for (let i = 0; i < matrix.length; i++) {
-			nodes[i] = graph.addNode()
+			nodes[i] = graph.addNode(new GraphNode)
 		}
 
 	    for (let fromIndex = 0; fromIndex < matrix.length; fromIndex++) {
@@ -33,24 +35,24 @@ export default class GraphSerializer<N extends GraphNode<E>, E> {
 		return graph
 	}
 
-	_makeSureNodeExist(name, nameToNode, graph) {
+	_makeSureNodeExist(name, nameToNode, graph: Graph<N, E>, GraphNode: { new(): N }) {
 		if (!(name in nameToNode)) {
-			return nameToNode[name] = graph.addNode()
+			return nameToNode[name] = graph.addNode(new GraphNode)
 		} else {
 			return nameToNode[name]
 		}
 	}
 
-	buildByObject(map: { [key: string]: Array<[E, string]>}, graph: Graph<N, E>) {
+	buildByObject(map: { [key: string]: Array<[E, string]>}, Graph: { new(): Graph<N, E> }, GraphNode: { new(): N }) {
+		let graph = new Graph
 		let nameToNode = { }
 		for (let fromName in map) {
-			let fromNode = this._makeSureNodeExist(fromName, nameToNode, graph)
+			let fromNode = this._makeSureNodeExist(fromName, nameToNode, graph, GraphNode)
 			for (let [edge, toName] of map[fromName]) {
-				let toNode = this._makeSureNodeExist(toName, nameToNode, graph)
+				let toNode = this._makeSureNodeExist(toName, nameToNode, graph, GraphNode)
 				graph.addEdge(fromNode, toNode, edge)
 			}
 		}
-
 		return graph
 	}
 }

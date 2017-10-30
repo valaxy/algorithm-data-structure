@@ -1,5 +1,6 @@
 import Graph from '../graph'
 import DirectedTransitionGraphNode from './graphNode'
+import assert from '../../util/assert'
 
 
 /**
@@ -11,9 +12,8 @@ import DirectedTransitionGraphNode from './graphNode'
 export default class DirectedTransitionGraph<N extends DirectedTransitionGraphNode<E>, E> extends Graph<N, E> {
     private _nodes: Set<N> = new Set
 
-
-    addNode() {
-        let node = new DirectedTransitionGraphNode() as N // TODO 应该用子类实例化?
+    addNode(node: N) {
+        assert(!this._nodes.has(node), 'node should not exist in graph')
         this._nodes.add(node)
         return node
     }

@@ -3,15 +3,16 @@ import DirectedLinkedGraphNode from './graphNode'
 import Linked from '../../linked/linked'
 import LinkedNode from '../../linked/linkedNode'
 import _ = require('underscore')
+import assert from '../../util/assert'
 
 
 export default class DirectedLinkedGraph<N extends DirectedLinkedGraphNode<E>, E> extends Graph<N, E> {
     private _nodes: Set<N> = new Set
 
-    addNode(): N {
-        let n = new DirectedLinkedGraphNode as N // TODO 应该用子类实例化?
-        this._nodes.add(n)
-        return n
+    addNode(node: N): N {
+        assert(!this._nodes.has(node), 'node should not exist in graph')
+        this._nodes.add(node)
+        return node
     }
 
     removeNode(node: N) {

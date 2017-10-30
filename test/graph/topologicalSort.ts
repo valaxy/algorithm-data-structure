@@ -1,9 +1,21 @@
 import QUnit = require('qunitjs')
-import topologicalSort from '../../lib/graph/alg/topologicalSort'
-import DirectedLinkedGraph from '../../lib/graph/directedLinkedGraph/graph'
+import Graph from '../../lib/graph/directedLinkedGraph/graph'
+import GraphNode from '../../lib/graph/directedLinkedGraph/graphNode'
 import GraphSerializer from '../../lib/graph/graphSerializer'
+import topologicalSort from '../../lib/graph/alg/topologicalSort'
 
 QUnit.module('topologicalSort')
+
+interface TestGraphNode {
+    name: string
+}
+
+const addNode = function(g, name): TestGraphNode {
+    let node = g.addNode()
+    node.name = name
+    return node
+}
+
 
 QUnit.test('kk', function(assert) {
     let serializer = new GraphSerializer
@@ -11,9 +23,8 @@ QUnit.test('kk', function(assert) {
         a: [[0, 'd'], [0, 'c']],
         d: [[0, 'b']],
         c: [[0, 'b']]
-    }, new DirectedLinkedGraph)
+    }, Graph, GraphNode)
 
     let [a, d, c, b] = g.nodes()
-    topologicalSort(g)
-    assert.deepEqual(topologicalSort(g as any), [a, d, c, b])
+    assert.deepEqual(topologicalSort(g), [a, d, c, b])
 })
