@@ -8,12 +8,12 @@ import DirectedTransitionGraphNode from './graphNode'
  * any two nodes can only has one same value edge
  * directed graph
  */
-export default class DirectedTransitionGraph<N extends DirectedTransitionGraphNode<N, E>, E> extends Graph<N, E> {
+export default class DirectedTransitionGraph<N extends DirectedTransitionGraphNode<E>, E> extends Graph<N, E> {
     private _nodes: Set<N> = new Set
 
 
     addNode() {
-        let node = new DirectedTransitionGraphNode() as N
+        let node = new DirectedTransitionGraphNode() as N // TODO 应该用子类实例化?
         this._nodes.add(node)
         return node
     }

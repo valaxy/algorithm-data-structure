@@ -14,9 +14,9 @@ import assert from '../util/assert'
 //      - 出边链表, 常用情况
 //      - 出边入边双链表, 适合需要反向遍历, 需要快速删除的情况
 
-export default class GraphSerializer<N extends GraphNode<N, E>, E> {
+export default class GraphSerializer<N extends GraphNode<E>, E> {
 	// TODO matrix如果没有完整的行怎么办?
-	buildByMatrix<N extends GraphNode<N, E>, E>(matrix: Array<Array<[number, E]>>, graph: Graph<N, E>) {
+	buildByMatrix<N extends GraphNode<E>, E>(matrix: Array<Array<[number, E]>>, graph: Graph<N, E>) {
 		let nodes = []
 		for (let i = 0; i < matrix.length; i++) {
 			nodes[i] = graph.addNode()

@@ -3,7 +3,7 @@ import LinkedNode from '../../linked/linkedNode'
 import OrderedNode from './orderedNode'
 
 
-interface InnerTreeNode extends LinkedNode<InnerTreeNode> {
+interface InnerTreeNode extends LinkedNode {
     treeNode: any
 }
 

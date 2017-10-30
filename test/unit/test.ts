@@ -20,6 +20,7 @@ import '../tree/ordered/arrayOrderedNode'
 
 // graph
 import '../graph/graph'
+import '../graph/topologicalSort'
 // import '../graph/directedLinkedGraph'
 // import '../graph/directedTransitionGraph'
 

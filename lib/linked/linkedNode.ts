@@ -1,17 +1,17 @@
-export default class LinkedNode<T extends LinkedNode<T>> {
+export default class LinkedNode {
     private _prev = null
     private _next = null
 
     /** Get next node or null */
-    get next(): T { return this._next }
+    get next(): this { return this._next }
 
 
     /** Get prev node or null */
-    get prev(): T { return this._prev }
+    get prev(): this { return this._prev }
 
 
     /** Make `node` to be the next node */
-    addNext(node: T): void {
+    addNext(node: this): void {
         let next   = this.next
         this._next = node
         node._prev = this
@@ -22,7 +22,7 @@ export default class LinkedNode<T extends LinkedNode<T>> {
     }
 
     /** Make `node` to be the prev node */
-    addPrev(node: T): void {
+    addPrev(node: this): void {
         let prev   = this.prev
         node._next = this
         this._prev = node
@@ -45,7 +45,9 @@ export default class LinkedNode<T extends LinkedNode<T>> {
         }
     }
 
-    construct() {
-        return new LinkedNode() as T
+    construct(): this {
+        type x = this
+        let Constructor = this.constructor as { new() }
+        return new Constructor()
     }
 }

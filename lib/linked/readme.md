@@ -3,8 +3,8 @@
 
 # LinkedNode
 ```javascript
-var LinkedNode = require('src/linked/linked-node')
-var node = new LinkedNode
+let LinkedNode = require('src/linked/linked-node')
+let node = new LinkedNode
 node.next()
 node.prev()
 node.addNext(node)
@@ -14,8 +14,8 @@ node.remove()
 
 # Linked
 ```javascript
-var Linked = require('src/linked/linked')
-var linked = new Linked
+let Linked = require('src/linked/linked')
+let linked = new Linked
 linked.head()
 linked.tail()
 linked.count()

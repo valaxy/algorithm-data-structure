@@ -2,7 +2,7 @@ import fullPermutation from '../alg/fullPermutation'
 import GraphNode from './graphNode'
 
 /** Base class of Graph */
-export default abstract class Graph<N extends GraphNode<N, E>, E> {
+export default abstract class Graph<N extends GraphNode<E>, E> {
     // 不允许传入node的封闭原则很重要, 因为在内部总是使用GraphNode类实例化节点, 导致有可能没法跟外部传入的节点类型一致
     /** Add a node and return it, create a node if not provided */
     abstract addNode(): N
@@ -19,12 +19,16 @@ export default abstract class Graph<N extends GraphNode<N, E>, E> {
 
 
     /** Remove edges */
-    removeEdges(test: (from: N, to: N, edge: E) => boolean): void {
+    removeEdges(test: (from: N, to: N, edge: E) => boolean): [N, N, E][] {
+        let ret = []
         this.eachNode(from => {
             from.removeOutEdges((to2, edge2) => {
                 return test(from, to2, edge2)
+            }).forEach((to, edge) => {
+                ret.push([from, to, edge])
             })
         })
+        return ret
     }
 
 

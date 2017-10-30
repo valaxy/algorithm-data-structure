@@ -1,7 +1,7 @@
 import LinkedNode from './linkedNode'
 
 /** Linked structure aiming at process linked node */
-export default class Linked<T extends LinkedNode<T>> {
+export default class Linked<T extends LinkedNode> {
     private _head = null
     private _tail = null
     private _count = 0

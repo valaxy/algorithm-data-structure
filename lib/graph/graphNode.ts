@@ -1,16 +1,16 @@
 
 /** Abstract base class of Graph Node */
-export default abstract class GraphNode<N extends GraphNode<N, E>, E> {
+export default abstract class GraphNode<E> {
     /** Add a edge */
-    abstract addOutEdge(to: N, edge: E): void
+    abstract addOutEdge(to: this, edge: E): void
 
 
     /** Remove edges if test return true */
-    abstract removeOutEdges(test: (to: N, edge: E) => boolean): void
+    abstract removeOutEdges(test: (to: this, edge: E) => boolean): Array<[this, E]>
 
 
     /** Find all out edges which test return true */
-    findOutEdges(test: (to: N, edge: E) => boolean): Array<[N, E]> {
+    findOutEdges(test: (to: this, edge: E) => boolean): Array<[this, E]> {
         let edgeInfos = []
         this.eachOutEdge((to, edge) => {
             if (test(to, edge)) {
@@ -22,7 +22,7 @@ export default abstract class GraphNode<N extends GraphNode<N, E>, E> {
 
 
     /** Find the first out edge which test return true */
-    findOutEdge(test: (to: N, edge: E) => boolean): [N, E] {
+    findOutEdge(test: (to: this, edge: E) => boolean): [this, E] {
         let edgeInfo = null
         this.eachOutEdge((to, edge) => {
             if (test(to, edge)) {
@@ -35,5 +35,5 @@ export default abstract class GraphNode<N extends GraphNode<N, E>, E> {
 
 
     /** Iterate over out edges */
-    abstract eachOutEdge(iterate: (to: N, edge: E) => void | boolean): boolean
+    abstract eachOutEdge(iterate: (to: this, edge: E) => void | boolean): boolean
 }

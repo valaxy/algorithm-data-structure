@@ -5,17 +5,11 @@ import LinkedNode from '../../linked/linkedNode'
 import _ = require('underscore')
 
 
-interface EdgeInfo<N, E> extends LinkedNode<EdgeInfo<N, E>> {
-    to: N
-    edge: E
-}
-
-
-export default class DirectedLinkedGraph<N extends DirectedLinkedGraphNode<N, E>, E> extends Graph<N, E> {
+export default class DirectedLinkedGraph<N extends DirectedLinkedGraphNode<E>, E> extends Graph<N, E> {
     private _nodes: Set<N> = new Set
 
     addNode(): N {
-        let n = new DirectedLinkedGraphNode as N
+        let n = new DirectedLinkedGraphNode as N // TODO 应该用子类实例化?
         this._nodes.add(n)
         return n
     }
